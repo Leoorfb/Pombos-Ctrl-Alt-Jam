@@ -8,11 +8,10 @@ public class Player : MonoBehaviour
     public int maxHp = 100;
     public int hp = 100;
     public int armor = 0;
-    public int healthRegen = 0;
-    public int projectileSize = 1;
-    public int projectileAmount = 1;
     public float attackCooldownPct = 1;
     public float speed = 5;
+    public int lucky = 1;
+
 
     public bool isAlive = true;
 
@@ -45,7 +44,6 @@ public class Player : MonoBehaviour
         while (hp > 0)
         {
             yield return new WaitForSeconds(1);
-            Heal(healthRegen);
         }
     }
 

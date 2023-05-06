@@ -13,7 +13,6 @@ public class Exp : MonoBehaviour
     {
         player.GetComponent<PlayerLevel>().AddExp(expAmount);
         _DisableCollectable(this);
-        Destroy(this);
     }
 
     public void Init(Action<Exp> disableCollectable)

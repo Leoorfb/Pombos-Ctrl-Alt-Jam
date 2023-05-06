@@ -46,10 +46,10 @@ public class Item : ScriptableObject
         player.armor += stats.armor;
         player.hp += stats.health;
         player.maxHp += stats.health;
-        player.healthRegen += stats.healthRegen;
+        //player.healthRegen += stats.healthRegen;
         player.speed += stats.speed;
-        player.projectileSize += stats.projectileSize;
-        player.projectileAmount += stats.projectileAmount;
+        //player.projectileSize += stats.projectileSize;
+        //player.projectileAmount += stats.projectileAmount;
         player.attackCooldownPct += stats.attackCooldownPct;
     }
 
@@ -58,10 +58,10 @@ public class Item : ScriptableObject
         player.armor -= stats.armor;
         player.hp -= stats.health;
         player.maxHp -= stats.health;
-        player.healthRegen -= stats.healthRegen;
+        //player.healthRegen -= stats.healthRegen;
         player.speed -= stats.speed;
-        player.projectileSize -= stats.projectileSize;
-        player.projectileAmount -= stats.projectileAmount;
+        //player.projectileSize -= stats.projectileSize;
+        //player.projectileAmount -= stats.projectileAmount;
         player.attackCooldownPct -= stats.attackCooldownPct;
     }
 

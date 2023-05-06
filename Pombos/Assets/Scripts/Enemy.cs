@@ -81,7 +81,9 @@ public class Enemy : MonoBehaviour
 
             if (hp <= 0)
             {
-                _killAction(this);
+                if (_killAction != null)
+                    _killAction(this);
+                else Destroy(gameObject);
             }
             //Debug.Log(name + " hp: " + hp);
 

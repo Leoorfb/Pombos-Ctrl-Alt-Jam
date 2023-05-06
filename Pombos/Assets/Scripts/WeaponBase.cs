@@ -81,24 +81,36 @@ public abstract class WeaponBase : MonoBehaviour
         WeaponProjectile projectile = GameObject.Instantiate(projectilePrefab, transform.position, transform.rotation, projectilesContainer).GetComponent<WeaponProjectile>();
         projectile.weapon = this;
         projectile.Init(DisableProjectile);
+        //Debug.Log("Projetil Init");
+
         return projectile;
     }
 
     protected virtual void DisableProjectile(WeaponProjectile obj)
     {
         _projectilePool.Release(obj);
+        //Debug.Log("Projetil Disable");
     }
 
     protected virtual void OnReturnedToPool(WeaponProjectile projectile)
     {
         projectile.gameObject.SetActive(false);
+        //Debug.Log("Projetil Returned To Pool");
+
     }
     protected virtual void OnTakeFromPool(WeaponProjectile projectile)
     {
         projectile.gameObject.SetActive(true);
+
+        projectile.transform.position = transform.position;
+        projectile.transform.rotation = transform.rotation;
+
+        //Debug.Log("Projetil Take From Pool");
+
     }
     protected virtual void OnDestroyPoolObject(WeaponProjectile projectile)
     {
         Destroy(projectile.gameObject);
+        //Debug.Log("Projetil Destroy From Pool");
     }
 }

@@ -23,14 +23,17 @@ public class WeaponProjectile : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            weapon.HitEnemy(other.gameObject.GetComponent<Enemy>());
+            weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>());
+
+            //Debug.Log("Projetil atingiu inimigo");
+            _DisableProjectile(this);
         }
     }
 
@@ -42,6 +45,12 @@ public class WeaponProjectile : MonoBehaviour
     IEnumerator AttackDuration()
     {
         yield return new WaitForSeconds(lifespan);
+        //Debug.Log("Projetil terminou lifespan");
         _DisableProjectile(this);
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

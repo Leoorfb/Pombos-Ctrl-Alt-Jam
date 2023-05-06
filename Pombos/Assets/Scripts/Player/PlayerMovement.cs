@@ -10,6 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D _Rigidbody;
 
+
+    [SerializeField] Camera mainCamera;
+    Vector3 mouse_pos;
+    Vector3 object_pos;
+    float angle;
+    Vector3 newRotation = Vector3.zero;
+
     private void Awake()
     {
         _Rigidbody = GetComponent<Rigidbody2D>();
@@ -30,11 +37,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 direction = new Vector2(horizontal, vertical).normalized;
             //transform.rotation = Quaternion.LookRotation(direction);
-            transform.Translate(direction * speed * Time.deltaTime);
-
+            transform.Translate(direction * speed * Time.deltaTime,Space.World);
             //_Rigidbody.AddForce(direction * speed * Time.deltaTime, ForceMode.VelocityChange);
-
             //_Rigidbody.velocity = direction * speed; //* Time.deltaTime;
         }
+        LookAtMouse();
+    }
+
+    void LookAtMouse()
+    {
+        mouse_pos = Input.mousePosition;
+        mouse_pos.z = 5.23f; //The distance between the camera and object
+        object_pos = mainCamera.WorldToScreenPoint(transform.position);
+        mouse_pos.x = mouse_pos.x - object_pos.x;
+        mouse_pos.y = mouse_pos.y - object_pos.y;
+        angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+        newRotation.z = angle;
+        transform.rotation = Quaternion.Euler(newRotation);
     }
 }
