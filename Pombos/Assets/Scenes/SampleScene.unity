@@ -1470,7 +1470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  hp: 100
   armor: 0
   attackCooldownPct: 1
   speed: 5
@@ -2060,8 +2059,10 @@ MonoBehaviour:
   spawnRadius: 20
   DropContainer: {fileID: 824904281}
   spawnCooldown: 1
-  dropGold: {fileID: 0}
-  dropItems: []
+  dropGold: {fileID: 2420394416697878873, guid: 6da299221c67f15468931794d0425e36, type: 3}
+  dropItems:
+  - dropRate: 10
+    dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
 --- !u!1 &925686355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,7 +2684,7 @@ GameObject:
   - component: {fileID: 1255422704}
   - component: {fileID: 1255422705}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Rogers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2697,7 +2698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255422703}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0.27, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2744,7 +2745,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: d3d27b28845792545bc81ca5d826ea65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
