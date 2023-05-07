@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Player player;
-
-    [SerializeField] float speed = 5;
+    public float speed = 5;
 
     Rigidbody2D _Rigidbody;
 
@@ -16,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 object_pos;
     float angle;
     Vector3 newRotation = Vector3.zero;
+    Vector2 moveDirection = Vector2.zero;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
+        speed = player.speed;
     }
 
     void Update()
@@ -33,15 +34,18 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        if (horizontal != 0 || vertical != 0)
-        {
-            Vector2 direction = new Vector2(horizontal, vertical).normalized;
-            //transform.rotation = Quaternion.LookRotation(direction);
-            transform.Translate(direction * speed * Time.deltaTime,Space.World);
-            //_Rigidbody.AddForce(direction * speed * Time.deltaTime, ForceMode.VelocityChange);
-            //_Rigidbody.velocity = direction * speed; //* Time.deltaTime;
-        }
+        
+        moveDirection.x = horizontal;
+        moveDirection.y = vertical;
+        moveDirection = moveDirection.normalized;
+            
         LookAtMouse();
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.Log(moveDirection * speed * Time.fixedDeltaTime);
+        _Rigidbody.AddForce(moveDirection * speed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
     void LookAtMouse()

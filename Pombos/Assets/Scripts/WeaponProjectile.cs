@@ -8,6 +8,7 @@ public class WeaponProjectile : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float lifespan;
     public WeaponBase weapon;
+    public Vector2 direction = Vector2.zero;
 
     private Action<WeaponProjectile> _DisableProjectile;
 
@@ -19,6 +20,7 @@ public class WeaponProjectile : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine("AttackDuration");
+        //direction.x = ;
     }
 
     protected virtual void Update()
@@ -30,7 +32,7 @@ public class WeaponProjectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>());
+            weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>(), transform.right);
 
             //Debug.Log("Projetil atingiu inimigo");
             StopAllCoroutines();

@@ -16,6 +16,7 @@ MonoBehaviour:
   stats:
     damage: 1
     attackCooldown: 0.15
+    knockbackStrenght: 10
   weaponPrefab: {fileID: 165256646908173215, guid: a27912cc61ed181438522168e24c6d97, type: 3}
   weaponUpgrades:
   - {fileID: 11400000, guid: 0336a0041d5d58c4eaac9a4a39771495, type: 2}

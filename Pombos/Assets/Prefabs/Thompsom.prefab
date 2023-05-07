@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilesContainer: {fileID: 0}
   weaponData: {fileID: 11400000, guid: dc980876564831a4ab8c893a612bde97, type: 2}
-  attackCooldown: 0.5
   weaponLevel: 1
   projectilePrefab: {fileID: 9010848437333594081, guid: 4628d7f121451c34baf74a68bf6074e6, type: 3}
   weaponStats:
     damage: 1
     attackCooldown: 0.5
+    knockbackStrenght: 10
   spread: 15

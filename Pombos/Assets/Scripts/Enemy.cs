@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int maxHp = 10;
     [SerializeField] float speed = 4;
     [SerializeField] int damage = 1;
+    public float knockbackStreght = 10;
 
     public bool isAttackOnCooldown = false;
     [SerializeField] float attackCooldown = 0.2f;
@@ -40,14 +41,17 @@ public class Enemy : MonoBehaviour
         moveDirection.y = playerTransform.position.y - transform.position.y;
         moveDirection = moveDirection.normalized;
         //Debug.Log(direction);
-        step = speed * Time.deltaTime;
+        step = speed * Time.fixedDeltaTime;
 
         //_Rigidbody.AddForce(moveDirection * speed * Time.deltaTime, ForceMode.VelocityChange);
 
         //transform.rotation = Quaternion.LookRotation(moveDirection);
         //transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        _Rigidbody.velocity = moveDirection * speed; //* Time.deltaTime;
+        _Rigidbody.AddForce(moveDirection * step, ForceMode2D.Force);
+
+
+        //_Rigidbody.velocity = moveDirection * speed; //* Time.deltaTime;
     }
 
     public int Attack()
@@ -90,6 +94,12 @@ public class Enemy : MonoBehaviour
 
         }
         return;
+    }
+
+    public void TakeKnockback(Vector2 direction, float force)
+    {
+        Debug.Log(direction * force);
+        _Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
     public void SetPlayerTransform(Transform nPlayerTransform)

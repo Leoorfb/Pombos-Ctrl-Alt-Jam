@@ -19,10 +19,11 @@ MonoBehaviour:
   weaponUpgradeStats:
     damage: 0
     attackCooldown: 0
+    knockbackStrenght: 0
   item: {fileID: 11400000, guid: 3f2ac587532a75f49833b2d84b1ba17e, type: 2}
   itemStats:
     armor: 0
-    health: 25
+    health: 15
     healthRegen: 0
     speed: 0
     projectileSize: 0

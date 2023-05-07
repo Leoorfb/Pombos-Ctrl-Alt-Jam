@@ -8,7 +8,6 @@ public abstract class WeaponBase : MonoBehaviour
 {
     public Transform projectilesContainer;
     public WeaponData weaponData;
-    public float attackCooldown = 1;
     public int weaponLevel = 1;
     [SerializeField] protected GameObject projectilePrefab;
 
@@ -28,18 +27,22 @@ public abstract class WeaponBase : MonoBehaviour
     {
         enemy.TakeDamage(weaponStats.damage);
     }
+    public virtual void HitEnemy(Enemy enemy, Vector2 knockBackDir)
+    {
+        HitEnemy(enemy);
+        enemy.TakeKnockback(knockBackDir, weaponStats.knockbackStrenght);
+    }
 
     public virtual void SetData(WeaponData wd)
     {
         weaponData = wd;
-        attackCooldown = weaponData.stats.attackCooldown;
 
-        weaponStats = new WeaponStats(weaponData.stats.damage, attackCooldown);
+        weaponStats = new WeaponStats(weaponData.stats.damage, weaponData.stats.attackCooldown, weaponData.stats.knockbackStrenght);
     }
 
     public IEnumerator CooldownAttack()
     {
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(weaponStats.attackCooldown);
         Attack();
     }
 

@@ -15,7 +15,18 @@ public class Player : MonoBehaviour
 
     public int armor = 0;
     public float attackCooldownPct = 1;
-    public float speed = 5;
+    [SerializeField] private float _speed = 5000;
+    public float speed
+    {
+        get { return _speed; }
+        set
+        {
+            _speed = value;
+            playerMovement.speed = _speed;
+        }
+    }
+    
+
     public int lucky = 1;
 
 
@@ -23,17 +34,23 @@ public class Player : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI hpText;
 
+    Rigidbody2D _Rigidbody;
+
     WeaponsManager weaponsManager;
+    PlayerMovement playerMovement;
 
 
     private void Awake()
     {
+        _Rigidbody = GetComponent<Rigidbody2D>();
         weaponsManager = GetComponent<WeaponsManager>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = maxHp;
         UpdateHpText();
         StartCoroutine("RegenHP");
     }
@@ -51,21 +68,6 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        ApplyArmor(ref damage);
-
-        hp -= damage;
-        //Debug.Log(damage + " damage taken");
-
-        if (hp <= 0)
-        {
-            isAlive = false;
-        }
-        UpdateHpText();
-        return;
     }
 
     // Talvez repensar funcionamento da armadura
@@ -87,10 +89,44 @@ public class Player : MonoBehaviour
         //Debug.Log("COLIDIU " + collided.tag);
         if (collided.tag == "Enemy")
         {
+            Enemy enemy = collided.GetComponent<Enemy>();
             //Debug.Log(name + " colidiu com " + collision.gameObject.name);
-            TakeDamage(collided.GetComponent<Enemy>().Attack());
+            Vector2 dir = new Vector2(transform.position.x - collision.transform.position.x, transform.position.y - collision.transform.position.y);
+            GetHit(enemy.Attack(), dir, enemy.knockbackStreght);
         }
         
     }
 
+    public void GetHit(int damage)
+    {
+        TakeDamage(damage);
+    }
+    public void GetHit(int damage, Vector2 direction, float force)
+    {
+        if (damage < 0) return;
+
+        GetHit(damage);
+        TakeKnockback(direction, force);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        ApplyArmor(ref damage);
+
+        hp -= damage;
+        //Debug.Log(damage + " damage taken");
+
+        if (hp <= 0)
+        {
+            isAlive = false;
+        }
+        UpdateHpText();
+        return;
+    }
+
+    public void TakeKnockback(Vector2 direction, float force)
+    {
+        Debug.Log(direction * force);
+        _Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
+    }
 }

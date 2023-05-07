@@ -8,17 +8,20 @@ public class WeaponStats
 {
     public int damage;
     public float attackCooldown;
+    public float knockbackStrenght;
 
-    public WeaponStats(int damage, float attackCooldown)
+    public WeaponStats(int damage, float attackCooldown, float knockbackStrenght)
     {
         this.damage = damage;
         this.attackCooldown = attackCooldown;
+        this.knockbackStrenght = knockbackStrenght;
     }
 
     public void Sum(WeaponStats weaponUpgradeStats)
     {
         this.damage += weaponUpgradeStats.damage;
         this.attackCooldown += weaponUpgradeStats.attackCooldown;
+        this.knockbackStrenght += weaponUpgradeStats.knockbackStrenght;
     }
 }
 
