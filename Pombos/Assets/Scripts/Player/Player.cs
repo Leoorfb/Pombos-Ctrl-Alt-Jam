@@ -6,7 +6,13 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public int maxHp = 100;
-    public int hp = 100;
+    private int _hp = 100;
+    public int hp {
+        get { return _hp; }
+        set { _hp = value;
+            UpdateHpText();
+        }}
+
     public int armor = 0;
     public float attackCooldownPct = 1;
     public float speed = 5;
@@ -32,7 +38,7 @@ public class Player : MonoBehaviour
         StartCoroutine("RegenHP");
     }
 
-    void Heal(int healAmount)
+    public void Heal(int healAmount)
     {
         hp += healAmount;
         if (hp > maxHp) hp = maxHp;

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1208348325544815865}
   - component: {fileID: 5990383480654566786}
-  - component: {fileID: 9062329271635093285}
+  - component: {fileID: 2544982614183117136}
   - component: {fileID: 6858067477363530203}
   m_Layer: 0
-  m_Name: EXP
+  m_Name: Gold
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.9527422, g: 1, b: 0.1745283, a: 1}
   m_FlipX: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9062329271635093285
+--- !u!114 &2544982614183117136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,10 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2420394416697878873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e1dec9a1c14dc344a323ca5643571e8, type: 3}
+  m_Script: {fileID: 11500000, guid: b8bd403d7db29fd4d81d8df4e27cde01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expAmount: 5
+  goldAmount: 5
 --- !u!61 &6858067477363530203
 BoxCollider2D:
   m_ObjectHideFlags: 0

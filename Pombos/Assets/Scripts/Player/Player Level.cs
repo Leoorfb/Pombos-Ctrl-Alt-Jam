@@ -67,7 +67,7 @@ public class PlayerLevel : MonoBehaviour
         
         if (selectedUpgrades == null) selectedUpgrades = new List<UpgradesData>();
         selectedUpgrades.Clear();
-        selectedUpgrades.AddRange(GetUpgrades(3));
+        selectedUpgrades.AddRange(GetUpgrades(2));
 
         upgradePanel.OpenPanel(selectedUpgrades);
         

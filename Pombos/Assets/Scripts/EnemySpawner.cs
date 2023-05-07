@@ -1,7 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+
+
+[Serializable]
+public class Drop
+{
+    public int dropRate = 0;
+    public GameObject dropObject;
+}
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,21 +19,30 @@ public class EnemySpawner : MonoBehaviour
     Transform playerTransform;
 
     [SerializeField] Transform DropContainer;
-    [SerializeField] GameObject dropItem;
 
     [SerializeField] float spawnCooldown;
 
     private ObjectPool<Enemy> _enemyPool;
-    private ObjectPool<Exp> _dropPool;
+    private ObjectPool<Collectable> _dropPool;
+
+    [SerializeField] GameObject dropGold;
+    [SerializeField] List<Drop> dropItems;
+    //private List<ObjectPool<Collectable>> _dropItemsPool;
 
     // Start is called before the first frame update
     void Start()
     {
         _enemyPool = new ObjectPool<Enemy>(CreateEnemy, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
-        _dropPool = new ObjectPool<Exp>(CreateDrop, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
+        _dropPool = new ObjectPool<Collectable>(CreateDrop, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
 
         playerTransform = GameManager.instance.playerTransform;
         StartCoroutine("CooldownSpawn");
+        /*
+        foreach (Drop drop in dropItems)
+        {
+            _dropItemsPool.Add(new ObjectPool<Collectable>(CreateDrop, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject));
+        }
+        */
     }
 
     private Enemy CreateEnemy()
@@ -47,21 +65,21 @@ public class EnemySpawner : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
-    private Exp CreateDrop()
+    private Collectable CreateDrop()
     {
-        Exp newExp = GameObject.Instantiate(dropItem, DropContainer).GetComponent<Exp>();
-        newExp.Init(DisableCollectable);
-        return newExp;
+        Collectable newGold = GameObject.Instantiate(dropGold, DropContainer).GetComponent<Gold>();
+        newGold.Init(DisableCollectable);
+        return newGold;
     }
-    void OnReturnedToPool(Exp drop)
+    void OnReturnedToPool(Collectable drop)
     {
         drop.gameObject.SetActive(false);
     }
-    void OnTakeFromPool(Exp drop)
+    void OnTakeFromPool(Collectable drop)
     {
         drop.gameObject.SetActive(true);
     }
-    void OnDestroyPoolObject(Exp drop)
+    void OnDestroyPoolObject(Collectable drop)
     {
         Destroy(drop.gameObject);
     }
@@ -109,15 +127,45 @@ public class EnemySpawner : MonoBehaviour
 
     private void KillEnemy(Enemy enemy)
     {
-        Exp drop = _dropPool.Get();
-        drop.transform.position = enemy.transform.position;
+        Collectable goldDrop = _dropPool.Get();
+        goldDrop.transform.position = enemy.transform.position;
+
+        GameObject dropPrefab = GetRandomDrop();
+        if (dropPrefab != null)
+        {
+            Collectable drop = Instantiate(dropPrefab, enemy.transform.position, dropPrefab.transform.rotation, DropContainer).GetComponent<Collectable>();
+            drop.Init(DestroyCollectable);
+        }
 
         enemy.StopAllCoroutines();
         _enemyPool.Release(enemy);
     }
 
-    private void DisableCollectable(Exp exp)
+    private GameObject GetRandomDrop()
     {
-        _dropPool.Release(exp);
+        GameObject drop = null;
+        int dropNumber = UnityEngine.Random.Range(0,100);
+        foreach (Drop _drop in dropItems)
+        {
+            dropNumber -= _drop.dropRate;
+            
+            if (dropNumber <= 0)
+            {
+                drop = _drop.dropObject;
+                break;
+            }
+        }
+
+        return drop;
+    }
+
+    private void DisableCollectable(Collectable collectable)
+    {
+        _dropPool.Release(collectable);
+    }
+
+    private void DestroyCollectable(Collectable collectable)
+    {
+        Destroy(collectable.gameObject);
     }
 }

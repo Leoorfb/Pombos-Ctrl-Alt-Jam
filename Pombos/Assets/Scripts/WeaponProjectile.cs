@@ -33,6 +33,7 @@ public class WeaponProjectile : MonoBehaviour
             weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>());
 
             //Debug.Log("Projetil atingiu inimigo");
+            StopAllCoroutines();
             _DisableProjectile(this);
         }
     }
@@ -47,10 +48,5 @@ public class WeaponProjectile : MonoBehaviour
         yield return new WaitForSeconds(lifespan);
         //Debug.Log("Projetil terminou lifespan");
         _DisableProjectile(this);
-    }
-
-    private void OnDisable()
-    {
-        StopAllCoroutines();
     }
 }

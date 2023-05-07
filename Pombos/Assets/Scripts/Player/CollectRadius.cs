@@ -25,10 +25,10 @@ public class CollectRadius : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("CollectRadius Enter Collision Com " + collision.gameObject.name);
+        //Debug.Log("CollectRadius Enter Collision Com " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Collectable"))
         {
-            collision.gameObject.GetComponent<Exp>().Collect(player);
+            collision.gameObject.GetComponent<Collectable>().Collect(player);
         }
     }
 }

@@ -49,6 +49,7 @@ public class UpgradePanelManager : MonoBehaviour
         {
             for (int i = 0; i < upgradesDatas.Count; i++)
             {
+                //Debug.Log(i);
                 upgradeButtons[i].gameObject.SetActive(true);
                 upgradeButtons[i].SetData(upgradesDatas[i]);
             }

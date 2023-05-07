@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c8f99bc0dbeab49ab44a8480029627, type: 3}
+  m_Name: Charuto Speed Upgrade
+  m_EditorClassIdentifier: 
+  UpgradeType: 1
+  UpgradeDescription: Aumenta velocidade de movimento
+  icon: {fileID: 21300000, guid: b1640c283050b4d23a677c6a445f058c, type: 3}
+  weaponData: {fileID: 0}
+  weaponUpgradeStats:
+    damage: 0
+    attackCooldown: 0
+  item: {fileID: 11400000, guid: c3cc54a8abe55b94782ca366a5087017, type: 2}
+  itemStats:
+    armor: 0
+    health: 0
+    healthRegen: 0
+    speed: 2
+    projectileSize: 0
+    projectileAmount: 0
+    attackCooldownPct: 0

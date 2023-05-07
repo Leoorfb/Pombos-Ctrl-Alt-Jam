@@ -44,8 +44,8 @@ public class Item : ScriptableObject
     public void Equip(Player player)
     {
         player.armor += stats.armor;
-        player.hp += stats.health;
         player.maxHp += stats.health;
+        player.hp += stats.health;
         //player.healthRegen += stats.healthRegen;
         player.speed += stats.speed;
         //player.projectileSize += stats.projectileSize;
