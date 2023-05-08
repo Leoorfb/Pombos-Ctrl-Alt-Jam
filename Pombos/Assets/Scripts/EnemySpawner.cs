@@ -139,6 +139,7 @@ public class EnemySpawner : MonoBehaviour
             drop.Init(DestroyCollectable);
         }
 
+        AudioManager.instance.Play("EnemyDeath");
         enemy.StopAllCoroutines();
         _enemyPool.Release(enemy);
     }
