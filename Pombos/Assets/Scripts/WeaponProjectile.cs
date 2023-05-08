@@ -35,7 +35,7 @@ public class WeaponProjectile : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>(), transform.right);
-
+            AudioManager.instance.Play("HitEnemy");
             //Debug.Log("Projetil atingiu inimigo");
             StopAllCoroutines();
             _DisableProjectile(this);
@@ -43,8 +43,9 @@ public class WeaponProjectile : MonoBehaviour
         
         else if (collision.gameObject.tag == "Obstacle")
         {
-            //Debug.Log("Projetil atingiu OBSTACULO 1");
+            Debug.Log("Projetil atingiu OBSTACULO 1");
             StopAllCoroutines();
+            AudioManager.instance.Play("HitWall");
             _DisableProjectile(this);
         }
     }
