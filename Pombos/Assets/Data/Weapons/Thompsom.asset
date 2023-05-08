@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Thompsom
   stats:
-    damage: 1
-    attackCooldown: 0.15
+    damage: 2
+    attackCooldown: 0.25
     knockbackStrenght: 10
   weaponPrefab: {fileID: 165256646908173215, guid: a27912cc61ed181438522168e24c6d97, type: 3}
   weaponUpgrades:
