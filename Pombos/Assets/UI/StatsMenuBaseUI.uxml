@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/statslabels.uss?fileID=7433441132597879392&amp;guid=e80cf0bf9b8820b49bae0594690fba94&amp;type=3#statslabels" />
+    <ui:VisualElement name="PauseOverlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.48); opacity: 1;">
+        <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgb(34, 34, 34); overflow: visible; width: 40%; height: 995px; align-self: center; color: rgb(19, 19, 19); background-image: none; margin-top: 10%; margin-bottom: 10%; border-top-left-radius: 16px; border-bottom-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; -unity-background-image-tint-color: rgb(0, 0, 0);">
+            <ui:VisualElement name="AvatarContainer" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); height: 150px; flex-direction: row; align-items: center; justify-content: flex-start; align-self: auto; padding-left: 32px; padding-right: 32px; padding-top: 32px; padding-bottom: 32px; margin-left: 20px; margin-right: 20px; margin-top: 50px; margin-bottom: 20px;">
+                <ui:VisualElement name="Avatar" style="flex-grow: initial; background-color: rgb(255, 255, 255); width: 120px; height: 120px; color: rgb(255, 255, 255); border-top-left-radius: 120px; border-bottom-left-radius: 120px; border-top-right-radius: 120px; border-bottom-right-radius: 120px; background-image: url(&apos;project://database/Assets/Backgrounds/ROGERS-FACE.png?fileID=2800000&amp;guid=9268d6382749c324aa04adb91ab5e61f&amp;type=3#ROGERS-FACE&apos;);" />
+                <ui:Label tabindex="-1" text="ROGERS PORLEONE" display-tooltip-when-elided="true" name="Name" style="color: rgb(255, 255, 255); font-size: 38px; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&amp;guid=f0d2f5d67057fc2479a2f80f553a89ae&amp;type=3#VCR_OSD_MONO_1.001&apos;); margin-left: 20px; width: 360px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StatsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;">
+                <ui:Label tabindex="-1" text="Nível: 2321" display-tooltip-when-elided="true" name="LevelLabel" class="stats-label" style="color: rgb(0, 180, 255);" />
+                <ui:Label tabindex="-1" text="Vida Máxima: 21/99999" display-tooltip-when-elided="true" name="HealthLabel" class="stats-label" style="color: rgb(4, 255, 10);" />
+                <ui:Label tabindex="-1" text="Dano: 2132" display-tooltip-when-elided="true" name="DamageLabel" class="stats-label" style="color: rgb(255, 20, 20);" />
+                <ui:Label tabindex="-1" text="Arma atual: Thompson" display-tooltip-when-elided="true" name="WeaponLabel" class="stats-label" style="color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="UpgradesContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; padding-left: 32px;">
+                <ui:VisualElement name="HatContainer" class="upgrade-item-container" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Backgrounds/rogers-hat.png?fileID=2800000&amp;guid=6da1b59dd6ae6754da689a8b2d10b578&amp;type=3#rogers-hat&apos;); bottom: 0; right: 0;">
+                    <ui:Label tabindex="-1" text="4" display-tooltip-when-elided="true" name="HatCounter" class="upgrade-level-counter" style="font-size: 28px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="CoinContainer" class="upgrade-item-container" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Backgrounds/coin-frame.png?fileID=2800000&amp;guid=747dce192f273dd478b99daf7418d2b2&amp;type=3#coin-frame&apos;);">
+                    <ui:Label tabindex="-1" text="6" display-tooltip-when-elided="true" name="CoinCounter" class="upgrade-level-counter" style="font-size: 28px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ClockContainer" class="upgrade-item-container" style="flex-grow: initial; background-color: rgb(0, 0, 0); background-image: url(&apos;project://database/Assets/Backgrounds/rogers-clock.png?fileID=2800000&amp;guid=b8ae062cf5f6a0e4ab34200413f217e2&amp;type=3#rogers-clock&apos;);">
+                    <ui:Label tabindex="-1" text="8" display-tooltip-when-elided="true" name="ClockCounter" class="upgrade-level-counter" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 45px; padding-bottom: 45px; font-size: 28px;">
+                <ui:Button text="RETOMAR" display-tooltip-when-elided="true" name="CloseStatsBtn" class="close-stats-btn" style="-unity-font-style: bold; width: 70%; align-self: center; background-color: rgb(221, 211, 211); color: rgb(62, 59, 59);" />
+                <ui:Button text="SAIR" display-tooltip-when-elided="true" name="QuitBtn" class="close-stats-btn" style="background-color: rgb(221, 211, 211); -unity-font-style: bold; color: rgb(62, 59, 59); margin-top: 16px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
