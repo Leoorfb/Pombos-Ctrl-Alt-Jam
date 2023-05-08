@@ -104,10 +104,11 @@ MonoBehaviour:
   hp: 10
   maxHp: 10
   speed: 4000
-  damage: 1
+  damage: 3
   knockbackStreght: 10
   isAttackOnCooldown: 0
   attackCooldown: 0.2
+  nextWaypointDistance: 3
 --- !u!50 &2585489189228801067
 Rigidbody2D:
   serializedVersion: 4

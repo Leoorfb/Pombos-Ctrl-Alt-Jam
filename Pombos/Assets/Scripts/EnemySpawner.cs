@@ -12,8 +12,12 @@ public class Drop
     public GameObject dropObject;
 }
 
+
+
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] WaveData[] wavesData;
+    [SerializeField] int waveIndex = 0;
     [SerializeField] GameObject EnemyPrefab;
     [SerializeField] float spawnRadius;
     Transform playerTransform;
@@ -21,23 +25,33 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] Transform DropContainer;
 
-    [SerializeField] float spawnCooldown;
+    [SerializeField] float enemySpawnCooldown;
+    [SerializeField] float waveMaxSpawnCooldown;
+    [SerializeField] int enemiesAlive = 0;
 
-    private ObjectPool<Enemy> _enemyPool;
+    //private ObjectPool<Enemy> _enemyPool;
     private ObjectPool<Collectable> _dropPool;
 
     [SerializeField] GameObject dropGold;
     [SerializeField] List<Drop> dropItems;
+
+    IEnumerator waveCoroutine;
+    IEnumerator waveTimerCoroutine;
     //private List<ObjectPool<Collectable>> _dropItemsPool;
 
     // Start is called before the first frame update
     void Start()
     {
-        _enemyPool = new ObjectPool<Enemy>(CreateEnemy, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
+        enemiesAlive = 0;
+        //_enemyPool = new ObjectPool<Enemy>(CreateEnemy, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
         _dropPool = new ObjectPool<Collectable>(CreateDrop, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
 
         playerTransform = GameManager.instance.playerTransform;
-        StartCoroutine("CooldownSpawn");
+
+        waveCoroutine = SpawnWave();
+        waveTimerCoroutine = TimerWave();
+        StartCoroutine(waveCoroutine);
+
         /*
         foreach (Drop drop in dropItems)
         {
@@ -46,13 +60,15 @@ public class EnemySpawner : MonoBehaviour
         */
     }
 
-    private Enemy CreateEnemy()
+    private Enemy CreateEnemy(GameObject enemy)
     {
-        Enemy newEnemy = GameObject.Instantiate(EnemyPrefab, transform).GetComponent<Enemy>();
+        Enemy newEnemy = GameObject.Instantiate(enemy, transform).GetComponent<Enemy>();
         newEnemy.SetPlayerTransform(playerTransform);
         newEnemy.Init(KillEnemy);
         return newEnemy;
     }
+    //Exclusivo pra object pool (removido por enquanto para simplificar/agilizar)
+    /*
     void OnReturnedToPool(Enemy enemy)
     {
         enemy.gameObject.SetActive(false);
@@ -65,24 +81,40 @@ public class EnemySpawner : MonoBehaviour
     {
         Destroy(enemy.gameObject);
     }
+    */
 
-    private Collectable CreateDrop()
+    private IEnumerator SpawnWave()
     {
-        Collectable newGold = GameObject.Instantiate(dropGold, DropContainer).GetComponent<Gold>();
-        newGold.Init(DisableCollectable);
-        return newGold;
+        StartCoroutine(waveTimerCoroutine);
+        while (true)
+        {
+            List<GameObject> enemiesToSpawn = wavesData[waveIndex].GetWave();
+            float spawnRate = wavesData[waveIndex].spawnRate;
+            foreach (GameObject enemy in enemiesToSpawn)
+            {
+                SpawnEnemy(enemy);
+                yield return new WaitForSeconds(spawnRate);
+            }
+        }
     }
-    void OnReturnedToPool(Collectable drop)
+
+    private IEnumerator TimerWave()
     {
-        drop.gameObject.SetActive(false);
+        yield return new WaitForSeconds(waveMaxSpawnCooldown);
+        StopCoroutine(waveCoroutine);
+        waveIndex++;
+        if (waveIndex >= wavesData.Length);
+        StartCoroutine(waveCoroutine);
     }
-    void OnTakeFromPool(Collectable drop)
+
+    private void SpawnEnemy(GameObject enemy)
     {
-        drop.gameObject.SetActive(true);
-    }
-    void OnDestroyPoolObject(Collectable drop)
-    {
-        Destroy(drop.gameObject);
+        //Enemy nEnemy = _enemyPool.Get();
+        Enemy nEnemy = CreateEnemy(enemy);
+        enemiesAlive++;
+        OnSetUpEnemy(nEnemy);
+
+        //StartCoroutine("CooldownSpawn");
     }
 
     void OnSetUpEnemy(Enemy enemy)
@@ -94,12 +126,23 @@ public class EnemySpawner : MonoBehaviour
         enemy.isAttackOnCooldown = false;
     }
 
-    private void SpawnEnemy()
+    private void KillEnemy(Enemy enemy)
     {
-        Enemy nEnemy = _enemyPool.Get();
-        OnSetUpEnemy(nEnemy);
+        Collectable goldDrop = _dropPool.Get();
+        goldDrop.transform.position = enemy.transform.position;
 
-        StartCoroutine("CooldownSpawn");
+        GameObject dropPrefab = GetRandomDrop();
+        if (dropPrefab != null)
+        {
+            Collectable drop = Instantiate(dropPrefab, enemy.transform.position, dropPrefab.transform.rotation, DropContainer).GetComponent<Collectable>();
+            drop.Init(DestroyCollectable);
+        }
+        enemiesAlive--;
+        AudioManager.instance.Play("EnemyDeath");
+
+        enemy.StopAllCoroutines();
+        Destroy(enemy.gameObject);
+        //_enemyPool.Release(enemy);
     }
 
     /*
@@ -120,28 +163,43 @@ public class EnemySpawner : MonoBehaviour
         return position;
     }
     */
-
+    /*
     private IEnumerator CooldownSpawn()
     {
-        yield return new WaitForSeconds(spawnCooldown);
+        yield return new WaitForSeconds(enemySpawnCooldown);
         SpawnEnemy();
     }
+    */
 
-    private void KillEnemy(Enemy enemy)
+    Vector3 GetRandomSpawnPoint()
     {
-        Collectable goldDrop = _dropPool.Get();
-        goldDrop.transform.position = enemy.transform.position;
-
-        GameObject dropPrefab = GetRandomDrop();
-        if (dropPrefab != null)
+        int random = UnityEngine.Random.Range(0,SpawnPoints.Count);
+        Vector3 pos = SpawnPoints[random].position;
+        while (Vector3.Distance(pos, playerTransform.position) < spawnRadius)
         {
-            Collectable drop = Instantiate(dropPrefab, enemy.transform.position, dropPrefab.transform.rotation, DropContainer).GetComponent<Collectable>();
-            drop.Init(DestroyCollectable);
+            random = UnityEngine.Random.Range(0, SpawnPoints.Count);
+            pos = SpawnPoints[random].position;
         }
+        return pos;
+    }
 
-        AudioManager.instance.Play("EnemyDeath");
-        enemy.StopAllCoroutines();
-        _enemyPool.Release(enemy);
+    private Collectable CreateDrop()
+    {
+        Collectable newGold = GameObject.Instantiate(dropGold, DropContainer).GetComponent<Gold>();
+        newGold.Init(DisableCollectable);
+        return newGold;
+    }
+    void OnReturnedToPool(Collectable drop)
+    {
+        drop.gameObject.SetActive(false);
+    }
+    void OnTakeFromPool(Collectable drop)
+    {
+        drop.gameObject.SetActive(true);
+    }
+    void OnDestroyPoolObject(Collectable drop)
+    {
+        Destroy(drop.gameObject);
     }
 
     private GameObject GetRandomDrop()
@@ -170,17 +228,5 @@ public class EnemySpawner : MonoBehaviour
     private void DestroyCollectable(Collectable collectable)
     {
         Destroy(collectable.gameObject);
-    }
-
-    Vector3 GetRandomSpawnPoint()
-    {
-        int random = UnityEngine.Random.Range(0,SpawnPoints.Count);
-        Vector3 pos = SpawnPoints[random].position;
-        while (Vector3.Distance(pos, playerTransform.position) < spawnRadius)
-        {
-            random = UnityEngine.Random.Range(0, SpawnPoints.Count);
-            pos = SpawnPoints[random].position;
-        }
-        return pos;
     }
 }
