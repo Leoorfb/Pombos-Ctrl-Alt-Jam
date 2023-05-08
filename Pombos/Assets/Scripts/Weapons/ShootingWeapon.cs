@@ -16,7 +16,6 @@ public class ShootingWeapon : WeaponBase
         projectile.transform.Rotate(spreadDirection);
 
         //Debug.Log(name + " attack");
-        StartCoroutine("CooldownAttack");
     }
 
     private void RandomizeSpread()

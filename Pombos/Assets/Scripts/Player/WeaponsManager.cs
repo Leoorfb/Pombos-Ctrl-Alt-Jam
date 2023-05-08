@@ -12,6 +12,8 @@ public class WeaponsManager : MonoBehaviour
     PlayerLevel playerLevel;
     [SerializeField] List<WeaponBase> weapons;
 
+    public Transform projectileOrigin;
+
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class WeaponsManager : MonoBehaviour
         WeaponBase weapon = weaponGameObject.GetComponent<WeaponBase>();
         weapons.Add(weapon);
 
+        weapon.projectileOrigin = projectileOrigin;
         weaponGameObject.GetComponent<WeaponBase>().SetData(weaponData);
         weaponGameObject.GetComponent<WeaponBase>().SetProjectileContainer(projectilesObjectContainer);
 

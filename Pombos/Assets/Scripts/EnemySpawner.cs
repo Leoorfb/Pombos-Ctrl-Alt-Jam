@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject EnemyPrefab;
     [SerializeField] float spawnRadius;
     Transform playerTransform;
+    [SerializeField] List<Transform> SpawnPoints;
 
     [SerializeField] Transform DropContainer;
 
@@ -86,8 +87,7 @@ public class EnemySpawner : MonoBehaviour
 
     void OnSetUpEnemy(Enemy enemy)
     {
-        Vector3 spawnPosition = GeneratePosition();
-        spawnPosition += playerTransform.position;
+        Vector3 spawnPosition = GetRandomSpawnPoint();
         enemy.transform.position = spawnPosition;
 
         enemy.hp = enemy.maxHp;
@@ -102,6 +102,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine("CooldownSpawn");
     }
 
+    /*
     private Vector3 GeneratePosition()
     {
         Vector3 position = new Vector3(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10),0).normalized;
@@ -118,6 +119,7 @@ public class EnemySpawner : MonoBehaviour
 
         return position;
     }
+    */
 
     private IEnumerator CooldownSpawn()
     {
@@ -167,5 +169,17 @@ public class EnemySpawner : MonoBehaviour
     private void DestroyCollectable(Collectable collectable)
     {
         Destroy(collectable.gameObject);
+    }
+
+    Vector3 GetRandomSpawnPoint()
+    {
+        int random = UnityEngine.Random.Range(0,SpawnPoints.Count);
+        Vector3 pos = SpawnPoints[random].position;
+        while (Vector3.Distance(pos, playerTransform.position) < spawnRadius)
+        {
+            random = UnityEngine.Random.Range(0, SpawnPoints.Count);
+            pos = SpawnPoints[random].position;
+        }
+        return pos;
     }
 }

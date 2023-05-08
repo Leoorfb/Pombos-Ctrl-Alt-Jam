@@ -22,10 +22,11 @@ public class Player : MonoBehaviour
         set
         {
             _speed = value;
-            playerMovement.speed = _speed;
+            playerMovement.baseSpeed = _speed;
+            playerMovement.shootingSpeed = _speed * shootingSpeedSlowPct;
         }
     }
-    
+    public float shootingSpeedSlowPct = 0.7f;
 
     public int lucky = 1;
 

@@ -10,6 +10,9 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponData weaponData;
     public int weaponLevel = 1;
     [SerializeField] protected GameObject projectilePrefab;
+    private bool isAttackOnCooldown = false;
+
+    public Transform projectileOrigin;
 
     public WeaponStats weaponStats;
 
@@ -18,7 +21,15 @@ public abstract class WeaponBase : MonoBehaviour
     protected virtual void Start()
     {
         _projectilePool = new ObjectPool<WeaponProjectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
-        StartCoroutine("CooldownAttack");
+    }
+
+    public void Update()
+    {
+        if (Input.GetMouseButton(0) && !isAttackOnCooldown)
+        {
+            Attack();
+            StartCoroutine("CooldownAttack");
+        }
     }
 
     public abstract void Attack();
@@ -42,8 +53,10 @@ public abstract class WeaponBase : MonoBehaviour
 
     public IEnumerator CooldownAttack()
     {
+
+        isAttackOnCooldown = true;
         yield return new WaitForSeconds(weaponStats.attackCooldown);
-        Attack();
+        isAttackOnCooldown = false;
     }
 
     public virtual void SetProjectileContainer(Transform nPContainer)
@@ -81,7 +94,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected virtual WeaponProjectile CreateProjectile()
     {
-        WeaponProjectile projectile = GameObject.Instantiate(projectilePrefab, transform.position, transform.rotation, projectilesContainer).GetComponent<WeaponProjectile>();
+        WeaponProjectile projectile = GameObject.Instantiate(projectilePrefab, projectileOrigin.position, transform.rotation, projectilesContainer).GetComponent<WeaponProjectile>();
         projectile.weapon = this;
         projectile.Init(DisableProjectile);
         //Debug.Log("Projetil Init");
@@ -105,7 +118,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         projectile.gameObject.SetActive(true);
 
-        projectile.transform.position = transform.position;
+        projectile.transform.position = projectileOrigin.position;
         projectile.transform.rotation = transform.rotation;
 
         //Debug.Log("Projetil Take From Pool");

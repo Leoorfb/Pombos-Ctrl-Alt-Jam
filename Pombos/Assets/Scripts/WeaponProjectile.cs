@@ -30,11 +30,20 @@ public class WeaponProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log("Projetil ENTROU GATILHO");
+
         if (collision.gameObject.tag == "Enemy")
         {
             weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>(), transform.right);
 
             //Debug.Log("Projetil atingiu inimigo");
+            StopAllCoroutines();
+            _DisableProjectile(this);
+        }
+        
+        else if (collision.gameObject.tag == "Obstacle")
+        {
+            //Debug.Log("Projetil atingiu OBSTACULO 1");
             StopAllCoroutines();
             _DisableProjectile(this);
         }

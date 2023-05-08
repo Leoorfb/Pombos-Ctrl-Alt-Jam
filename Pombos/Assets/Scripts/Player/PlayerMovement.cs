@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Player player;
     public float speed = 5;
+    public float baseSpeed = 5;
+    public float shootingSpeed = 5;
 
     Rigidbody2D _Rigidbody;
 
@@ -25,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        speed = player.speed;
+        baseSpeed = player.speed;
+        shootingSpeed = player.speed * player.shootingSpeedSlowPct;
     }
 
     void Update()
@@ -40,11 +43,20 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = moveDirection.normalized;
             
         LookAtMouse();
+
+        if (Input.GetMouseButton(0))
+        {
+            speed = shootingSpeed;
+        }
+        else
+        {
+            speed = baseSpeed;
+        }
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(moveDirection * speed * Time.fixedDeltaTime);
+        //Debug.Log(moveDirection * speed * Time.fixedDeltaTime);
         _Rigidbody.AddForce(moveDirection * speed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
