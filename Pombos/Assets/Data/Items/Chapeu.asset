@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d888e56833f61a7429d29ffd032e38c1, type: 3}
   m_Name: Chapeu
   m_EditorClassIdentifier: 
-  itemName: Charuto
+  itemName: Chapeu
   stats:
     armor: 0
     health: 15
@@ -22,5 +22,7 @@ MonoBehaviour:
     projectileAmount: 0
     attackCooldownPct: 0
   upgrades:
+  - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
+  - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
   - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
   itemLevel: 1

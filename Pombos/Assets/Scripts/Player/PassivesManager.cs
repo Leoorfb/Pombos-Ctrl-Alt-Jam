@@ -27,6 +27,12 @@ public class PassivesManager : MonoBehaviour
 
     public void Equip(Item item)
     {
+        UpgradesData firstUpgrade;
+        Equip(item, out firstUpgrade);
+    }
+
+        public void Equip(Item item, out UpgradesData firstUpgrade)
+    {
         if (items == null) items = new List<Item>();
 
         Item newItem = new Item();
@@ -36,15 +42,18 @@ public class PassivesManager : MonoBehaviour
 
         items.Add(newItem);
         newItem.Equip(player);
-        shop.AddUpgradesIntoTheListOfUpgrades(newItem.GetFirstUpgrade());
+        firstUpgrade = newItem.GetFirstUpgrade();
+        shop.AddUpgradesIntoTheListOfUpgrades(firstUpgrade);
     }
 
-    internal void UpgradeItem(UpgradesData upgradesData)
+    internal void UpgradeItem(UpgradesData upgradesData, out UpgradesData nextUpdate)
     {
         Item itemToUpgrade = items.Find(id => id.itemName == upgradesData.item.itemName);
         itemToUpgrade.Unequip(player);
         itemToUpgrade.stats.Sum(upgradesData.itemStats);
         itemToUpgrade.Equip(player);
-        shop.AddUpgradesIntoTheListOfUpgrades(itemToUpgrade.GetNextUpgradeAndLevelUp());
+
+        nextUpdate = itemToUpgrade.GetNextUpgradeAndLevelUp();
+        shop.AddUpgradesIntoTheListOfUpgrades(nextUpdate);
     }
 }

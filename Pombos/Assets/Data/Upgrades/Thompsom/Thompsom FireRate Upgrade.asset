@@ -19,6 +19,7 @@ MonoBehaviour:
   weaponUpgradeStats:
     damage: 0
     attackCooldown: -0.1
+    knockbackStrenght: 0
   item: {fileID: 0}
   itemStats:
     armor: 0
@@ -28,3 +29,4 @@ MonoBehaviour:
     projectileSize: 0
     projectileAmount: 0
     attackCooldownPct: 0
+  cost: 100

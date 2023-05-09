@@ -25,9 +25,13 @@ public class WeaponsManager : MonoBehaviour
         shop = GameManager.instance.shop;
         AddWeapon(startingWeapon);
     }
-
-    
     public void AddWeapon(WeaponData weaponData)
+    {
+        UpgradesData firstUpgrade;
+        AddWeapon(weaponData, out firstUpgrade);
+    }
+
+        public void AddWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
     {
         GameObject weaponGameObject = GameObject.Instantiate(weaponData.weaponPrefab, weaponsObjectContainer);
 
@@ -38,13 +42,15 @@ public class WeaponsManager : MonoBehaviour
         weaponGameObject.GetComponent<WeaponBase>().SetData(weaponData);
         weaponGameObject.GetComponent<WeaponBase>().SetProjectileContainer(projectilesObjectContainer);
 
-        shop.AddUpgradesIntoTheListOfUpgrades(weaponData.GetFirstUpgrade());
+        firstUpgrade = weaponData.GetFirstUpgrade();
+        shop.AddUpgradesIntoTheListOfUpgrades(firstUpgrade);
     }
 
-    public void UpgradeWeapon(UpgradesData upgradesData)
+    public void UpgradeWeapon(UpgradesData upgradesData, out UpgradesData nextUpgrade)
     {
         WeaponBase weapon = weapons.Find(wd => wd.weaponData == upgradesData.weaponData);
         weapon.Upgrade(upgradesData);
-        shop.AddUpgradesIntoTheListOfUpgrades(weapon.GetNextUpgradeAndLevelUp());
+        nextUpgrade = weapon.GetNextUpgradeAndLevelUp();
+        shop.AddUpgradesIntoTheListOfUpgrades(nextUpgrade);
     }
 }

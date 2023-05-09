@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UpgradePanelManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UpgradePanelManager : MonoBehaviour
     [SerializeField] List<UpgradeButton> upgradeButtons;
     [SerializeField] Button ResumeButton;
     [SerializeField] TextMeshProUGUI InstructionsText;
+    [SerializeField] TextMeshProUGUI RerollCostText;
+
+    Shop shop;
 
     private void Awake()
     {
@@ -22,11 +26,11 @@ public class UpgradePanelManager : MonoBehaviour
     private void Start()
     {
         HideButtons();
+        shop = GameManager.instance.shop;
     }
 
     public void ClosePanel()
     {
-        HideButtons();
         UpgradePanel.SetActive(false);
         pauseManager.UnPauseGame();
         GameManager.instance.shop.OnShopClose();
@@ -40,26 +44,33 @@ public class UpgradePanelManager : MonoBehaviour
         }
     }
 
-    public void OpenPanel(List<UpgradesData> upgradesDatas)
+    public void OpenPanel(List<UpgradesData> upgradesData)
     {
-        Clean();
         UpgradePanel.SetActive(true);
         pauseManager.PauseGame();
+        LoadUpgrades(upgradesData);
+    }
 
-        if (upgradesDatas.Count > 0)
+    public void LoadUpgrades(List<UpgradesData> upgradesData)
+    {
+        UpdateRerollCostText();
+        HideButtons();
+        Clean();
+
+        if (upgradesData.Count > 0)
         {
-            for (int i = 0; i < upgradesDatas.Count; i++)
+            for (int i = 0; i < upgradesData.Count; i++)
             {
                 //Debug.Log(i);
                 upgradeButtons[i].gameObject.SetActive(true);
-                upgradeButtons[i].SetData(upgradesDatas[i]);
+                upgradeButtons[i].SetData(upgradesData[i]);
             }
-            ResumeButton.gameObject.SetActive(false);
-            InstructionsText.text = "Choose a Power Up";
+            //ResumeButton.gameObject.SetActive(false);
+            InstructionsText.text = "Click on a Power Up to buy it";
         }
         else
         {
-            ResumeButton.gameObject.SetActive(true);
+            //ResumeButton.gameObject.SetActive(true);
             InstructionsText.text = "No Power Ups avaible";
         }
     }
@@ -74,7 +85,27 @@ public class UpgradePanelManager : MonoBehaviour
 
     public void Upgrade(int pressedButtonId)
     {
-        GameManager.instance.shop.Upgrade(pressedButtonId);
-        ClosePanel();
+        List<UpgradesData> updatedUpgrades;
+        bool upgradeSucceded = shop.Upgrade(pressedButtonId, out updatedUpgrades);
+        if (upgradeSucceded)
+        {
+            //ClosePanel();
+            LoadUpgrades(updatedUpgrades);
+            //Atualizar botão com dados do próximo upgrade
+        }
+    }
+
+    public void Reroll()
+    {
+        bool upgradeSucceded = shop.RerollUpgrades();
+        if (upgradeSucceded)
+        {
+            UpdateRerollCostText();
+        }
+    }
+
+    public void UpdateRerollCostText()
+    {
+        RerollCostText.text = "$"+shop.rerollCost.ToString("#000");
     }
 }
