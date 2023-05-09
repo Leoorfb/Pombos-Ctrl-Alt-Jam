@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using TMPro;
 
 
 [Serializable]
@@ -12,28 +13,30 @@ public class Drop
     public GameObject dropObject;
 }
 
-
-
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] WaveData[] wavesData;
     [SerializeField] int waveIndex = 0;
-    [SerializeField] GameObject EnemyPrefab;
-    [SerializeField] float spawnRadius;
-    Transform playerTransform;
-    [SerializeField] List<Transform> SpawnPoints;
-
-    [SerializeField] Transform DropContainer;
-
     [SerializeField] float enemySpawnCooldown;
     [SerializeField] float waveMaxSpawnCooldown;
     [SerializeField] int enemiesAlive = 0;
+    public bool isWaveRunning = false;
+    [SerializeField] List<Transform> SpawnPoints;
+    [SerializeField] float spawnRadius;
+    [SerializeField] TextMeshProUGUI WaveTimerText;
+    [SerializeField] bool loopLastWave;
+
+
+
+    [SerializeField] Transform DropContainer;
 
     //private ObjectPool<Enemy> _enemyPool;
     private ObjectPool<Collectable> _dropPool;
 
     [SerializeField] GameObject dropGold;
     [SerializeField] List<Drop> dropItems;
+
+    Transform playerTransform;
 
     IEnumerator waveCoroutine;
     IEnumerator waveTimerCoroutine;
@@ -49,8 +52,7 @@ public class EnemySpawner : MonoBehaviour
         playerTransform = GameManager.instance.playerTransform;
 
         waveCoroutine = SpawnWave();
-        waveTimerCoroutine = TimerWave();
-        StartCoroutine(waveCoroutine);
+        StartWave();
 
         /*
         foreach (Drop drop in dropItems)
@@ -85,7 +87,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        StartCoroutine(waveTimerCoroutine);
+        isWaveRunning = true;
         while (true)
         {
             List<GameObject> enemiesToSpawn = wavesData[waveIndex].GetWave();
@@ -100,11 +102,33 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator TimerWave()
     {
-        yield return new WaitForSeconds(waveMaxSpawnCooldown);
+        Debug.Log("Começou timer");
+        float timer = waveMaxSpawnCooldown;
+        while (timer >= 0)
+        {
+            yield return new WaitForEndOfFrame();
+            timer -= Time.deltaTime;
+            WaveTimerText.text = timer.ToString("#00.0");
+        }
         StopCoroutine(waveCoroutine);
+        isWaveRunning = false;
         waveIndex++;
-        if (waveIndex >= wavesData.Length);
+    }
+
+    public void StartWave()
+    {
+        Debug.Log("Wave: "+ waveIndex + " Tamanho " + wavesData.Length);
+        if (waveIndex >= wavesData.Length)
+        {
+            if (loopLastWave)
+            {
+                waveIndex = wavesData.Length - 1;
+            }
+            else return;
+        }
         StartCoroutine(waveCoroutine);
+        StartCoroutine("TimerWave");
+            
     }
 
     private void SpawnEnemy(GameObject enemy)

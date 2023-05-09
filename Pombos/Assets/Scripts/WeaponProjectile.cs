@@ -43,7 +43,7 @@ public class WeaponProjectile : MonoBehaviour
         
         else if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Projetil atingiu OBSTACULO 1");
+            //Debug.Log("Projetil atingiu OBSTACULO 1");
             StopAllCoroutines();
             AudioManager.instance.Play("HitWall");
             _DisableProjectile(this);
