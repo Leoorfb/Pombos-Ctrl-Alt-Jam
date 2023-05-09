@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Transform playerTransform;
-
+    public EnemySpawner enemySpawner;
+    public Shop shop;
 
     private static GameManager _instance;
     public static GameManager instance

@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
     public void TakeKnockback(Vector2 direction, float force)
     {
-        Debug.Log(direction * force);
+        //Debug.Log(direction * force);
         _Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }
 }

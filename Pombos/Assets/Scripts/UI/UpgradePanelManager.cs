@@ -29,6 +29,7 @@ public class UpgradePanelManager : MonoBehaviour
         HideButtons();
         UpgradePanel.SetActive(false);
         pauseManager.UnPauseGame();
+        GameManager.instance.shop.OnShopClose();
     }
 
     private void HideButtons()
@@ -73,7 +74,7 @@ public class UpgradePanelManager : MonoBehaviour
 
     public void Upgrade(int pressedButtonId)
     {
-        GameManager.instance.playerTransform.GetComponent<PlayerLevel>().Upgrade(pressedButtonId);
+        GameManager.instance.shop.Upgrade(pressedButtonId);
         ClosePanel();
     }
 }
