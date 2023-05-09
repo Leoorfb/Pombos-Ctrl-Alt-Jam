@@ -26946,7 +26946,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
   waveIndex: 0
   enemySpawnCooldown: 1.5
-  waveMaxSpawnCooldown: 15
+  waveMaxSpawnCooldown: 45
   enemiesAlive: 0
   isWaveRunning: 0
   SpawnPoints:
@@ -26957,6 +26957,7 @@ MonoBehaviour:
   - {fileID: 2141112938}
   spawnRadius: 20
   WaveTimerText: {fileID: 1073306174}
+  loopLastWave: 1
   DropContainer: {fileID: 824904281}
   dropGold: {fileID: 2420394416697878873, guid: 6da299221c67f15468931794d0425e36, type: 3}
   dropItems:
