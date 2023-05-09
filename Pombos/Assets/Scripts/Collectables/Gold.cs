@@ -9,7 +9,7 @@ public class Gold : Collectable
 
     public override void Collect(Player player)
     {
-        player.GetComponent<PlayerGold>().AddGold(goldAmount);
+        player.GetComponent<PlayerLevel>().AddExp(goldAmount);
         AudioManager.instance.Play("CoinCollect");
         _DisableCollectable(this);
     }

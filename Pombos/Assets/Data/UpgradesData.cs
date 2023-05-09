@@ -24,5 +24,4 @@ public class UpgradesData : ScriptableObject
 
     public Item item;
     public ItemStats itemStats;
-    public int cost;
 }

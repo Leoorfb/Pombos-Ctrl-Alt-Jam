@@ -9,7 +9,7 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] WeaponData startingWeapon;
     //[SerializeField] int WeaponLimit = 5;
 
-    Shop shop;
+    PlayerLevel playerLevel;
     [SerializeField] List<WeaponBase> weapons;
 
     public Transform projectileOrigin;
@@ -22,7 +22,7 @@ public class WeaponsManager : MonoBehaviour
 
     private void Start()
     {
-        shop = GameManager.instance.shop;
+        playerLevel = GetComponent<PlayerLevel>();
         AddWeapon(startingWeapon);
     }
 
@@ -38,13 +38,13 @@ public class WeaponsManager : MonoBehaviour
         weaponGameObject.GetComponent<WeaponBase>().SetData(weaponData);
         weaponGameObject.GetComponent<WeaponBase>().SetProjectileContainer(projectilesObjectContainer);
 
-        shop.AddUpgradesIntoTheListOfUpgrades(weaponData.GetFirstUpgrade());
+        playerLevel.AddUpgradesIntoTheListOfUpgrades(weaponData.GetFirstUpgrade());
     }
 
     public void UpgradeWeapon(UpgradesData upgradesData)
     {
         WeaponBase weapon = weapons.Find(wd => wd.weaponData == upgradesData.weaponData);
         weapon.Upgrade(upgradesData);
-        shop.AddUpgradesIntoTheListOfUpgrades(weapon.GetNextUpgradeAndLevelUp());
+        playerLevel.AddUpgradesIntoTheListOfUpgrades(weapon.GetNextUpgradeAndLevelUp());
     }
 }

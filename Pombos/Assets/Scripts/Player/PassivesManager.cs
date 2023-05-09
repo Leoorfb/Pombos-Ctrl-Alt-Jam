@@ -7,14 +7,14 @@ public class PassivesManager : MonoBehaviour
     [SerializeField] List<Item> items;
 
     Player player;
-    Shop shop;
+    PlayerLevel playerLevel;
 
     [SerializeField] Item itemTest;
 
     private void Awake()
     {
         player = GetComponent<Player>();
-        shop = GameManager.instance.shop;
+        playerLevel = GetComponent<PlayerLevel>();
     }
 
     private void Start()
@@ -36,7 +36,7 @@ public class PassivesManager : MonoBehaviour
 
         items.Add(newItem);
         newItem.Equip(player);
-        shop.AddUpgradesIntoTheListOfUpgrades(newItem.GetFirstUpgrade());
+        playerLevel.AddUpgradesIntoTheListOfUpgrades(newItem.GetFirstUpgrade());
     }
 
     internal void UpgradeItem(UpgradesData upgradesData)
@@ -45,6 +45,6 @@ public class PassivesManager : MonoBehaviour
         itemToUpgrade.Unequip(player);
         itemToUpgrade.stats.Sum(upgradesData.itemStats);
         itemToUpgrade.Equip(player);
-        shop.AddUpgradesIntoTheListOfUpgrades(itemToUpgrade.GetNextUpgradeAndLevelUp());
+        playerLevel.AddUpgradesIntoTheListOfUpgrades(itemToUpgrade.GetNextUpgradeAndLevelUp());
     }
 }

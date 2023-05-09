@@ -1,93 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class PlayerLevel : MonoBehaviour
 {
-    EnemySpawner enemySpawner;
-    bool interactPressed = false;
-    bool isPlayerInTrigger = false;
-    bool isShopOpen = false;
+    [SerializeField] int level = 1;
+    [SerializeField] int exp = 0;
+    [SerializeField] int maxExp = 10;
 
-    [SerializeField] UpgradePanelManager shopPanel;
+    [SerializeField] TextMeshProUGUI lvlText;
+    [SerializeField] TextMeshProUGUI expText;
+
+    // Upgrades
+    
+    [SerializeField] UpgradePanelManager upgradePanel;
     [SerializeField] List<UpgradesData> upgrades;
     List<UpgradesData> selectedUpgrades;
 
-    [SerializeField] List<UpgradesData> startAvailableUpgrades;
-
     WeaponsManager weaponsManager;
     PassivesManager passivesManager;
-    PlayerGold playerGold;
+
+    [SerializeField] List<UpgradesData> startAvailableUpgrades;
+
+    private void Awake()
+    {
+        weaponsManager = GetComponent<WeaponsManager>();
+        passivesManager = GetComponent<PassivesManager>();
+    }
+
+    
+    
 
     private void Start()
     {
-        enemySpawner = GameManager.instance.enemySpawner;
-        weaponsManager = GameManager.instance.playerTransform.GetComponent<WeaponsManager>();
-        passivesManager = GameManager.instance.playerTransform.GetComponent<PassivesManager>();
-        playerGold = GameManager.instance.playerTransform.GetComponent<PlayerGold>();
-
+        UpdateEXPText();
+        UpdateLevelText();
         AddUpgradesIntoTheListOfUpgrades(startAvailableUpgrades);
     }
 
-    private void Update()
+    void UpdateEXPText()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            interactPressed = true;
-            Debug.Log("Interact: " + interactPressed + "- Wave Running: " + enemySpawner.isWaveRunning + "- ShopOpen: " + isShopOpen);
-            if (interactPressed && !enemySpawner.isWaveRunning && !isShopOpen && isPlayerInTrigger)
-            {
-                Debug.Log("Abre loja");
-                OpenShop();
-            }
-        }
-        else
-        {
-            interactPressed = false;
-        }
+        expText.text = "Player  EXP: " + exp + "/" + maxExp;
+    }
+    void UpdateLevelText()
+    {
+        lvlText.text = "Player  Level: " + level;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void AddExp(int expAmount)
     {
-        if (collision.tag == "Player")
-        {
-            isPlayerInTrigger = true;
-        } 
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            isPlayerInTrigger = false;
-        }
+        exp += expAmount;
+
+        if (exp >= maxExp) LevelUp();
+
+        UpdateEXPText();
     }
 
-
-    private void OpenShop()
+    public void LevelUp()
     {
-        SelectUpgrades();
-        shopPanel.OpenPanel(selectedUpgrades);
-    }
+        level += 1;
+        exp -= maxExp;
+        maxExp = level * 10;
+        UpdateLevelText();
 
-    private void CloseShop()
-    {
-        shopPanel.ClosePanel();
-    }
-
-    public void OnShopClose()
-    {
-        isShopOpen = false;
-        enemySpawner.StartWave();
-    }
-
-    public void SelectUpgrades()
-    {
+        
         if (selectedUpgrades == null) selectedUpgrades = new List<UpgradesData>();
         selectedUpgrades.Clear();
         selectedUpgrades.AddRange(GetUpgrades(2));
 
+        upgradePanel.OpenPanel(selectedUpgrades);
+        
     }
-
+    
     public List<UpgradesData> GetUpgrades(int count)
     {
         List<UpgradesData> upgradesList = new List<UpgradesData>();
@@ -104,6 +89,7 @@ public class Shop : MonoBehaviour
             int x = Random.Range(0, upgradesAvaible.Count);
             upgradesList.Add(upgradesAvaible[x]);
             upgradesAvaible.RemoveAt(x);
+
         }
 
         return upgradesList;
