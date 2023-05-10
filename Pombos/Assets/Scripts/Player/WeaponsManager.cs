@@ -31,7 +31,12 @@ public class WeaponsManager : MonoBehaviour
         AddWeapon(weaponData, out firstUpgrade);
     }
 
-        public void AddWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
+    public WeaponBase GetWeaponBase() 
+    {
+        return weapons[0];
+    }
+
+    public void AddWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
     {
         GameObject weaponGameObject = GameObject.Instantiate(weaponData.weaponPrefab, weaponsObjectContainer);
 
