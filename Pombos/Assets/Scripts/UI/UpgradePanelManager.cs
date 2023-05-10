@@ -85,13 +85,15 @@ public class UpgradePanelManager : MonoBehaviour
 
     public void Upgrade(int pressedButtonId)
     {
+        Debug.Log("Botão upgrade");
         List<UpgradesData> updatedUpgrades;
         bool upgradeSucceded = shop.Upgrade(pressedButtonId, out updatedUpgrades);
         if (upgradeSucceded)
         {
+            Debug.Log("Botão upgrade sucedido");
+
             //ClosePanel();
             LoadUpgrades(updatedUpgrades);
-            //Atualizar botão com dados do próximo upgrade
         }
     }
 
