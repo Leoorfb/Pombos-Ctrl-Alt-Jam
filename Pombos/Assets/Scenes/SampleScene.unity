@@ -25864,7 +25864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23346055, y: 16.35, z: -10}
+  m_LocalPosition: {x: 0.23346055, y: 16.35, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26100,7 +26100,7 @@ GameObject:
   - component: {fileID: 745634031}
   - component: {fileID: 745634029}
   - component: {fileID: 745634030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -26167,7 +26167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745634024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23346055, y: 16.35, z: 0}
+  m_LocalPosition: {x: 0.23346055, y: 16.35, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26844,7 +26844,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a25f7b367363234885001e3637111ee, type: 2}
   - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
   waveIndex: 0
-  enemySpawnCooldown: 1.5
+  enemySpawnCooldown: 1
   waveMaxSpawnCooldown: 45
   enemiesAlive: 0
   isWaveRunning: 0
@@ -27584,7 +27584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103375502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23346055, y: 16.35, z: -10}
+  m_LocalPosition: {x: 0.23346055, y: 16.35, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32927,7 +32927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307664897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38006,6 +38006,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: HitWall
     clip: {fileID: 8300000, guid: c6a0650464de2f14abfddf93d9dc72f6, type: 3}
+    volume: 1
+    minPitch: 0.86
+    maxPitch: 1.16
+    loop: 0
+    source: {fileID: 0}
+  - name: HitPlayer
+    clip: {fileID: 8300000, guid: 0006f5b8bf3cd1740a31466ece1a0e4a, type: 3}
     volume: 1
     minPitch: 0.86
     maxPitch: 1.16

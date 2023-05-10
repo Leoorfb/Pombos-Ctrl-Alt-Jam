@@ -17,4 +17,4 @@ MonoBehaviour:
     spawnChance: 100
     difficultyLevel: 1
   waveDifficulty: 10
-  spawnRate: 3
+  spawnRate: 5

@@ -84,8 +84,10 @@ public class Player : MonoBehaviour
         hpText.text = "Player  HP: " + hp + "/" + maxHp;
     }
 
+    /*
     private void OnCollisionStay2D(Collision2D collision)
     {
+        
         GameObject collided = collision.gameObject;
         //Debug.Log("COLIDIU " + collided.tag);
         if (collided.tag == "Enemy")
@@ -97,6 +99,7 @@ public class Player : MonoBehaviour
         }
         
     }
+    */
 
     public void GetHit(int damage)
     {

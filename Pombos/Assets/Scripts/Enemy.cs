@@ -7,16 +7,24 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform playerTransform;
+    Transform playerTransform;
+    Player player;
 
     public int hp = 10;
     public int maxHp = 10;
     [SerializeField] float speed = 4;
     [SerializeField] int damage = 1;
     public float knockbackStreght = 10;
+    [SerializeField] float attackDistance = 10;
 
     public bool isAttackOnCooldown = false;
     [SerializeField] float attackCooldown = 0.2f;
+    [SerializeField] float rotationSpeed = 45;
+
+    [SerializeField] GameObject enemyProjectilePrefab;
+    [SerializeField] Transform projectileOrigin;
+
+    [SerializeField] LayerMask playerLayerMask;
 
     Vector2 moveDirection = new Vector2(0, 0);
     float step = 0.1f;
@@ -31,6 +39,9 @@ public class Enemy : MonoBehaviour
     Rigidbody2D _Rigidbody;
 
     private Action<Enemy> _killAction;
+    private bool isCloseToPlayer;
+    private bool hasPlayerSight;
+
 
     private void Awake()
     {
@@ -40,13 +51,19 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        playerTransform = GameManager.instance.playerTransform;
+        player = playerTransform.GetComponent<Player>();
+
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
     void UpdatePath()
     {
-        if(_seeker.IsDone())
+        if (_seeker.IsDone())
+        {
             _seeker.StartPath(_Rigidbody.position, playerTransform.position, OnPathComplete);
+
+        }
     }
 
     void OnPathComplete(Path p)
@@ -72,27 +89,31 @@ public class Enemy : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        MoveToPlayer();
+        moveDirection = ((Vector2)path.vectorPath[currentWaypoint] - _Rigidbody.position).normalized;
+
+        //Debug.Log("Is close to player: " + isCloseToPlayer + " - Has player sight: " + hasPlayerSight);
+        if (!isCloseToPlayer || !hasPlayerSight)
+        {
+            MoveToPlayer();
+            LookAtDirection(moveDirection);
+        }
+
+        CheckPlayerDistance();
+        if (isCloseToPlayer)
+        {
+            CheckPlayerSight();
+            if (hasPlayerSight)
+            {
+                Vector3 playerDir = playerTransform.position - transform.position;
+                LookAtDirection(new Vector2(playerDir.x, playerDir.y));
+                Attack();
+            }
+        }
     }
 
     void MoveToPlayer()
     {
-        moveDirection = ((Vector2)path.vectorPath[currentWaypoint] - _Rigidbody.position).normalized;
-        
-        /*
-        moveDirection.x = playerTransform.position.x - transform.position.x;
-        moveDirection.y = playerTransform.position.y - transform.position.y;
-        moveDirection = moveDirection.normalized;
-        */
-
-        //Debug.Log(direction);
         step = speed * Time.fixedDeltaTime;
-
-        //_Rigidbody.AddForce(moveDirection * speed * Time.deltaTime, ForceMode.VelocityChange);
-
-        //transform.rotation = Quaternion.LookRotation(moveDirection);
-        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
         _Rigidbody.AddForce(moveDirection * step, ForceMode2D.Force);
 
         float distance = Vector2.Distance(_Rigidbody.position, path.vectorPath[currentWaypoint]);
@@ -100,26 +121,66 @@ public class Enemy : MonoBehaviour
         {
             currentWaypoint++;
         }
-
-        //_Rigidbody.velocity = moveDirection * speed; //* Time.deltaTime;
     }
 
-    public int Attack()
+    private void LookAtDirection(Vector2 dir)
     {
-        if (isAttackOnCooldown || !gameObject.activeInHierarchy)
-        {
-            return 0;
-        }
+        float angle = Vector2.SignedAngle(Vector2.right, dir) - 90f;
+        Vector3 targetRotation = new Vector3(0, 0, angle);
+        Quaternion lookTo = Quaternion.Euler(targetRotation);
 
-        isAttackOnCooldown = true;
-        StartCoroutine("CooldownAttack");
-        return damage;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookTo, rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    private void CheckPlayerDistance()
+    {
+        //Debug.Log("Distancia: " + Vector3.Distance(playerTransform.position, transform.position) + " - Attack Distance: " + attackDistance);
+        if (Vector3.Distance(playerTransform.position, transform.position) < attackDistance)
+        {
+            isCloseToPlayer = true;
+        }
+        else
+        {
+            isCloseToPlayer = false;
+        }
+    }
+
+    private void CheckPlayerSight()
+    {
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast( transform.position, playerTransform.position - transform.position, attackDistance,playerLayerMask, 2);
+
+        //Debug.Log("Raycast hit: " + hit.collider.name + " - Raycast tag: " + hit.collider.gameObject.tag);
+        if (hit.collider.gameObject.tag == "Player")
+        {
+            hasPlayerSight = true;
+        }
+        else
+        {
+            hasPlayerSight = false;
+        }
+    }
+
+    public void Attack()
+    {
+        if (!isAttackOnCooldown)
+        {
+            EnemyProjectile projectile = Instantiate(enemyProjectilePrefab, projectileOrigin.position, transform.rotation).GetComponent<EnemyProjectile>();
+            projectile.enemy = this;
+            StartCoroutine("CooldownAttack");
+        }
     }
 
     IEnumerator CooldownAttack()
     {
+        isAttackOnCooldown = true;
         yield return new WaitForSeconds(attackCooldown);
         isAttackOnCooldown = false;
+    }
+
+    public void HitPlayer()
+    {
+        player.TakeDamage(damage);
     }
 
     public void Init(Action<Enemy> killAction)
