@@ -29,3 +29,4 @@ MonoBehaviour:
     projectileSize: 0
     projectileAmount: 0
     attackCooldownPct: 0
+  cost: 80

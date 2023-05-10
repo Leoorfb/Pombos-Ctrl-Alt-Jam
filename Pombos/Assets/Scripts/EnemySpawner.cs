@@ -102,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator TimerWave()
     {
-        Debug.Log("Começou timer");
+        //Debug.Log("Começou timer");
         float timer = waveMaxSpawnCooldown;
         while (timer >= 0)
         {
@@ -117,7 +117,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartWave()
     {
-        Debug.Log("Wave: "+ waveIndex + " Tamanho " + wavesData.Length);
+        //Debug.Log("Wave: "+ waveIndex + " Tamanho " + wavesData.Length);
         if (waveIndex >= wavesData.Length)
         {
             if (loopLastWave)

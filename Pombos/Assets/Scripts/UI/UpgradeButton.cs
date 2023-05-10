@@ -10,6 +10,7 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] TMP_Text upgradeName;
     [SerializeField] TMP_Text upgradeDescription;
+    [SerializeField] TMP_Text upgradeCost;
 
     public void SetData(UpgradesData upgradesData)
     {
@@ -20,6 +21,7 @@ public class UpgradeButton : MonoBehaviour
 
         icon.sprite = upgradesData.icon;
         upgradeDescription.text = upgradesData.UpgradeDescription;
+        upgradeCost.text = "$" + upgradesData.cost.ToString("#000");
     }
 
     internal void Clean()

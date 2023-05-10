@@ -9,6 +9,9 @@ public class Shop : MonoBehaviour
     bool isPlayerInTrigger = false;
     bool isShopOpen = false;
 
+    [SerializeField] int firstRerollCost = 10;
+    public int rerollCost = 10;
+
     [SerializeField] UpgradePanelManager shopPanel;
     [SerializeField] List<UpgradesData> upgrades;
     List<UpgradesData> selectedUpgrades;
@@ -34,10 +37,10 @@ public class Shop : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             interactPressed = true;
-            Debug.Log("Interact: " + interactPressed + "- Wave Running: " + enemySpawner.isWaveRunning + "- ShopOpen: " + isShopOpen);
+            //Debug.Log("Interact: " + interactPressed + "- Wave Running: " + enemySpawner.isWaveRunning + "- ShopOpen: " + isShopOpen);
             if (interactPressed && !enemySpawner.isWaveRunning && !isShopOpen && isPlayerInTrigger)
             {
-                Debug.Log("Abre loja");
+                //Debug.Log("Abre loja");
                 OpenShop();
             }
         }
@@ -65,6 +68,8 @@ public class Shop : MonoBehaviour
 
     private void OpenShop()
     {
+        rerollCost = firstRerollCost;
+        isShopOpen = true;
         SelectUpgrades();
         shopPanel.OpenPanel(selectedUpgrades);
     }
@@ -78,6 +83,19 @@ public class Shop : MonoBehaviour
     {
         isShopOpen = false;
         enemySpawner.StartWave();
+    }
+
+    public bool RerollUpgrades()
+    {
+        bool rerollSucceded = playerGold.gold >= rerollCost;
+        if (rerollSucceded)
+        {
+            SelectUpgrades();
+            shopPanel.LoadUpgrades(selectedUpgrades);
+            playerGold.gold -= rerollCost;
+            rerollCost *= 2;
+        }
+        return rerollSucceded;
     }
 
     public void SelectUpgrades()
@@ -109,31 +127,48 @@ public class Shop : MonoBehaviour
         return upgradesList;
     }
 
-    public void Upgrade(int SelectecUpgradeId)
+    public bool Upgrade(int SelectecUpgradeId, out List<UpgradesData> updatedUpgradesData)
     {
         UpgradesData upgradesData = selectedUpgrades[SelectecUpgradeId];
 
-        switch (upgradesData.UpgradeType)
-        {
-            case UpgradeType.WeaponUpgrade:
-                weaponsManager.UpgradeWeapon(upgradesData);
-                break;
+        bool playerHasEnoughtMoney = playerGold.gold >= upgradesData.cost;
+        
 
-            case UpgradeType.WeaponUnlock:
-                weaponsManager.AddWeapon(upgradesData.weaponData);
-                break;
+        if (playerHasEnoughtMoney) {
+            UpgradesData nextUpgrade = null;
+            switch (upgradesData.UpgradeType)
+            {
+                case UpgradeType.WeaponUpgrade:
+                    weaponsManager.UpgradeWeapon(upgradesData, out nextUpgrade);
+                    break;
 
-            case UpgradeType.ItemUpgrade:
-                passivesManager.UpgradeItem(upgradesData);
-                break;
+                case UpgradeType.WeaponUnlock:
+                    weaponsManager.AddWeapon(upgradesData.weaponData, out nextUpgrade);
 
-            case UpgradeType.ItemUnlock:
-                passivesManager.Equip(upgradesData.item);
-                break;
+                    nextUpgrade = upgradesData.weaponData.GetNextUpgrade(upgradesData);
+                    break;
+
+                case UpgradeType.ItemUpgrade:
+                    passivesManager.UpgradeItem(upgradesData, out nextUpgrade);
+                    break;
+
+                case UpgradeType.ItemUnlock:
+                    passivesManager.Equip(upgradesData.item, out nextUpgrade);
+                    break;
+            }
+
+            Debug.Log(nextUpgrade);
+            if (nextUpgrade != null)
+            {
+                selectedUpgrades.Add(nextUpgrade);
+            }
+
+            selectedUpgrades.Remove(upgradesData);
+            upgrades.Remove(upgradesData);
+            playerGold.AddGold(-upgradesData.cost);
         }
-
-        upgrades.Remove(upgradesData);
-
+        updatedUpgradesData = selectedUpgrades;
+        return playerHasEnoughtMoney;
     }
 
     public void AddUpgradesIntoTheListOfUpgrades(UpgradesData upgrade)

@@ -38,4 +38,16 @@ public class WeaponData : ScriptableObject
         //Debug.Log("Get first upgrade: " + weaponUpgrades[0].UpgradeDescription);
         return weaponUpgrades[0];
     }
+
+    public UpgradesData GetNextUpgrade(UpgradesData upgradeData)
+    {
+        for (int i = 0; i+1 < weaponUpgrades.Count; i++)
+        {
+            if (weaponUpgrades[i].Equals(upgradeData))
+            {
+                return weaponUpgrades[i+1];
+            }
+        }
+        return null;
+    }
 }

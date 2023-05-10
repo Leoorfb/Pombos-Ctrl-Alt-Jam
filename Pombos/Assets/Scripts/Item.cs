@@ -80,7 +80,6 @@ public class Item : ScriptableObject
     {
         UpgradesData ud = null;
 
-
         if (itemLevel < upgrades.Count)
         {
             ud = upgrades[itemLevel];
@@ -92,5 +91,18 @@ public class Item : ScriptableObject
     {
         ItemLevelUp();
         return GetNextUpgrade();
+    }
+
+    public UpgradesData GetNextUpgrade(UpgradesData upgradeData)
+    {
+        for (int i = 0; i + 1 < upgrades.Count; i++)
+        {
+            Debug.Log("Ind: " + i + ", total: " + upgrades.Count);
+            if (upgrades[i].Equals(upgradeData))
+            {
+                return upgrades[i + 1];
+            }
+        }
+        return null;
     }
 }

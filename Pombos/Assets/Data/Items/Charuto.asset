@@ -23,4 +23,6 @@ MonoBehaviour:
     attackCooldownPct: 0
   upgrades:
   - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
+  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
+  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
   itemLevel: 1

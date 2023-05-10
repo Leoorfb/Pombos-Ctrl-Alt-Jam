@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerGold : MonoBehaviour
 {
-    [SerializeField] int gold = 0;
+    public int gold = 0;
     [SerializeField] TextMeshProUGUI expText;
 
 
