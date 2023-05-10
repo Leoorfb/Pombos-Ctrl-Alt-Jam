@@ -25,4 +25,16 @@ public class UpgradesData : ScriptableObject
     public Item item;
     public ItemStats itemStats;
     public int cost;
+
+    private void OnEnable()
+    {
+        if (UpgradeType == UpgradeType.WeaponUpgrade || UpgradeType == UpgradeType.WeaponUnlock)
+        {
+            icon = weaponData.icon;
+        }
+        else if (UpgradeType == UpgradeType.ItemUpgrade || UpgradeType == UpgradeType.ItemUnlock)
+        {
+            icon = item.icon;
+        }
+    }
 }

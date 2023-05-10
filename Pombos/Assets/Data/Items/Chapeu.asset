@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chapeu
   stats:
-    armor: 0
     health: 15
     healthRegen: 0
+    armor: 0
     speed: 0
-    projectileSize: 0
-    projectileAmount: 0
-    attackCooldownPct: 0
+    baseDamage: 0
+    fireRateReductionPct: 0
+    spreadReductionPct: 0
   upgrades:
   - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
   - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
   - {fileID: 11400000, guid: f5e3c62f01d2c0e4bb2b94536b6ebaf8, type: 2}
   itemLevel: 1
+  icon: {fileID: 21300000, guid: 6da1b59dd6ae6754da689a8b2d10b578, type: 3}

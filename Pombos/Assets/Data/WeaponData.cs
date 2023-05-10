@@ -7,21 +7,24 @@ using UnityEngine;
 public class WeaponStats
 {
     public int damage;
-    public float attackCooldown;
+    public float fireRate;
     public float knockbackStrenght;
+    public float spread = 0;
 
-    public WeaponStats(int damage, float attackCooldown, float knockbackStrenght)
+    public WeaponStats(int damage, float attackCooldown, float knockbackStrenght, float spread)
     {
         this.damage = damage;
-        this.attackCooldown = attackCooldown;
+        this.fireRate = attackCooldown;
         this.knockbackStrenght = knockbackStrenght;
+        this.spread = spread;
     }
 
     public void Sum(WeaponStats weaponUpgradeStats)
     {
         this.damage += weaponUpgradeStats.damage;
-        this.attackCooldown += weaponUpgradeStats.attackCooldown;
+        this.fireRate += weaponUpgradeStats.fireRate;
         this.knockbackStrenght += weaponUpgradeStats.knockbackStrenght;
+        this.spread += weaponUpgradeStats.spread;
     }
 }
 
@@ -32,6 +35,8 @@ public class WeaponData : ScriptableObject
     public WeaponStats stats;
     public GameObject weaponPrefab;
     public List<UpgradesData> weaponUpgrades;
+    public Sprite icon;
+
 
     public UpgradesData GetFirstUpgrade()
     {

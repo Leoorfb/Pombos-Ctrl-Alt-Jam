@@ -6,23 +6,30 @@ using UnityEngine;
 [Serializable]
 public class ItemStats
 {
-    public int armor;
+    [Header("Player Health Settings")]
     public int health;
     public int healthRegen;
+
+    [Header("Player Stats Settings")]
+    public int armor;
     public float speed;
-    public int projectileSize;
-    public int projectileAmount;
-    public float attackCooldownPct;
+
+    [Header("Weapon Stats Settings")]
+    public int baseDamage = 0;
+    public float fireRateReductionPct = 0;
+    public float spreadReductionPct = 0;
 
     internal void Sum(ItemStats stats)
     {
-        armor += stats.armor;
         health += stats.health;
         healthRegen += stats.healthRegen;
+
+        armor += stats.armor;
         speed += stats.speed;
-        projectileSize += stats.projectileSize;
-        projectileAmount += stats.projectileAmount;
-        attackCooldownPct += stats.attackCooldownPct;
+
+        fireRateReductionPct += stats.fireRateReductionPct;
+        baseDamage += stats.baseDamage;
+        spreadReductionPct += stats.spreadReductionPct;
     }
 }
 
@@ -33,6 +40,7 @@ public class Item : ScriptableObject
     public ItemStats stats;
     public List<UpgradesData> upgrades;
     public int itemLevel = 1;
+    public Sprite icon;
 
     public void Init(string Name, List<UpgradesData> upgrades)
     {
@@ -43,26 +51,30 @@ public class Item : ScriptableObject
 
     public void Equip(Player player)
     {
-        player.armor += stats.armor;
         player.maxHp += stats.health;
         player.hp += stats.health;
-        //player.healthRegen += stats.healthRegen;
+        player.healthRegen += stats.healthRegen;
+
+        player.armor += stats.armor;
         player.speed += stats.speed;
-        //player.projectileSize += stats.projectileSize;
-        //player.projectileAmount += stats.projectileAmount;
-        player.attackCooldownPct += stats.attackCooldownPct;
+
+        player.fireRateReductionPct += stats.fireRateReductionPct;
+        player.baseDamage += stats.baseDamage;
+        player.spreadReductionPct += stats.spreadReductionPct;
     }
 
     public void Unequip(Player player)
     {
-        player.armor -= stats.armor;
         player.hp -= stats.health;
         player.maxHp -= stats.health;
-        //player.healthRegen -= stats.healthRegen;
+        player.healthRegen -= stats.healthRegen;
+
+        player.armor -= stats.armor;
         player.speed -= stats.speed;
-        //player.projectileSize -= stats.projectileSize;
-        //player.projectileAmount -= stats.projectileAmount;
-        player.attackCooldownPct -= stats.attackCooldownPct;
+
+        player.fireRateReductionPct -= stats.fireRateReductionPct;
+        player.baseDamage -= stats.baseDamage;
+        player.spreadReductionPct -= stats.spreadReductionPct;
     }
 
     public UpgradesData GetFirstUpgrade()

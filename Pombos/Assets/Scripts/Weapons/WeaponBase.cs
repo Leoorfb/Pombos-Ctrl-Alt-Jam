@@ -15,6 +15,10 @@ public abstract class WeaponBase : MonoBehaviour
     public Transform projectileOrigin;
 
     public WeaponStats weaponStats;
+    public float baseWeaponFirerate = 1;
+    public float baseWeaponSpread = 1;
+
+    protected Vector3 spreadDirection = Vector3.zero;
 
     protected ObjectPool<WeaponProjectile> _projectilePool;
 
@@ -48,14 +52,16 @@ public abstract class WeaponBase : MonoBehaviour
     {
         weaponData = wd;
 
-        weaponStats = new WeaponStats(weaponData.stats.damage, weaponData.stats.attackCooldown, weaponData.stats.knockbackStrenght);
+        weaponStats = new WeaponStats(weaponData.stats.damage, weaponData.stats.fireRate, weaponData.stats.knockbackStrenght, weaponData.stats.spread);
+        baseWeaponFirerate = weaponData.stats.fireRate;
+        baseWeaponSpread = weaponData.stats.spread;
     }
 
     public IEnumerator CooldownAttack()
     {
 
         isAttackOnCooldown = true;
-        yield return new WaitForSeconds(weaponStats.attackCooldown);
+        yield return new WaitForSeconds(weaponStats.fireRate);
         isAttackOnCooldown = false;
     }
 

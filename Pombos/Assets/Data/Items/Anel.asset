@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d888e56833f61a7429d29ffd032e38c1, type: 3}
-  m_Name: Charuto
+  m_Name: Anel
   m_EditorClassIdentifier: 
-  itemName: Charuto
+  itemName: Anel
   stats:
     health: 0
     healthRegen: 0
     armor: 0
-    speed: 1000
+    speed: 0
     baseDamage: 1
     fireRateReductionPct: 0
     spreadReductionPct: 0
   upgrades:
-  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
-  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
-  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
+  - {fileID: 11400000, guid: 571732c48e88784439d8d1db0919f177, type: 2}
+  - {fileID: 11400000, guid: 571732c48e88784439d8d1db0919f177, type: 2}
+  - {fileID: 11400000, guid: 571732c48e88784439d8d1db0919f177, type: 2}
   itemLevel: 1
-  icon: {fileID: 21300000, guid: 413c67b33ba82dc44ada9eda4bf29270, type: 3}
+  icon: {fileID: 21300000, guid: 747dce192f273dd478b99daf7418d2b2, type: 3}

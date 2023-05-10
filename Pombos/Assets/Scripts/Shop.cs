@@ -9,14 +9,18 @@ public class Shop : MonoBehaviour
     bool isPlayerInTrigger = false;
     bool isShopOpen = false;
 
-    [SerializeField] int firstRerollCost = 10;
-    public int rerollCost = 10;
-
+    [Header("Shop UI Settings")]
     [SerializeField] UpgradePanelManager shopPanel;
+
+    [Header("Shop Upgrades Settings")]
     [SerializeField] List<UpgradesData> upgrades;
     List<UpgradesData> selectedUpgrades;
 
     [SerializeField] List<UpgradesData> startAvailableUpgrades;
+
+    [Header("Shop Reroll Settings")]
+    [SerializeField] int firstRerollCost = 10;
+    public int rerollCost = 10;
 
     WeaponsManager weaponsManager;
     PassivesManager passivesManager;

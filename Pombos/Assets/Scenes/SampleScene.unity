@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371b1aa5d2c824c48a20a5576d79f12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIDocument: {fileID: 1227396519}
+  uiDocument: {fileID: 0}
 --- !u!114 &39424002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26206,13 +26206,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 50
+  healthRegen: 0
+  hpText: {fileID: 2041831144}
   armor: 0
-  attackCooldownPct: 1
   _speed: 6000
   shootingSpeedSlowPct: 0.5
   lucky: 1
   isAlive: 1
-  hpText: {fileID: 2041831144}
+  _baseDamage: 0
+  _fireRateReductionPct: 0
+  _spreadReductionPct: 0
 --- !u!50 &745634029
 Rigidbody2D:
   serializedVersion: 4
@@ -26481,13 +26484,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63e64e8bcef20740afe5d948361f76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstRerollCost: 10
-  rerollCost: 10
   shopPanel: {fileID: 39424000}
   upgrades: []
   startAvailableUpgrades:
   - {fileID: 11400000, guid: fd244c6ee3c87be40b43ed585db0b93d, type: 2}
   - {fileID: 11400000, guid: 29744b5d3567d174da1a5da22e70398d, type: 2}
+  - {fileID: 11400000, guid: 70b3659ae9c56cb49865a2d7da1b6dba, type: 2}
+  - {fileID: 11400000, guid: 2d9d075e91daaab44aafd6e6b043864b, type: 2}
+  - {fileID: 11400000, guid: b35519c266611344898555e2d28aed28, type: 2}
+  firstRerollCost: 10
+  rerollCost: 10
 --- !u!1 &773822351
 GameObject:
   m_ObjectHideFlags: 0
@@ -26843,6 +26849,7 @@ MonoBehaviour:
   wavesData:
   - {fileID: 11400000, guid: 1a25f7b367363234885001e3637111ee, type: 2}
   - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
+  - {fileID: 11400000, guid: 1ffe2488fa891294fb0090a3d59ec096, type: 2}
   waveIndex: 0
   enemySpawnCooldown: 1
   waveMaxSpawnCooldown: 45

@@ -5,6 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Health Settings")]
     public int maxHp = 100;
     private int _hp = 100;
     public int hp {
@@ -12,9 +13,12 @@ public class Player : MonoBehaviour
         set { _hp = value;
             UpdateHpText();
         }}
+    public int healthRegen = 0;
 
+    [SerializeField] TextMeshProUGUI hpText;
+
+    [Header("Player Stats Settings")]
     public int armor = 0;
-    public float attackCooldownPct = 1;
     [SerializeField] private float _speed = 5000;
     public float speed
     {
@@ -29,17 +33,43 @@ public class Player : MonoBehaviour
     public float shootingSpeedSlowPct = 0.7f;
 
     public int lucky = 1;
-
-
     public bool isAlive = true;
 
-    [SerializeField] TextMeshProUGUI hpText;
+    [Header("Weapon Stats Settings")]
+    [SerializeField] private int _baseDamage = 0;
+    [SerializeField] private float _fireRateReductionPct = 0;
+    [SerializeField] private float _spreadReductionPct = 0;
+    public int baseDamage
+    {
+        get { return _baseDamage; }
+        set
+        {
+            _baseDamage = value;
+            weaponsManager.UpdateWeaponsStats();
+        }
+    }
+    public float fireRateReductionPct
+    {
+        get { return _fireRateReductionPct; }
+        set
+        {
+            _fireRateReductionPct = value;
+            weaponsManager.UpdateWeaponsStats();
+        }
+    }
+    public float spreadReductionPct
+    {
+        get { return _spreadReductionPct; }
+        set
+        {
+            _spreadReductionPct = value;
+            weaponsManager.UpdateWeaponsStats();
+        }
+    }
 
     Rigidbody2D _Rigidbody;
-
     WeaponsManager weaponsManager;
     PlayerMovement playerMovement;
-
 
     private void Awake()
     {

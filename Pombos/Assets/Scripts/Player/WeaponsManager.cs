@@ -13,11 +13,13 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] List<WeaponBase> weapons;
 
     public Transform projectileOrigin;
+    private Player player;
 
 
     private void Awake()
     {
         weapons = new List<WeaponBase>();
+        player = GetComponent<Player>();
     }
 
     private void Start()
@@ -25,15 +27,26 @@ public class WeaponsManager : MonoBehaviour
         shop = GameManager.instance.shop;
         AddWeapon(startingWeapon);
     }
-    public void AddWeapon(WeaponData weaponData)
+
+    public void UpdateWeaponsStats()
     {
-        UpgradesData firstUpgrade;
-        AddWeapon(weaponData, out firstUpgrade);
+        foreach (WeaponBase weapon in weapons)
+        {
+            weapon.weaponStats.damage += player.baseDamage;
+            weapon.weaponStats.spread = weapon.baseWeaponSpread - (weapon.baseWeaponSpread * player.spreadReductionPct);
+            weapon.weaponStats.fireRate = weapon.baseWeaponFirerate - (weapon.baseWeaponFirerate * player.fireRateReductionPct);
+        }
     }
 
     public WeaponBase GetWeaponBase() 
     {
         return weapons[0];
+    }
+
+    public void AddWeapon(WeaponData weaponData)
+    {
+        UpgradesData firstUpgrade;
+        AddWeapon(weaponData, out firstUpgrade);
     }
 
     public void AddWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
