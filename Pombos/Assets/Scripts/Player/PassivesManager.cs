@@ -35,7 +35,7 @@ public class PassivesManager : MonoBehaviour
     {
         if (items == null) items = new List<Item>();
 
-        Item newItem = new Item();
+        Item newItem = ScriptableObject.CreateInstance<Item>(); ;
         newItem.Init(item.itemName, item.upgrades);
         newItem.stats.Sum(item.stats);
         newItem.upgrades = item.upgrades;

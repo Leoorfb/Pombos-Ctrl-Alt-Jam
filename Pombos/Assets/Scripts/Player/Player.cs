@@ -38,6 +38,13 @@ public class Player : MonoBehaviour
     public int lucky = 1;
     public bool isAlive = true;
 
+    [Header("Invulnerability Stats Settings")]
+    public float invulnerabilityTime = .5f;
+    [SerializeField] Color invulnerabilityColor;
+    [SerializeField] Color normalColor;
+    public bool isInvulnerable = false;
+    [SerializeField] SpriteRenderer playerSpriteRenderer;
+
     [Header("Weapon Stats Settings")]
     [SerializeField] private int _baseDamage = 0;
     [SerializeField] private float _fireRateReductionPct = 0;
@@ -133,6 +140,7 @@ public class Player : MonoBehaviour
 
         GetHit(damage);
         TakeKnockback(direction, force);
+        StartCoroutine("GetInvulnerable");
     }
 
     public void TakeDamage(int damage)
@@ -145,6 +153,7 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             isAlive = false;
+            GameManager.instance.GameOver();
         }
         UpdateHpText();
         return;
@@ -154,5 +163,17 @@ public class Player : MonoBehaviour
     {
         //Debug.Log(direction * force);
         _Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
+    }
+
+    public IEnumerator GetInvulnerable()
+    {
+        isInvulnerable = true;
+        playerSpriteRenderer.color = invulnerabilityColor;
+
+        yield return new WaitForSeconds(invulnerabilityTime);
+
+        isInvulnerable = false;
+        playerSpriteRenderer.color = normalColor;
+
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave3
   m_EditorClassIdentifier: 
   waveEnemyList:
-  - enemyPrefab: {fileID: 3207190119087626631, guid: 3b393996c234cbc4895acd658001f6e4, type: 3}
+  - enemyPrefab: {fileID: 8584664045613081946, guid: 3b393996c234cbc4895acd658001f6e4, type: 3}
     spawnChance: 100
     difficultyLevel: 1
   waveDifficulty: 10

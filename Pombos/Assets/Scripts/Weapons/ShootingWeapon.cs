@@ -28,7 +28,7 @@ public class ShootingWeapon : WeaponBase
             //audioSource.PlayOneShot(shootSFX, audioSource.volume);
 
             //Debug.Log(name + " attack");
-            GameAssets.instance.ammoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
+            _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
         }
     }
         

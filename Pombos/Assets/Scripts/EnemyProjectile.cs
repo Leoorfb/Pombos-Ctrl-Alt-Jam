@@ -32,8 +32,7 @@ public class EnemyProjectile : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            enemy.HitPlayer();
-            AudioManager.instance.Play("HitPlayer");
+            enemy.HitPlayer(transform.up);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Obstacle")
