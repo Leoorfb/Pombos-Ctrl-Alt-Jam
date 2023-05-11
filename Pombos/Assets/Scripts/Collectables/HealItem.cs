@@ -10,7 +10,9 @@ public class HealItem : Collectable
     public override void Collect(Player player)
     {
         player.Heal(healAmount);
-        _DisableCollectable(this);
+
+        Destroy(gameObject);
+        //_DisableCollectable(this);
     }
 
 }

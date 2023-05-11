@@ -5,24 +5,37 @@ using UnityEngine;
 using Pathfinding;
 
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     Transform playerTransform;
     Player player;
 
+    [Header("Enemy Health Settings")]
     public int hp = 10;
     public int maxHp = 10;
+
+    [Header("Enemy Movement Settings")]
     [SerializeField] float speed = 4;
+    [SerializeField] float rotationSpeed = 45;
+
+    [Header("Enemy Attack Settings")]
     [SerializeField] int damage = 1;
     public float knockbackStreght = 10;
     [SerializeField] float attackDistance = 10;
-
     public bool isAttackOnCooldown = false;
     [SerializeField] float attackCooldown = 0.2f;
-    [SerializeField] float rotationSpeed = 45;
 
+    [Header("Enemy Refences Settings")]
     [SerializeField] GameObject enemyProjectilePrefab;
     [SerializeField] Transform projectileOrigin;
+    [SerializeField] GameObject goldPrefab;
+    [SerializeField] List<Drop> dropItems;
+    public Transform DropContainer;
+
+    [SerializeField] GameObject deathParticles;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Color deadColor;
+
 
     [SerializeField] LayerMask playerLayerMask;
 
@@ -37,16 +50,20 @@ public class Enemy : MonoBehaviour
 
     Seeker _seeker;
     Rigidbody2D _Rigidbody;
+    Collider2D _Collider;
 
     private Action<Enemy> _killAction;
     private bool isCloseToPlayer;
     private bool hasPlayerSight;
+
+    private bool isAlive = true;
 
 
     private void Awake()
     {
         _seeker = GetComponent<Seeker>();
         _Rigidbody = GetComponent<Rigidbody2D>();
+        _Collider = GetComponent<Collider2D>();
     }
 
     private void Start()
@@ -77,7 +94,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (path == null) return;
+        if (!isAlive || path == null) return;
 
         if(currentWaypoint >= path.vectorPath.Count)
         {
@@ -178,14 +195,34 @@ public class Enemy : MonoBehaviour
         isAttackOnCooldown = false;
     }
 
-    public void HitPlayer()
+    public void HitPlayer(Vector2 direction)
     {
-        player.TakeDamage(damage);
+        if (!player.isInvulnerable)
+        {
+            player.GetHit(damage, direction, knockbackStreght);
+            AudioManager.instance.Play("HitPlayer");
+        }
+        //player.TakeDamage(damage);
     }
 
     public void Init(Action<Enemy> killAction)
     {
         _killAction = killAction;
+    }
+
+    public void GetHit(int damage, bool isCritical, Vector2 direction, float force)
+    {
+        TakeDamage(damage, isCritical);
+        TakeKnockback(direction, force);
+        Debug.Log("Enemy is Alive: " + isAlive);
+
+        if (!isAlive)
+        {
+            Debug.Log("Death particles intanciou");
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            GameObject particle = GameObject.Instantiate(deathParticles, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
+            Debug.Log(particle);
+        }
     }
 
     public void TakeDamage(int damage, bool isCritical)
@@ -207,9 +244,12 @@ public class Enemy : MonoBehaviour
 
             if (hp <= 0)
             {
+                Die();
+                /*
                 if (_killAction != null)
                     _killAction(this);
                 else Destroy(gameObject);
+                */
             }
             //Debug.Log(name + " hp: " + hp);
 
@@ -226,5 +266,56 @@ public class Enemy : MonoBehaviour
     public void SetPlayerTransform(Transform nPlayerTransform)
     {
         playerTransform = nPlayerTransform;
+    }
+
+    private void Die()
+    {
+        isAlive = false;
+        _Rigidbody.velocity = Vector3.zero;
+        _Rigidbody.isKinematic = true;
+
+
+        GameObject gold = GameObject.Instantiate(goldPrefab, transform.position, goldPrefab.transform.rotation, DropContainer);
+
+        GameObject dropPrefab = GetRandomDrop();
+        if (dropPrefab != null)
+        {
+            GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+        }
+
+        //enemiesAlive--;
+        _Collider.enabled = false;
+        AudioManager.instance.Play("EnemyDeath");
+
+        spriteRenderer.color = deadColor;
+    }
+
+    /*
+    private IEnumerator FadeAway()
+    {
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            spriteRenderer.color = deadColor;
+        }
+    }
+    */
+
+    private GameObject GetRandomDrop()
+    {
+        GameObject drop = null;
+        int dropNumber = UnityEngine.Random.Range(0, 100);
+        foreach (Drop _drop in dropItems)
+        {
+            dropNumber -= _drop.dropRate;
+
+            if (dropNumber <= 0)
+            {
+                drop = _drop.dropObject;
+                break;
+            }
+        }
+
+        return drop;
     }
 }

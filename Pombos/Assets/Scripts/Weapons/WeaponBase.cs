@@ -17,6 +17,7 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponStats weaponStats;
     public float baseWeaponFirerate = 1;
     public float baseWeaponSpread = 1;
+    public int baseWeaponDamage = 1;
 
     public int weaponAmmoMax = 100;
     protected int weaponAmmo;
@@ -28,17 +29,21 @@ public abstract class WeaponBase : MonoBehaviour
     protected ObjectPool<WeaponProjectile> _projectilePool;
 
     protected Player _player;
+    protected AmmoIndicator _weaponAmmoIndicator;
 
     protected virtual void Start()
     {
         weaponAmmo = weaponAmmoMax;
         _player = GameManager.instance.playerTransform.GetComponent<Player>();
         _projectilePool = new ObjectPool<WeaponProjectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
+
+        _weaponAmmoIndicator = GameAssets.instance.ammoIndicator;
+        _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
     }
 
     public void Update()
     {
-        if (Input.GetMouseButton(0) && !isAttackOnCooldown)
+        if (Input.GetMouseButton(0) && !isAttackOnCooldown && _player.isAlive)
         {
             Attack();
             StartCoroutine("CooldownAttack");
@@ -62,8 +67,15 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void HitEnemy(Enemy enemy, Vector2 knockBackDir)
     {
-        HitEnemy(enemy);
-        enemy.TakeKnockback(knockBackDir, weaponStats.knockbackStrenght);
+        int dmg;
+        if (_player.RollCrit())
+        {
+            enemy.GetHit(weaponStats.damage * _player.critModifier, true, knockBackDir, weaponStats.knockbackStrenght);
+        }
+        else
+        {
+            enemy.GetHit(weaponStats.damage, true, knockBackDir, weaponStats.knockbackStrenght);
+        }
     }
 
     public virtual IEnumerator Reload()
@@ -72,7 +84,7 @@ public abstract class WeaponBase : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         weaponAmmo = weaponAmmoMax;
         hasAmmo = true;
-        GameAssets.instance.ammoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
+        _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
     }
 
     public virtual void SetData(WeaponData wd)
@@ -84,6 +96,7 @@ public abstract class WeaponBase : MonoBehaviour
         weaponAmmo = weaponAmmoMax;
         baseWeaponFirerate = weaponStats.fireRate;
         baseWeaponSpread = weaponStats.spread;
+        baseWeaponDamage = weaponStats.damage;
     }
 
     public IEnumerator CooldownAttack()

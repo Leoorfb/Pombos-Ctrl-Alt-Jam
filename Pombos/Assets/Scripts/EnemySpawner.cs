@@ -36,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject dropGold;
     [SerializeField] List<Drop> dropItems;
 
+
     Transform playerTransform;
 
     IEnumerator waveCoroutine;
@@ -64,9 +65,10 @@ public class EnemySpawner : MonoBehaviour
 
     private Enemy CreateEnemy(GameObject enemy)
     {
-        Enemy newEnemy = GameObject.Instantiate(enemy, transform).GetComponent<Enemy>();
+        Enemy newEnemy = Instantiate(enemy, transform).GetComponent<Enemy>();
         newEnemy.SetPlayerTransform(playerTransform);
         newEnemy.Init(KillEnemy);
+        newEnemy.DropContainer = DropContainer;
         return newEnemy;
     }
     //Exclusivo pra object pool (removido por enquanto para simplificar/agilizar)
