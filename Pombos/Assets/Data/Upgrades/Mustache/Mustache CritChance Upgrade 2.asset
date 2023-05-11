@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c8f99bc0dbeab49ab44a8480029627, type: 3}
-  m_Name: Oculos Spread Upgrade
+  m_Name: Mustache CritChance Upgrade 2
   m_EditorClassIdentifier: 
   UpgradeType: 1
-  UpgradeDescription: Reduz espalhamento da arma
-  icon: {fileID: 21300000, guid: ac1c4a0981a050448874ac41a93158af, type: 3}
+  UpgradeDescription: Aumenta a chance de dano critico
+  icon: {fileID: 21300000, guid: a0b347d3ff3f6cd4d9c01aa6d35dd485, type: 3}
   weaponData: {fileID: 0}
   weaponUpgradeStats:
     damage: 0
     fireRate: 0
     knockbackStrenght: 0
     spread: 0
-  item: {fileID: 11400000, guid: cb805ce1ab415064898217f1a0824f1c, type: 2}
+    ammoMax: 0
+  item: {fileID: 11400000, guid: fe5ca61895b61104b8500ef05deec41f, type: 2}
   itemStats:
     health: 0
     healthRegen: 0
     armor: 0
     speed: 0
+    critChance: 0.1
     baseDamage: 0
     fireRateReductionPct: 0
-    spreadReductionPct: 0.1
-  cost: 50
+    spreadReductionPct: 0
+  cost: 25
