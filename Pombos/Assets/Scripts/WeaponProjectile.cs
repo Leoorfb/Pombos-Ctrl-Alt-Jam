@@ -36,7 +36,6 @@ public class WeaponProjectile : MonoBehaviour
         {
             //Debug.Log("Projetil atingiu inimigo");
             weapon.HitEnemy(collision.gameObject.GetComponent<Enemy>(), transform.right);
-            AudioManager.instance.Play("HitEnemy");
             StopAllCoroutines();
             _DisableProjectile(this);
         }

@@ -51,8 +51,11 @@ MonoBehaviour:
   projectileOrigin: {fileID: 0}
   weaponStats:
     damage: 1
-    attackCooldown: 0.5
+    fireRate: 0
     knockbackStrenght: 10
-  spread: 15
-  audioSource: {fileID: 0}
-  shootSFX: {fileID: 8300000, guid: 038f31d3d0c30c04db1668c2ee975f23, type: 3}
+    spread: 0
+    ammoMax: 0
+  baseWeaponFirerate: 1
+  baseWeaponSpread: 1
+  weaponAmmoMax: 100
+  reloadTime: 3

@@ -20,7 +20,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     public int weaponAmmoMax = 100;
     protected int weaponAmmo;
-    protected float reloadTime;
+    public float reloadTime;
     protected bool hasAmmo = true;
 
     protected Vector3 spreadDirection = Vector3.zero;
@@ -68,9 +68,11 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual IEnumerator Reload()
     {
-        yield return new WaitForSeconds(reloadTime);
         AudioManager.instance.Play("Reload");
+        yield return new WaitForSeconds(reloadTime);
+        weaponAmmo = weaponAmmoMax;
         hasAmmo = true;
+        GameAssets.instance.ammoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
     }
 
     public virtual void SetData(WeaponData wd)

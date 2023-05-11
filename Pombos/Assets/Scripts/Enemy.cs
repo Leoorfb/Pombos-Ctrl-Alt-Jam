@@ -191,6 +191,15 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage, bool isCritical)
     {
         DamagePopupScript.Create(transform.position, damage, isCritical);
+        if (isCritical)
+        {
+            AudioManager.instance.Play("CritEnemy");
+        }
+        else
+        {
+            AudioManager.instance.Play("HitEnemy");
+        }
+
         if (damage != 0)
         {
             hp -= damage;

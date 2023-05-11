@@ -18,6 +18,7 @@ MonoBehaviour:
     fireRate: 0.3
     knockbackStrenght: 10
     spread: 10
+    ammoMax: 100
   weaponPrefab: {fileID: 165256646908173215, guid: a27912cc61ed181438522168e24c6d97, type: 3}
   weaponUpgrades: []
   icon: {fileID: 21300000, guid: 14a8320daaea71d46a702bd073def9b1, type: 3}
