@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Debug.Log(moveDirection * speed * Time.fixedDeltaTime);
+
         _Rigidbody.AddForce(moveDirection * speed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
