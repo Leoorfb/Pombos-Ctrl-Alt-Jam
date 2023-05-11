@@ -21,13 +21,15 @@ MonoBehaviour:
     fireRate: 0
     knockbackStrenght: 0
     spread: 0
+    ammoMax: 0
   item: {fileID: 11400000, guid: e11b8440523632743a9752a0e5bd85a1, type: 2}
   itemStats:
     health: 0
     healthRegen: 0
     armor: 0
     speed: 0
+    critChance: 0
     baseDamage: 0
     fireRateReductionPct: 0.1
     spreadReductionPct: 0
-  cost: 50
+  cost: 75
