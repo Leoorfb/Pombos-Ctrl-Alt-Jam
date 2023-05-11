@@ -53,8 +53,8 @@ MonoBehaviour:
   moveYSpeed: 5
   disappearTimer: 0.5
   disappearSpeed: 6
-  normalHitColor: {r: 1, g: 0.77477115, b: 0.15566039, a: 1}
-  criticalHitColor: {r: 1, g: 0.2757334, b: 0.11792451, a: 1}
+  normalHitColor: {r: 1, g: 1, b: 1, a: 1}
+  criticalHitColor: {r: 1, g: 0.82222223, b: 0, a: 1}
   criticalHitfontsize: 1
   normalHitfontsize: 0.7
   textMesh: {fileID: 6131026158541720612}
@@ -124,10 +124,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000
+  m_text: 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6288b84e24d826a428d5d0084b4bebc2, type: 2}
+  m_sharedMaterial: {fileID: 2601358529027026405, guid: 6288b84e24d826a428d5d0084b4bebc2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
