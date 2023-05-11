@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c8f99bc0dbeab49ab44a8480029627, type: 3}
-  m_Name: Charuto Speed Upgrade
+  m_Name: Sapatos Unlock Upgrade
   m_EditorClassIdentifier: 
-  UpgradeType: 1
+  UpgradeType: 3
   UpgradeDescription: Aumenta velocidade de movimento
   icon: {fileID: 21300000, guid: b1640c283050b4d23a677c6a445f058c, type: 3}
   weaponData: {fileID: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
     armor: 0
     health: 0
     healthRegen: 0
-    speed: 700
+    speed: 0
     projectileSize: 0
     projectileAmount: 0
     attackCooldownPct: 0
-  cost: 80
+  cost: 35

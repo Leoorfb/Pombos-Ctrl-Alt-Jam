@@ -188,8 +188,9 @@ public class Enemy : MonoBehaviour
         _killAction = killAction;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool isCritical)
     {
+        DamagePopupScript.Create(transform.position, damage, isCritical);
         if (damage != 0)
         {
             hp -= damage;

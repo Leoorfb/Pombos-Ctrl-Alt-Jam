@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameAssets : MonoBehaviour
 {
-    public Transform playerTransform;
-    public EnemySpawner enemySpawner;
-    public Shop shop;
-    public Transform popupCanvasTransform;
+    public GameObject damagePopup;
+    public AmmoIndicator ammoIndicator;
 
-    private static GameManager _instance;
-    public static GameManager instance
+    private static GameAssets _instance;
+    public static GameAssets instance
     {
         get
         {
@@ -21,7 +19,6 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
     private void Awake()
     {
         if (_instance == null) _instance = this;
@@ -30,5 +27,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        ammoIndicator = gameObject.GetComponent<AmmoIndicator>();
     }
 }

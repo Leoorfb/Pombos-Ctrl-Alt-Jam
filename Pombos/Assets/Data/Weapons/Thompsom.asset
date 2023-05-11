@@ -19,8 +19,5 @@ MonoBehaviour:
     knockbackStrenght: 10
     spread: 10
   weaponPrefab: {fileID: 165256646908173215, guid: a27912cc61ed181438522168e24c6d97, type: 3}
-  weaponUpgrades:
-  - {fileID: 11400000, guid: 0336a0041d5d58c4eaac9a4a39771495, type: 2}
-  - {fileID: 11400000, guid: a3b38cc561d1c614e9c7253fde85178e, type: 2}
-  - {fileID: 11400000, guid: a3b38cc561d1c614e9c7253fde85178e, type: 2}
+  weaponUpgrades: []
   icon: {fileID: 21300000, guid: 14a8320daaea71d46a702bd073def9b1, type: 3}

@@ -13,6 +13,7 @@ public class ItemStats
     [Header("Player Stats Settings")]
     public int armor;
     public float speed;
+    public float critChance;
 
     [Header("Weapon Stats Settings")]
     public int baseDamage = 0;
@@ -26,6 +27,7 @@ public class ItemStats
 
         armor += stats.armor;
         speed += stats.speed;
+        critChance += stats.critChance;
 
         fireRateReductionPct += stats.fireRateReductionPct;
         baseDamage += stats.baseDamage;
@@ -57,6 +59,8 @@ public class Item : ScriptableObject
 
         player.armor += stats.armor;
         player.speed += stats.speed;
+        player.critChance += stats.critChance;
+
 
         player.fireRateReductionPct += stats.fireRateReductionPct;
         player.baseDamage += stats.baseDamage;
@@ -71,6 +75,7 @@ public class Item : ScriptableObject
 
         player.armor -= stats.armor;
         player.speed -= stats.speed;
+        player.critChance -= stats.critChance;
 
         player.fireRateReductionPct -= stats.fireRateReductionPct;
         player.baseDamage -= stats.baseDamage;

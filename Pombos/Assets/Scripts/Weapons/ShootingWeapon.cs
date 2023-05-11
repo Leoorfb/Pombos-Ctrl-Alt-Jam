@@ -7,13 +7,22 @@ public class ShootingWeapon : WeaponBase
 {
     public override void Attack()
     {
-        WeaponProjectile projectile = _projectilePool.Get();
+        if (weaponAmmo > 0 && hasAmmo)
+        {
+            WeaponProjectile projectile = _projectilePool.Get();
 
-        RandomizeSpread();
-        projectile.transform.Rotate(spreadDirection);
+            RandomizeSpread();
+            projectile.transform.Rotate(spreadDirection);
 
-        AudioManager.instance.Play("Shoot");
-
+            AudioManager.instance.Play("Shoot");
+            weaponAmmo -= 1;
+        }
+        else
+        {
+            AudioManager.instance.Play("NoAmmo");
+            hasAmmo = false;
+            Reload();
+        }
         //audioSource.PlayOneShot(shootSFX, audioSource.volume);
 
         //Debug.Log(name + " attack");

@@ -10,7 +10,7 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponData weaponData;
     public int weaponLevel = 1;
     [SerializeField] protected GameObject projectilePrefab;
-    private bool isAttackOnCooldown = false;
+    protected bool isAttackOnCooldown = false;
 
     public Transform projectileOrigin;
 
@@ -18,12 +18,21 @@ public abstract class WeaponBase : MonoBehaviour
     public float baseWeaponFirerate = 1;
     public float baseWeaponSpread = 1;
 
+    public int weaponAmmoMax = 100;
+    protected int weaponAmmo;
+    protected float reloadTime;
+    protected bool hasAmmo = true;
+
     protected Vector3 spreadDirection = Vector3.zero;
 
     protected ObjectPool<WeaponProjectile> _projectilePool;
 
+    protected Player _player;
+
     protected virtual void Start()
     {
+        weaponAmmo = weaponAmmoMax;
+        _player = GameManager.instance.playerTransform.GetComponent<Player>();
         _projectilePool = new ObjectPool<WeaponProjectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
     }
 
@@ -40,26 +49,43 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void HitEnemy(Enemy enemy)
     {
-        enemy.TakeDamage(weaponStats.damage);
+        if (_player.RollCrit())
+        {
+            enemy.TakeDamage(weaponStats.damage * _player.critModifier, true);
+        }
+        else
+        {
+            enemy.TakeDamage(weaponStats.damage, false);
+        }
     }
+
+
     public virtual void HitEnemy(Enemy enemy, Vector2 knockBackDir)
     {
         HitEnemy(enemy);
         enemy.TakeKnockback(knockBackDir, weaponStats.knockbackStrenght);
     }
 
+    public virtual IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        AudioManager.instance.Play("Reload");
+        hasAmmo = true;
+    }
+
     public virtual void SetData(WeaponData wd)
     {
         weaponData = wd;
 
-        weaponStats = new WeaponStats(weaponData.stats.damage, weaponData.stats.fireRate, weaponData.stats.knockbackStrenght, weaponData.stats.spread);
-        baseWeaponFirerate = weaponData.stats.fireRate;
-        baseWeaponSpread = weaponData.stats.spread;
+        weaponStats = new WeaponStats(weaponData.stats.damage, weaponData.stats.fireRate, weaponData.stats.knockbackStrenght, weaponData.stats.spread, weaponData.stats.ammoMax);
+        weaponAmmoMax = weaponStats.ammoMax;
+        weaponAmmo = weaponAmmoMax;
+        baseWeaponFirerate = weaponStats.fireRate;
+        baseWeaponSpread = weaponStats.spread;
     }
 
     public IEnumerator CooldownAttack()
     {
-
         isAttackOnCooldown = true;
         yield return new WaitForSeconds(weaponStats.fireRate);
         isAttackOnCooldown = false;

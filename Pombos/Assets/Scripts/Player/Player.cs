@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     }
     public float shootingSpeedSlowPct = 0.7f;
 
+    public float critChance = 0.01f;
+    public int critModifier = 2;
     public int lucky = 1;
     public bool isAlive = true;
 
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
             weaponsManager.UpdateWeaponsStats();
         }
     }
+
     public float fireRateReductionPct
     {
         get { return _fireRateReductionPct; }
@@ -114,22 +118,10 @@ public class Player : MonoBehaviour
         hpText.text = "Player  HP: " + hp + "/" + maxHp;
     }
 
-    /*
-    private void OnCollisionStay2D(Collision2D collision)
+    internal bool RollCrit()
     {
-        
-        GameObject collided = collision.gameObject;
-        //Debug.Log("COLIDIU " + collided.tag);
-        if (collided.tag == "Enemy")
-        {
-            Enemy enemy = collided.GetComponent<Enemy>();
-            //Debug.Log(name + " colidiu com " + collision.gameObject.name);
-            Vector2 dir = new Vector2(transform.position.x - collision.transform.position.x, transform.position.y - collision.transform.position.y);
-            GetHit(enemy.Attack(), dir, enemy.knockbackStreght);
-        }
-        
+        return (UnityEngine.Random.Range(0f,1f) <= critChance);
     }
-    */
 
     public void GetHit(int damage)
     {
