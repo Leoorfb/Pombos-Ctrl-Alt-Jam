@@ -15,6 +15,7 @@ public class EnemyShotgun : Enemy
             Vector3 spread = Vector3.zero;
             for (int i = 0; i < shotAmount; i++)
             {
+                //Debug.Log(projectileAngle);
                 EnemyProjectile projectile = Instantiate(enemyProjectilePrefab, projectileOrigin.position, transform.rotation).GetComponent<EnemyProjectile>();
                 spread.z = projectileAngle;
                 projectile.transform.Rotate(spread);
@@ -30,11 +31,14 @@ public class EnemyShotgun : Enemy
         float angle;
         if (shotAmount % 2 == 1)
         {
-            angle = Mathf.Floor(shotAmount / shotAngle) * angleBetwenProjectiles;
+            angle = Mathf.Floor(shotAmount / 2) * -angleBetwenProjectiles;
+            //Debug.Log("Impar (" + shotAmount + "/2) * -" + angleBetwenProjectiles + " = " + angle);
         }
         else
         {
-            angle = (shotAngle / 2) + ((shotAmount / 2 - 1) * angleBetwenProjectiles);
+            angle = -((angleBetwenProjectiles / 2) + (((shotAmount / 2) - 1) * angleBetwenProjectiles));
+            //Debug.Log("Par -((" + angleBetwenProjectiles + "/2) = |" + (angleBetwenProjectiles / 2) + "| + ((" + shotAmount + " / 2) | " + (shotAmount / 2) + "| - 1) *  - 1)  * " + angleBetwenProjectiles + ")) = " + angle);
+
         }
         return angle;
     }

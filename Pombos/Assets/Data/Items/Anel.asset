@@ -28,4 +28,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ec5bad854e370944eb8ea2ab4ee85bb6, type: 2}
   - {fileID: 11400000, guid: aa9b2b2010132294eb4eba6601e4b7fb, type: 2}
   itemLevel: 1
-  icon: {fileID: 21300000, guid: 747dce192f273dd478b99daf7418d2b2, type: 3}
+  icon: {fileID: 21300000, guid: 3d4f236ee60283943ba0eaf3625fbfd4, type: 3}

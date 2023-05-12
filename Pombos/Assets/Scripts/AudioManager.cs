@@ -1,11 +1,15 @@
+using System.Net.Sockets;
+using System.Xml.Serialization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+
 public class Sound
 {
+
     public string name;
     public AudioClip clip;
 
@@ -25,6 +29,10 @@ public class Sound
 
 public class AudioManager : MonoBehaviour
 {
+    void Start(){
+        Play("music");
+    }
+
     public Sound[] sounds;
 
     public static AudioManager instance;
@@ -45,10 +53,11 @@ public class AudioManager : MonoBehaviour
         foreach (Sound sound in sounds)
         {
             sound.source = gameObject.AddComponent<AudioSource>();
-
+            sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
             sound.source.loop = sound.loop;
         }
+        
     }
 
     public void Play(string name)

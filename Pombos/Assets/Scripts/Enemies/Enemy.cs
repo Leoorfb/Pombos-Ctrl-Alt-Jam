@@ -1,3 +1,4 @@
+using System.ComponentModel.Design;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ public abstract class Enemy : MonoBehaviour
     [Header("Enemy Health Settings")]
     public int hp = 10;
     public int maxHp = 10;
+
+    [Header("Enemy Drop Settings")]
+    [SerializeField] protected int money = 1;
 
     [Header("Enemy Movement Settings")]
     [SerializeField] protected float speed = 4;
@@ -206,14 +210,14 @@ public abstract class Enemy : MonoBehaviour
     {
         TakeDamage(damage, isCritical);
         TakeKnockback(direction, force);
-        Debug.Log("Enemy is Alive: " + isAlive);
+        //Debug.Log("Enemy is Alive: " + isAlive);
 
         if (!isAlive)
         {
-            Debug.Log("Death particles intanciou");
+            //Debug.Log("Death particles intanciou");
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GameObject particle = GameObject.Instantiate(deathParticles, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
-            Debug.Log(particle);
+            //Debug.Log(particle);
         }
     }
 
@@ -269,10 +273,17 @@ public abstract class Enemy : MonoBehaviour
 
         GameObject gold = GameObject.Instantiate(goldPrefab, transform.position, goldPrefab.transform.rotation, DropContainer);
 
+        //private void Moneydrop()
+        //{
+        //
+        //    return money();
+        //}
         GameObject dropPrefab = GetRandomDrop();
         if (dropPrefab != null)
         {
+            //MoneyDrop();
             GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+            Debug.Log(drop);
         }
 
         //enemiesAlive--;
@@ -281,6 +292,7 @@ public abstract class Enemy : MonoBehaviour
 
         spriteRenderer.color = deadColor;
     }
+
 
     /*
     private IEnumerator FadeAway()
