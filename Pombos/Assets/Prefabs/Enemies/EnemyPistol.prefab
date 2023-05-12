@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  maxHp: 20
+  maxHp: 14
   speed: 3000
   rotationSpeed: 90
   damage: 2

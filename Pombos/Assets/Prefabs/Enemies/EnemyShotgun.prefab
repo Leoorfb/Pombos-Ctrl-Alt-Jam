@@ -168,9 +168,9 @@ MonoBehaviour:
   maxHp: 50
   speed: 4000
   rotationSpeed: 90
-  damage: 3
-  knockbackStreght: 25
-  attackDistance: 5
+  damage: 4
+  knockbackStreght: 35
+  attackDistance: 10
   isAttackOnCooldown: 0
   attackCooldown: 2
   enemyProjectilePrefab: {fileID: 9010848437333594081, guid: 2883117459abe6f4caf46efec8877e82, type: 3}

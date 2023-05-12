@@ -16,7 +16,7 @@ public class Drop
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] WaveData[] wavesData;
-    [SerializeField] int waveIndex = 0;
+    public int waveIndex = 0;
     [SerializeField] float enemySpawnCooldown;
     [SerializeField] float waveMaxSpawnCooldown;
     [SerializeField] int enemiesAlive = 0;
@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator waveCoroutine;
     IEnumerator waveTimerCoroutine;
+
     //private List<ObjectPool<Collectable>> _dropItemsPool;
 
     // Start is called before the first frame update
@@ -104,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator TimerWave()
     {
-        //Debug.Log("Começou timer");
+        //Debug.Log("Comeï¿½ou timer");
         float timer = waveMaxSpawnCooldown;
         while (timer >= 0)
         {
