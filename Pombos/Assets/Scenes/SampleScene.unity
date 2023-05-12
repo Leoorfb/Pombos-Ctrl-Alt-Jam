@@ -26314,8 +26314,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.9998679
-    height: 1
+    width: 1
+    height: 0.99967617
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -26656,7 +26656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1350cfc2ba1d6f843862441388e7a75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 20000
   healthRegen: 0
   hpText: {fileID: 2041831144}
   armor: 0
