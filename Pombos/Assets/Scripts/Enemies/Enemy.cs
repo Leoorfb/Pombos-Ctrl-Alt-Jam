@@ -206,14 +206,14 @@ public abstract class Enemy : MonoBehaviour
     {
         TakeDamage(damage, isCritical);
         TakeKnockback(direction, force);
-        Debug.Log("Enemy is Alive: " + isAlive);
+        //Debug.Log("Enemy is Alive: " + isAlive);
 
         if (!isAlive)
         {
-            Debug.Log("Death particles intanciou");
+            //Debug.Log("Death particles intanciou");
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GameObject particle = GameObject.Instantiate(deathParticles, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
-            Debug.Log(particle);
+            //Debug.Log(particle);
         }
     }
 
@@ -272,7 +272,9 @@ public abstract class Enemy : MonoBehaviour
         GameObject dropPrefab = GetRandomDrop();
         if (dropPrefab != null)
         {
+
             GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+            Debug.Log(drop);
         }
 
         //enemiesAlive--;

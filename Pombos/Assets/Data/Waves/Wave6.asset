@@ -17,7 +17,8 @@ MonoBehaviour:
     spawnChance: 0
     difficultyLevel: 1
   - enemyPrefab: {fileID: 8584664045613081946, guid: e6055fe69b80bab4c8c1ec2f2fa77f03, type: 3}
-    spawnChance: 100
+    spawnChance: 1
     difficultyLevel: 1
-  waveDifficulty: 16
+  waveDifficulty: 40
   spawnRate: 2
+  waveEnemiesTotalSpawnChance: 1
