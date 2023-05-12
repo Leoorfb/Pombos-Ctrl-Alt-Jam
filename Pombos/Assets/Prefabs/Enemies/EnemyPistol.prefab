@@ -168,7 +168,7 @@ MonoBehaviour:
   maxHp: 20
   speed: 3000
   rotationSpeed: 90
-  damage: 3
+  damage: 2
   knockbackStreght: 10
   attackDistance: 10
   isAttackOnCooldown: 0

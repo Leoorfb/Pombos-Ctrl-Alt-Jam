@@ -18,12 +18,14 @@ MonoBehaviour:
     healthRegen: 0
     armor: 0
     speed: 1000
+    critChance: 0
     baseDamage: 1
     fireRateReductionPct: 0
     spreadReductionPct: 0
   upgrades:
-  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
-  - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
+  - {fileID: 11400000, guid: 8b0cc1d7efd2ce94284a380488a7c2d3, type: 2}
+  - {fileID: 11400000, guid: 1db0e6798e5042541b4e3dca8ca2a511, type: 2}
+  - {fileID: 11400000, guid: 140cb1cdf55cd32448ff651dbc0da1af, type: 2}
   - {fileID: 11400000, guid: 490d9c5140d8f6e419c6532ce2434676, type: 2}
   itemLevel: 1
   icon: {fileID: 21300000, guid: 413c67b33ba82dc44ada9eda4bf29270, type: 3}

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c8f99bc0dbeab49ab44a8480029627, type: 3}
-  m_Name: Sapatos Unlock Upgrade
+  m_Name: Anel Damage Upgrade 4
   m_EditorClassIdentifier: 
-  UpgradeType: 3
-  UpgradeDescription: Aumenta velocidade de movimento
-  icon: {fileID: 21300000, guid: 413c67b33ba82dc44ada9eda4bf29270, type: 3}
+  UpgradeType: 1
+  UpgradeDescription: Aumenta o dano causado a inimigos
+  icon: {fileID: 21300000, guid: 747dce192f273dd478b99daf7418d2b2, type: 3}
   weaponData: {fileID: 0}
   weaponUpgradeStats:
     damage: 0
@@ -22,14 +22,14 @@ MonoBehaviour:
     knockbackStrenght: 0
     spread: 0
     ammoMax: 0
-  item: {fileID: 11400000, guid: c3cc54a8abe55b94782ca366a5087017, type: 2}
+  item: {fileID: 11400000, guid: 7f291b613da10a44d8073534f935a43b, type: 2}
   itemStats:
     health: 0
     healthRegen: 0
     armor: 0
     speed: 0
     critChance: 0
-    baseDamage: 0
+    baseDamage: 1
     fireRateReductionPct: 0
     spreadReductionPct: 0
-  cost: 5
+  cost: 45

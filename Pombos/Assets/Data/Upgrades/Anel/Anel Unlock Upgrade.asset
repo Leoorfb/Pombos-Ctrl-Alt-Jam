@@ -14,20 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeType: 3
   UpgradeDescription: Aumenta o dano causado a inimigos
-  icon: {fileID: 21300000, guid: 5e4a0e4f77d61d940bf6cfc00f28d27b, type: 3}
+  icon: {fileID: 21300000, guid: 747dce192f273dd478b99daf7418d2b2, type: 3}
   weaponData: {fileID: 0}
   weaponUpgradeStats:
     damage: 0
     fireRate: 0
     knockbackStrenght: 0
     spread: 0
+    ammoMax: 0
   item: {fileID: 11400000, guid: 7f291b613da10a44d8073534f935a43b, type: 2}
   itemStats:
     health: 0
     healthRegen: 0
     armor: 0
     speed: 0
+    critChance: 0
     baseDamage: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0
-  cost: 30
+  cost: 15
