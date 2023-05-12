@@ -26314,7 +26314,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99968755
+    width: 0.99979
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -34817,6 +34817,13 @@ MonoBehaviour:
     minPitch: 0.86
     maxPitch: 1.16
     loop: 0
+    source: {fileID: 0}
+  - name: music
+    clip: {fileID: 8300000, guid: 0038f4e4aa5cb054daee47d66f77c4dc, type: 3}
+    volume: 1
+    minPitch: 0.84
+    maxPitch: 1.14
+    loop: 1
     source: {fileID: 0}
 --- !u!1001 &1937872676
 PrefabInstance:
