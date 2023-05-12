@@ -19,12 +19,13 @@ public class PauseManager : MonoBehaviour
     }
     private void ShowMenu() 
     {
-        WeaponBase weapon = player.GetComponent<WeaponsManager>().GetWeaponBase();
-        int playerGold = player.GetComponent<PlayerGold>().gold;
 
         uiDocument.gameObject.SetActive(true);
         this.PauseGame();
         this.gameIsPaused = true;
+
+        WeaponBase weapon = player.GetComponent<WeaponsManager>().GetWeaponBase();
+        int playerGold = player.GetComponent<PlayerGold>().gold;
 
         Label armorLabelUI = uiDocument.rootVisualElement.Q<Label>("ArmorLabel");
         armorLabelUI.text = armorLabelUI.text.Replace("XX", player.armor.ToString());
@@ -33,7 +34,7 @@ public class PauseManager : MonoBehaviour
         healthLabelUI.text = healthLabelUI.text.Replace("XX", player.maxHp.ToString());
 
         Label damageLabelUI = uiDocument.rootVisualElement.Q<Label>("DamageLabel");
-        damageLabelUI.text = damageLabelUI.text.Replace("XX", weapon.weaponData.stats.damage.ToString()); 
+        damageLabelUI.text = damageLabelUI.text.Replace("XX", weapon.weaponStats.damage.ToString()); 
 
         Label coinLabelUI = uiDocument.rootVisualElement.Q<Label>("CoinLabel");
         coinLabelUI.text = coinLabelUI.text.Replace("XX", playerGold.ToString());
@@ -42,7 +43,10 @@ public class PauseManager : MonoBehaviour
         closeStatsBtn.clicked += () => this.HideMenu();
 
         Button quitBtn = uiDocument.rootVisualElement.Q<Button>("QuitBtn");
-        quitBtn.clicked += () => SceneManager.LoadScene("MainMenu");
+        quitBtn.clicked += () => {
+            this.HideMenu();
+            SceneManager.LoadScene("MainMenu");
+        };
     }
 
     private void HideMenu() 
