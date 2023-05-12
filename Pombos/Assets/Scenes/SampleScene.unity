@@ -26314,7 +26314,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99958897
+    width: 0.99968755
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -26656,12 +26656,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1350cfc2ba1d6f843862441388e7a75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 20
   healthRegen: 0
   hpText: {fileID: 2041831144}
   armor: 0
   _speed: 6000
-  shootingSpeedSlowPct: 0.5
+  shootingSpeedSlowPct: 0.7
   critChance: 0.01
   critModifier: 2
   lucky: 1
@@ -34212,7 +34212,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "(W,A,S,D) = Mover          (Esc) Pausar\n(Mouse) = Mirar \t(Mouse esquerdo)
+    = Atirar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34246,7 +34247,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -34255,7 +34256,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
