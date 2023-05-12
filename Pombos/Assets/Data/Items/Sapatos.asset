@@ -19,7 +19,7 @@ MonoBehaviour:
     armor: 0
     speed: 1000
     critChance: 0
-    baseDamage: 1
+    baseDamage: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0
   upgrades:

@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 69b714df27ffadd47a2e492916b5e1b6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.49519405, b: 0.5081413, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4513092433528315670}
   - component: {fileID: 1497720776428565635}
   m_Layer: 6
-  m_Name: EnemyShotgun
+  m_Name: EnemyShotgun Green
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,13 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  maxHp: 50
+  maxHp: 80
   money: 1
   speed: 4000
   rotationSpeed: 90
   damage: 4
   knockbackStreght: 35
-  attackDistance: 10
+  attackDistance: 14
   isAttackOnCooldown: 0
   attackCooldown: 2
   enemyProjectilePrefab: {fileID: 1856138062616758145, guid: 1004b2abbc367db4ba310648848eec46, type: 3}
@@ -188,8 +188,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   nextWaypointDistance: 3
-  shotAmount: 3
-  shotAngle: 45
+  shotAmount: 6
+  shotAngle: 90
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4
