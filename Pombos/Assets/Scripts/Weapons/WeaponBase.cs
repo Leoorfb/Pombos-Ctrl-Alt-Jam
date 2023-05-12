@@ -48,6 +48,12 @@ public abstract class WeaponBase : MonoBehaviour
             Attack();
             StartCoroutine("CooldownAttack");
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weaponAmmo = 0;
+            hasAmmo = false;
+            StartCoroutine("Reload");
+        }
     }
 
     public abstract void Attack();
