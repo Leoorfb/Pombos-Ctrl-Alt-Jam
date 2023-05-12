@@ -17,5 +17,6 @@ MonoBehaviour:
     spawnChance: 1
     difficultyLevel: 1
   waveDifficulty: 15
+  waveDuration: 45
   spawnRate: 5
   waveEnemiesTotalSpawnChance: 1

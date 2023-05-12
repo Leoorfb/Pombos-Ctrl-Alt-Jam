@@ -18,12 +18,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] WaveData[] wavesData;
     public int waveIndex = 0;
     [SerializeField] float enemySpawnCooldown;
-    [SerializeField] float waveMaxSpawnCooldown;
     [SerializeField] int enemiesAlive = 0;
     public bool isWaveRunning = false;
     [SerializeField] List<Transform> SpawnPoints;
     [SerializeField] float spawnRadius;
     [SerializeField] TextMeshProUGUI WaveTimerText;
+    [SerializeField] TextMeshProUGUI WaveText;
     [SerializeField] bool loopLastWave;
 
 
@@ -106,7 +106,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator TimerWave()
     {
         //Debug.Log("Come�ou timer");
-        float timer = waveMaxSpawnCooldown;
+        float timer = wavesData[waveIndex].waveDuration;
         while (timer >= 0)
         {
             yield return new WaitForEndOfFrame();
@@ -129,6 +129,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else return;
         }
+        WaveText.text = "Wave " + (waveIndex+1).ToString("#00"); 
         StartCoroutine(waveCoroutine);
         StartCoroutine("TimerWave");
             

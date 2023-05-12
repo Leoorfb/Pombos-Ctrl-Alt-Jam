@@ -16,6 +16,7 @@ public class WaveData : ScriptableObject
 {
     public WaveEnemy[] waveEnemyList;
     public int waveDifficulty;
+    public float waveDuration = 45;
     public float spawnRate;
     public int waveEnemiesTotalSpawnChance = 0;
 
@@ -50,14 +51,14 @@ public class WaveData : ScriptableObject
         int index = UnityEngine.Random.Range(0, waveEnemiesTotalSpawnChance+1);
         int currentIndex = 0;
 
-        Debug.Log("Wave " + waveDifficulty);
-        Debug.Log("Index " + index);
+        //Debug.Log("Wave " + waveDifficulty);
+        //Debug.Log("Index " + index);
         foreach(WaveEnemy waveEnemy in waveEnemyList)
         {
             currentIndex += waveEnemy.spawnChance;
             if (currentIndex >= index)
             {
-                Debug.Log("Index Spawnado" + currentIndex);
+                //Debug.Log("Index Spawnado" + currentIndex);
 
                 return waveEnemy;
             }
