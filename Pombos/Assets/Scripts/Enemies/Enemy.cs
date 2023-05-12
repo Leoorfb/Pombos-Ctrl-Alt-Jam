@@ -15,29 +15,29 @@ public abstract class Enemy : MonoBehaviour
     public int maxHp = 10;
 
     [Header("Enemy Movement Settings")]
-    [SerializeField] float speed = 4;
-    [SerializeField] float rotationSpeed = 45;
+    [SerializeField] protected float speed = 4;
+    [SerializeField] protected float rotationSpeed = 45;
 
     [Header("Enemy Attack Settings")]
-    [SerializeField] int damage = 1;
+    [SerializeField] protected int damage = 1;
     public float knockbackStreght = 10;
-    [SerializeField] float attackDistance = 10;
+    [SerializeField] protected float attackDistance = 10;
     public bool isAttackOnCooldown = false;
-    [SerializeField] float attackCooldown = 0.2f;
+    [SerializeField] protected float attackCooldown = 0.2f;
 
     [Header("Enemy Refences Settings")]
-    [SerializeField] GameObject enemyProjectilePrefab;
-    [SerializeField] Transform projectileOrigin;
-    [SerializeField] GameObject goldPrefab;
-    [SerializeField] List<Drop> dropItems;
+    [SerializeField] protected GameObject enemyProjectilePrefab;
+    [SerializeField] protected Transform projectileOrigin;
+    [SerializeField] protected GameObject goldPrefab;
+    [SerializeField] protected List<Drop> dropItems;
     public Transform DropContainer;
 
-    [SerializeField] GameObject deathParticles;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Color deadColor;
+    [SerializeField] protected GameObject deathParticles;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Color deadColor;
 
 
-    [SerializeField] LayerMask playerLayerMask;
+    [SerializeField] protected LayerMask playerLayerMask;
 
     Vector2 moveDirection = new Vector2(0, 0);
     float step = 0.1f;
@@ -178,15 +178,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void Attack()
-    {
-        if (!isAttackOnCooldown)
-        {
-            EnemyProjectile projectile = Instantiate(enemyProjectilePrefab, projectileOrigin.position, transform.rotation).GetComponent<EnemyProjectile>();
-            projectile.enemy = this;
-            StartCoroutine("CooldownAttack");
-        }
-    }
+    public abstract void Attack();
 
     IEnumerator CooldownAttack()
     {

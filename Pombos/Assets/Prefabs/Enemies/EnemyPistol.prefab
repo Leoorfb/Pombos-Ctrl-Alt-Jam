@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4513092433528315670}
   - component: {fileID: 1497720776428565635}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: EnemyPistol
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   maxHp: 20
-  speed: 4000
+  speed: 3000
   rotationSpeed: 90
   damage: 3
   knockbackStreght: 10
