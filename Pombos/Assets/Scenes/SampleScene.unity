@@ -26317,13 +26317,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-    width: 1
-    height: 0.99967617
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26787,6 +26785,7 @@ MonoBehaviour:
   healthRegen: 0
   hpText: {fileID: 2041831144}
   hpTextUIDocument: {fileID: 538916264}
+  healthTileTemplate: {fileID: 9197481963319205126, guid: 17cda5b1da7c7b4439212317900f40d2, type: 3}
   armor: 0
   _speed: 6000
   shootingSpeedSlowPct: 0.7
@@ -29987,7 +29986,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 657151363}
   m_Father: {fileID: 2041831143}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
