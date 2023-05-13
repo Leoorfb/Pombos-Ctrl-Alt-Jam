@@ -28374,7 +28374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavesData:
-  - {fileID: 11400000, guid: a250620d9fb8aa34f8a7e770f84b1e07, type: 2}
   - {fileID: 11400000, guid: 1a25f7b367363234885001e3637111ee, type: 2}
   - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
   - {fileID: 11400000, guid: 1ffe2488fa891294fb0090a3d59ec096, type: 2}
@@ -28384,6 +28383,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e8fab74662316d4c8bf97505d0496e2, type: 2}
   - {fileID: 11400000, guid: 327cfc6eea899d1459a0fc89a6cbd3bb, type: 2}
   - {fileID: 11400000, guid: 57e0dc9f350e8f24b8d034c5fffb4f6a, type: 2}
+  - {fileID: 11400000, guid: a250620d9fb8aa34f8a7e770f84b1e07, type: 2}
   waveIndex: 0
   enemySpawnCooldown: 1
   enemiesAlive: 0

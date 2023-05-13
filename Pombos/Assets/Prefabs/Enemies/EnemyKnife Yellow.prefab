@@ -205,7 +205,7 @@ MonoBehaviour:
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 5750270365583613964}
-  deadColor: {r: 1, g: 1, b: 1, a: 1}
+  deadColor: {r: 1, g: 1, b: 1, a: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
