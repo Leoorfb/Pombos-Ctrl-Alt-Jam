@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4859434710325531267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.839, z: 0}
+  m_LocalPosition: {x: -0.233, y: 0.576, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5265529124791223234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 0.161, z: 0}
+  m_LocalPosition: {x: -0.014, y: 0.223, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,8 +104,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 7dc5dc6ef3696e642806e13b6c58738f, type: 3}
-  m_Color: {r: 1, g: 0.46830884, b: 0.4292453, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9e96568190b636649909828d4c1f8258, type: 3}
+  m_Color: {r: 1, g: 0.88374805, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,12 +124,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980020696835394979}
-  - component: {fileID: 3673797157098454595}
+  - component: {fileID: -834991493207753041}
+  - component: {fileID: -5738104522186682785}
   - component: {fileID: 7141274304264402661}
   - component: {fileID: 4513092433528315670}
   - component: {fileID: 1497720776428565635}
   m_Layer: 6
-  m_Name: EnemyPistol Green
+  m_Name: EnemyKnife Yellow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +153,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3673797157098454595
+--- !u!114 &-834991493207753041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,33 +162,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 8584664045613081946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15bd0cb1fac27274ab3947f57a89261c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0086d61421fea0748869357d37f69805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  maxHp: 18
+  newColor: {r: 0.19514433, g: 0.9245283, b: 0.056692798, a: 1}
+--- !u!114 &-5738104522186682785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584664045613081946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883484518c1619d4d8c88dae579da30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 30
+  maxHp: 30
   money: 1
-  speed: 3000
-  rotationSpeed: 90
-  damage: 4
-  knockbackStreght: 10
-  attackDistance: 14
-  isAttackOnCooldown: 0
-  attackCooldown: 0.8
-  enemyProjectilePrefab: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
+  speed: 5000
+  rotationSpeed: 140
+  damage: 5
+  knockbackStreght: 25
+  attackDistance: 2.5
+  isAttackOnCooldown: 1
+  attackCooldown: 0.7
+  enemyProjectilePrefab: {fileID: 9010848437333594081, guid: 5342848eecddcdb459d6c01f7f22e00a, type: 3}
   projectileOrigin: {fileID: 82301055159784139}
-  goldPrefab: {fileID: 2420394416697878873, guid: 6da299221c67f15468931794d0425e36, type: 3}
+  goldPrefab: {fileID: 2420394416697878873, guid: 1d99d3b8284c48444ae962ca478729ab, type: 3}
   dropItems:
   - dropRate: 1
     dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 4098779041387426949}
-  deadColor: {r: 1, g: 1, b: 1, a: 0.30588236}
+  deadColor: {r: 1, g: 1, b: 1, a: 0.35686275}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  nextWaypointDistance: 3
+  nextWaypointDistance: 1
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4
@@ -259,13 +273,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.07179274, y: -0.48045787}
-      - {x: 0.25729966, y: -0.08317593}
-      - {x: 0.22872382, y: 0.28374687}
-      - {x: -0.3081826, y: 0.3102672}
-      - {x: -0.67906815, y: 0.12450824}
-      - {x: -0.68490946, y: -0.10786623}
-      - {x: -0.3300382, y: -0.48179442}
+    - - {x: 0.1604727, y: -0.41055277}
+      - {x: 0.4737801, y: -0.085430935}
+      - {x: 0.50834435, y: 0.121386535}
+      - {x: 0.04853286, y: 0.2907657}
+      - {x: -0.07817216, y: 0.28320715}
+      - {x: -0.35509512, y: 0.16108668}
+      - {x: -0.5152285, y: -0.01726982}
+      - {x: -0.16993289, y: -0.39384922}
   m_UseDelaunayMesh: 0
 --- !u!114 &1497720776428565635
 MonoBehaviour:
