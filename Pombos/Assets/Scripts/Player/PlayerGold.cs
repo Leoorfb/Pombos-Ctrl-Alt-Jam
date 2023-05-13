@@ -17,6 +17,10 @@ public class PlayerGold : MonoBehaviour
         UpdateGoldText();
     }
 
+    void Update() {
+        UpdateGoldText();
+    }
+
     void UpdateGoldText()
     {
         Label playerGoldLabel = playerGoldUI.rootVisualElement.Q<Label>("GoldCount");
