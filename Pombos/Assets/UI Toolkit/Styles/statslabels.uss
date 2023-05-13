@@ -1,5 +1,5 @@
 .stats-label {
-    color: rgb(255, 255, 255);
+    color: rgb(255, 213, 23);
     -unity-font-style: bold;
     font-size: 28px;
     padding-left: 40px;
