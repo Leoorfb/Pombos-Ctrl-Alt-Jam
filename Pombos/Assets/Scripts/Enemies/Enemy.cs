@@ -282,7 +282,7 @@ public abstract class Enemy : MonoBehaviour
         if (dropPrefab != null)
         {
             //MoneyDrop();
-            GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+            GameObject drop = GameObject.Instantiate(dropPrefab, projectileOrigin.position, dropPrefab.transform.rotation, DropContainer);
             Debug.Log(drop);
         }
 
