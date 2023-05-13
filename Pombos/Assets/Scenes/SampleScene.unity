@@ -26785,7 +26785,7 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 0.9994186
+    height: 0.99956894
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -28374,6 +28374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavesData:
+  - {fileID: 11400000, guid: ea794023b78d8f54babc884085c6f71c, type: 2}
   - {fileID: 11400000, guid: 1a25f7b367363234885001e3637111ee, type: 2}
   - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
   - {fileID: 11400000, guid: 1ffe2488fa891294fb0090a3d59ec096, type: 2}

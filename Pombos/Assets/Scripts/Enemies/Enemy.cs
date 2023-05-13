@@ -190,9 +190,9 @@ public abstract class Enemy : MonoBehaviour
     {
         enemyAnimator.SetBool("isShooting", true);
         isAttackOnCooldown = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         enemyAnimator.SetBool("isShooting", false);
-        yield return new WaitForSeconds(attackCooldown-.5f);
+        yield return new WaitForSeconds(attackCooldown-.3f);
         isAttackOnCooldown = false;
     }
 
