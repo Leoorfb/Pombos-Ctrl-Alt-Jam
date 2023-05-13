@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3731367075915691539}
   - component: {fileID: 4098779041387426949}
+  - component: {fileID: 2029860212680482114}
   m_Layer: 0
   m_Name: EnemyVisuals
   m_TagString: Untagged
@@ -115,6 +116,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2029860212680482114
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265529124791223234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6890b0d28340c8c4381bf8b583f5261d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8584664045613081946
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,11 +205,12 @@ MonoBehaviour:
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 4098779041387426949}
-  deadColor: {r: 1, g: 1, b: 1, a: 0.30588236}
+  deadColor: {r: 1, g: 1, b: 1, a: 1}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
   nextWaypointDistance: 3
+  enemyAnimator: {fileID: 2029860212680482114}
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4

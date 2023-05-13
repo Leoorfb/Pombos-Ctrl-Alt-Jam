@@ -205,11 +205,12 @@ MonoBehaviour:
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 4098779041387426949}
-  deadColor: {r: 1, g: 1, b: 1, a: 0.34117648}
+  deadColor: {r: 1, g: 1, b: 1, a: 1}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
   nextWaypointDistance: 3
+  enemyAnimator: {fileID: 0}
   shotAmount: 3
   shotAngle: 45
 --- !u!50 &7141274304264402661
