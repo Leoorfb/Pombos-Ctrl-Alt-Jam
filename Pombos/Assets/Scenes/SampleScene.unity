@@ -26790,7 +26790,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -34315,7 +34315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1610848694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35092,7 +35092,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: music
     clip: {fileID: 8300000, guid: 0038f4e4aa5cb054daee47d66f77c4dc, type: 3}
-    volume: 0.755
+    volume: 0.597
     minPitch: 1.001
     maxPitch: 1.001
     loop: 1
