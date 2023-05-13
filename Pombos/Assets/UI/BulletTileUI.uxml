@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BulletTile" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); align-self: flex-start; width: 20px; height: 54px; background-image: url(&apos;project://database/Assets/Sprites/UI/bullettile.png?fileID=21300000&amp;guid=c5d137f89ad15144db838395c94edadd&amp;type=3#bullettile&apos;);" />
+</ui:UXML>
