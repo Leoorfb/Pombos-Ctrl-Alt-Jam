@@ -26316,12 +26316,12 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 1
+    height: 0.99917763
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26781,7 +26781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1350cfc2ba1d6f843862441388e7a75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20000
+  maxHp: 20
   healthRegen: 0
   hpText: {fileID: 2041831144}
   hpTextUIDocument: {fileID: 538916264}
@@ -26799,6 +26799,7 @@ MonoBehaviour:
   isInvulnerable: 0
   playerSpriteRenderer: {fileID: 1255422705}
   _baseDamage: 0
+  _baseAmmo: 0
   _fireRateReductionPct: 0
   _spreadReductionPct: 0
 --- !u!50 &745634029
@@ -27078,6 +27079,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d9d075e91daaab44aafd6e6b043864b, type: 2}
   - {fileID: 11400000, guid: b35519c266611344898555e2d28aed28, type: 2}
   - {fileID: 11400000, guid: d5a16d8e299a79a49af82c8cbcb64497, type: 2}
+  - {fileID: 11400000, guid: e3b3ea7fa0b68a9479293a862e332336, type: 2}
   firstRerollCost: 10
   rerollCost: 10
 --- !u!1 &773822351

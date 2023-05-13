@@ -33,6 +33,8 @@ public class WeaponsManager : MonoBehaviour
         foreach (WeaponBase weapon in weapons)
         {
             weapon.weaponStats.damage = weapon.baseWeaponDamage + player.baseDamage;
+            weapon.weaponStats.ammoMax = weapon.baseWeaponAmmoMax + player.baseAmmo;
+            weapon.weaponAmmoMax = weapon.weaponStats.ammoMax;
             weapon.weaponStats.spread = weapon.baseWeaponSpread - (weapon.baseWeaponSpread * player.spreadReductionPct);
             weapon.weaponStats.fireRate = weapon.baseWeaponFirerate - (weapon.baseWeaponFirerate * player.fireRateReductionPct);
         }

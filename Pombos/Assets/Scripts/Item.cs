@@ -17,6 +17,7 @@ public class ItemStats
 
     [Header("Weapon Stats Settings")]
     public int baseDamage = 0;
+    public int baseAmmo = 0;
     public float fireRateReductionPct = 0;
     public float spreadReductionPct = 0;
 
@@ -31,6 +32,7 @@ public class ItemStats
 
         fireRateReductionPct += stats.fireRateReductionPct;
         baseDamage += stats.baseDamage;
+        baseAmmo += stats.baseAmmo;
         spreadReductionPct += stats.spreadReductionPct;
     }
 }
@@ -64,6 +66,7 @@ public class Item : ScriptableObject
 
         player.fireRateReductionPct += stats.fireRateReductionPct;
         player.baseDamage += stats.baseDamage;
+        player.baseAmmo += stats.baseAmmo;
         player.spreadReductionPct += stats.spreadReductionPct;
     }
 
@@ -79,6 +82,7 @@ public class Item : ScriptableObject
 
         player.fireRateReductionPct -= stats.fireRateReductionPct;
         player.baseDamage -= stats.baseDamage;
+        player.baseAmmo -= stats.baseAmmo;
         player.spreadReductionPct -= stats.spreadReductionPct;
     }
 

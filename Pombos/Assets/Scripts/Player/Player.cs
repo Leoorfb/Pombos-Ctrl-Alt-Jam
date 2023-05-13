@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
     [Header("Weapon Stats Settings")]
     [SerializeField] private int _baseDamage = 0;
+    [SerializeField] private int _baseAmmo = 0;
     [SerializeField] private float _fireRateReductionPct = 0;
     [SerializeField] private float _spreadReductionPct = 0;
     public int baseDamage
@@ -66,6 +67,15 @@ public class Player : MonoBehaviour
         set
         {
             _baseDamage = value;
+            weaponsManager.UpdateWeaponsStats();
+        }
+    }
+    public int baseAmmo
+    {
+        get { return _baseAmmo; }
+        set
+        {
+            _baseAmmo = value;
             weaponsManager.UpdateWeaponsStats();
         }
     }
