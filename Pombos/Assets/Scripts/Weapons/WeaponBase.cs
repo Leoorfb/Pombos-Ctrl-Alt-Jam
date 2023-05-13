@@ -95,11 +95,13 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual IEnumerator Reload()
     {
+        _player.playerBodyAnimator.SetBool("isReloading", true);
         AudioManager.instance.Play("Reload");
         yield return new WaitForSeconds(reloadTime);
         weaponAmmo = weaponAmmoMax;
         hasAmmo = true;
         _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
+        _player.playerBodyAnimator.SetBool("isReloading", false);
     }
 
     public virtual void SetData(WeaponData wd)
@@ -118,6 +120,8 @@ public abstract class WeaponBase : MonoBehaviour
     public IEnumerator CooldownAttack()
     {
         isAttackOnCooldown = true;
+        yield return new WaitForSeconds(.03f);
+        _player.playerBodyAnimator.SetBool("isShooting", false);
         yield return new WaitForSeconds(weaponStats.fireRate);
         isAttackOnCooldown = false;
     }

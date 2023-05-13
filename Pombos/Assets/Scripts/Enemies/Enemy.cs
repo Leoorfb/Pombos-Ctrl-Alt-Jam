@@ -62,6 +62,7 @@ public abstract class Enemy : MonoBehaviour
 
     private bool isAlive = true;
 
+    public Animator enemyAnimator;
 
     public void Awake()
     {
@@ -134,6 +135,7 @@ public abstract class Enemy : MonoBehaviour
 
     void MoveToPlayer()
     {
+        enemyAnimator.SetBool("isMoving", true);
         step = speed * Time.fixedDeltaTime;
         _Rigidbody.AddForce(moveDirection * step, ForceMode2D.Force);
 
@@ -186,8 +188,11 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator CooldownAttack()
     {
+        enemyAnimator.SetBool("isShooting", true);
         isAttackOnCooldown = true;
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(.3f);
+        enemyAnimator.SetBool("isShooting", false);
+        yield return new WaitForSeconds(attackCooldown-.3f);
         isAttackOnCooldown = false;
     }
 
@@ -267,6 +272,7 @@ public abstract class Enemy : MonoBehaviour
     private void Die()
     {
         isAlive = false;
+        enemyAnimator.SetBool("isAlive", isAlive);
         _Rigidbody.velocity = Vector3.zero;
         _Rigidbody.isKinematic = true;
 
@@ -282,7 +288,7 @@ public abstract class Enemy : MonoBehaviour
         if (dropPrefab != null)
         {
             //MoneyDrop();
-            GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+            GameObject drop = GameObject.Instantiate(dropPrefab, projectileOrigin.position, dropPrefab.transform.rotation, DropContainer);
             Debug.Log(drop);
         }
 
@@ -290,20 +296,19 @@ public abstract class Enemy : MonoBehaviour
         _Collider.enabled = false;
         AudioManager.instance.Play("EnemyDeath");
 
-        spriteRenderer.color = deadColor;
+        spriteRenderer.sortingOrder--;
+        //spriteRenderer.color = deadColor;
+
+        StartCoroutine("FadeAway");
     }
 
 
-    /*
     private IEnumerator FadeAway()
     {
-        while (true)
-        {
-            yield return new WaitForEndOfFrame();
-            spriteRenderer.color = deadColor;
-        }
+        yield return new WaitForSeconds(30);
+        Destroy(gameObject);
     }
-    */
+    
 
     private GameObject GetRandomDrop()
     {

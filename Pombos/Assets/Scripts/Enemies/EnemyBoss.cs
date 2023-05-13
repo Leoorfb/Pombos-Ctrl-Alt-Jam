@@ -8,6 +8,7 @@ public class EnemyBoss : Enemy
 
     [Header("Boss Stage 1 (Pistol) Settings")]
     [SerializeField] protected Color stage1Color;
+    [SerializeField] Sprite stage1Sprite;
 
     [SerializeField] float speed_Stage1 = 4;
     [SerializeField] int damage_Stage1 = 1;
@@ -20,6 +21,8 @@ public class EnemyBoss : Enemy
     [Header("Boss Stage 2 (ShotGun) Settings")]
     [SerializeField] int stage2StartHP = 20;
     [SerializeField] protected Color stage2Color;
+    [SerializeField] Sprite stage2Sprite;
+
 
     [SerializeField] float speed_Stage2 = 4;
     [SerializeField] int damage_Stage2 = 1;
@@ -35,6 +38,8 @@ public class EnemyBoss : Enemy
     [Header("Boss Stage 3 (Thompson) Settings")]
     [SerializeField] int stage3StartHP = 10;
     [SerializeField] protected Color stage3Color;
+    [SerializeField] Sprite stage3Sprite;
+
 
     [SerializeField] float speed_Stage3 = 4;
     [SerializeField] int damage_Stage3 = 1;
@@ -74,9 +79,11 @@ public class EnemyBoss : Enemy
     public void SetStage(int stage)
     {
         this.stage = stage;
+        enemyAnimator.SetInteger("Stage", stage);
         switch (stage)
         {
             case 1:
+                spriteRenderer.sprite = stage1Sprite;
                 spriteRenderer.color = stage1Color;
                 speed = speed_Stage1;
                 damage = damage_Stage1;
@@ -87,6 +94,7 @@ public class EnemyBoss : Enemy
                 projectileOrigin = projectileOrigin_Stage1;
                 break;
             case 2:
+                spriteRenderer.sprite = stage2Sprite;
                 spriteRenderer.color = stage2Color;
                 speed = speed_Stage2;
                 damage = damage_Stage2;
@@ -97,6 +105,7 @@ public class EnemyBoss : Enemy
                 projectileOrigin = projectileOrigin_Stage2;
                 break;
             case 3:
+                spriteRenderer.sprite = stage3Sprite;
                 spriteRenderer.color = stage3Color;
                 speed = speed_Stage3;
                 damage = damage_Stage3;
@@ -177,6 +186,7 @@ public class EnemyBoss : Enemy
     {
         if (!isAttackOnCooldown)
         {
+            enemyAnimator.SetInteger("ShootIndex", UnityEngine.Random.Range(0, 2));
             EnemyProjectile projectile = Instantiate(enemyProjectilePrefab, projectileOrigin.position, transform.rotation).GetComponent<EnemyProjectile>();
             RandomizeSpread();
             projectile.transform.Rotate(spreadDirection);
