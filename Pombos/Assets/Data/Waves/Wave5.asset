@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList:
   - enemyPrefab: {fileID: 8584664045613081946, guid: acc3392ea957a1c43a39b7f7c08beaa7, type: 3}
-    spawnChance: 3
+    spawnChance: 4
     difficultyLevel: 1
-  - enemyPrefab: {fileID: 8584664045613081946, guid: c8559f9cd27c1b84e80118663d6ff9f9, type: 3}
-    spawnChance: 2
+  - enemyPrefab: {fileID: 6766204185284773066, guid: c8559f9cd27c1b84e80118663d6ff9f9, type: 3}
+    spawnChance: 3
     difficultyLevel: 1
   - enemyPrefab: {fileID: 8584664045613081946, guid: 3b393996c234cbc4895acd658001f6e4, type: 3}
     spawnChance: 2
@@ -25,7 +25,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 8584664045613081946, guid: e7dd6a08945afb8458737811356a27fa, type: 3}
     spawnChance: 1
     difficultyLevel: 1
-  waveDifficulty: 0
-  waveDuration: 75
+  waveDifficulty: 1
+  waveDuration: 60
   spawnRate: 2.5
-  waveEnemiesTotalSpawnChance: 4
+  waveEnemiesTotalSpawnChance: 10

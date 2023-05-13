@@ -18,8 +18,9 @@ MonoBehaviour:
     healthRegen: 0
     armor: 0
     speed: 0
-    critChance: 0.5
+    critChance: 0.05
     baseDamage: 0
+    baseAmmo: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0
   upgrades:

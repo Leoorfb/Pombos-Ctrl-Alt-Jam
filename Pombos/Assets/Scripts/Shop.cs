@@ -106,7 +106,7 @@ public class Shop : MonoBehaviour
     {
         if (selectedUpgrades == null) selectedUpgrades = new List<UpgradesData>();
         selectedUpgrades.Clear();
-        selectedUpgrades.AddRange(GetUpgrades(2));
+        selectedUpgrades.AddRange(GetUpgrades(3));
 
     }
 

@@ -10,7 +10,7 @@ public class HealItem : Collectable
     public override void Collect(Player player)
     {
         player.Heal(healAmount);
-
+        AudioManager.instance.Play("SFX_PlayerRestoreHP");
         Destroy(gameObject);
         //_DisableCollectable(this);
     }

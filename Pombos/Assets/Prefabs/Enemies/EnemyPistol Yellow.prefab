@@ -200,17 +200,16 @@ MonoBehaviour:
   projectileOrigin: {fileID: 82301055159784139}
   goldPrefab: {fileID: 2420394416697878873, guid: 1d551bb10998481468e8ecd467daa64f, type: 3}
   dropItems:
-  - dropRate: 6
+  - dropRate: 25
     dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 4098779041387426949}
-  deadColor: {r: 1, g: 1, b: 1, a: 0.30588236}
+  deadColor: {r: 1, g: 1, b: 1, a: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  nextWaypointDistance: 3
-  enemyAnimator: {fileID: 4231741857159543087}
+  nextWaypointDistance: 10
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4
