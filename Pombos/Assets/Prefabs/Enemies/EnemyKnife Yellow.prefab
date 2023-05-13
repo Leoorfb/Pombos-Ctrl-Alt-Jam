@@ -192,7 +192,7 @@ MonoBehaviour:
   projectileOrigin: {fileID: 82301055159784139}
   goldPrefab: {fileID: 2420394416697878873, guid: 1d99d3b8284c48444ae962ca478729ab, type: 3}
   dropItems:
-  - dropRate: 1
+  - dropRate: 3
     dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}

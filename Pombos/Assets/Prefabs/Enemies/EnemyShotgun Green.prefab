@@ -164,21 +164,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e2528fef177ee4184303c9bba0ed94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 80
   maxHp: 80
   money: 1
   speed: 4000
   rotationSpeed: 90
-  damage: 4
+  damage: 10
   knockbackStreght: 35
   attackDistance: 14
   isAttackOnCooldown: 0
-  attackCooldown: 2
+  attackCooldown: 1.5
   enemyProjectilePrefab: {fileID: 1856138062616758145, guid: 1004b2abbc367db4ba310648848eec46, type: 3}
   projectileOrigin: {fileID: 82301055159784139}
-  goldPrefab: {fileID: 2420394416697878873, guid: 6da299221c67f15468931794d0425e36, type: 3}
+  goldPrefab: {fileID: 2420394416697878873, guid: 9ed8b6a97b7200143a8dad00515fa149, type: 3}
   dropItems:
-  - dropRate: 1
+  - dropRate: 20
     dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
