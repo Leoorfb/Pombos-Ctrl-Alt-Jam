@@ -26524,8 +26524,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99999994
-    height: 0.99964285
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -27272,6 +27272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: 9999
+  playerGoldUI: {fileID: 1322580857}
   expText: {fileID: 403271896}
 --- !u!114 &745634032
 MonoBehaviour:
