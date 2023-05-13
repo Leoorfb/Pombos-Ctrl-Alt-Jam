@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5000
-  maxHp: 5
+  maxHp: 5000
   money: 1
   speed: 4000
   rotationSpeed: 100
@@ -211,17 +211,17 @@ MonoBehaviour:
   stage: 1
   stage1Color: {r: 1, g: 1, b: 1, a: 1}
   stage1Sprite: {fileID: 21300000, guid: 98e6216bfe32a5c489c24ac224d4a8e7, type: 3}
-  speed_Stage1: 4500
+  speed_Stage1: 4000
   damage_Stage1: 6
   knockbackStreght_Stage1: 10
   attackDistance_Stage1: 15
   attackCooldown_Stage1: 0.6
   enemyProjectilePrefab_Stage1: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
   projectileOrigin_Stage1: {fileID: 82301055159784139}
-  stage2StartHP: 3000
+  stage2StartHP: 3500
   stage2Color: {r: 0.5328821, g: 1, b: 0.3915094, a: 1}
   stage2Sprite: {fileID: 21300000, guid: a3502cfc8aaf4bc45bff94af0efac2fc, type: 3}
-  speed_Stage2: 5000
+  speed_Stage2: 3000
   damage_Stage2: 8
   knockbackStreght_Stage2: 15
   attackDistance_Stage2: 15
@@ -233,10 +233,10 @@ MonoBehaviour:
   stage3StartHP: 1500
   stage3Color: {r: 1, g: 0, b: 0, a: 1}
   stage3Sprite: {fileID: 21300000, guid: 9221c1ed07aae574d937d6378f4b56d8, type: 3}
-  speed_Stage3: 5000
+  speed_Stage3: 4000
   damage_Stage3: 4
   knockbackStreght_Stage3: 10
-  attackDistance_Stage3: 10
+  attackDistance_Stage3: 15
   attackCooldown_Stage3: 0.05
   enemyProjectilePrefab_Stage3: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
   projectileOrigin_Stage3: {fileID: 82301055159784139}

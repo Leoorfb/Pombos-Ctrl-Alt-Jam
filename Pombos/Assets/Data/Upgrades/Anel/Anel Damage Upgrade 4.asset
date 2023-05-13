@@ -33,4 +33,4 @@ MonoBehaviour:
     baseAmmo: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0
-  cost: 80
+  cost: 75
