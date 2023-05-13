@@ -64,8 +64,13 @@ public class AudioManager : MonoBehaviour
     {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         if (sound == null)
-        {
+        {   
+            try{
             Debug.LogWarning("Sound: " + sound.name + " not found!");
+            }
+            catch{
+                Debug.LogWarning("Sound: ");
+            }
             return;
         }
 

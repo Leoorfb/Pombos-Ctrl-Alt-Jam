@@ -30,6 +30,7 @@ MonoBehaviour:
     speed: 0
     critChance: 0
     baseDamage: 1
+    baseAmmo: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0
-  cost: 70
+  cost: 60

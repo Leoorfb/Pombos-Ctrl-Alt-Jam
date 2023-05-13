@@ -200,7 +200,7 @@ MonoBehaviour:
   projectileOrigin: {fileID: 82301055159784139}
   goldPrefab: {fileID: 2420394416697878873, guid: 2181fb60f0a23bd419072f8e5c62474e, type: 3}
   dropItems:
-  - dropRate: 1
+  - dropRate: 5
     dropObject: {fileID: 2420394416697878873, guid: 247af7819e5894b4a968bd2b42c4071f, type: 3}
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
@@ -210,7 +210,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   nextWaypointDistance: 1
-  enemyAnimator: {fileID: 608787928730191539}
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4

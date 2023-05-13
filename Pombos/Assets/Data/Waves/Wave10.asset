@@ -15,8 +15,8 @@ MonoBehaviour:
   waveEnemyList:
   - enemyPrefab: {fileID: 8584664045613081946, guid: 54a4c71039a6d274cbd2c8f90ee440c0, type: 3}
     spawnChance: 1
-    difficultyLevel: 0
-  waveDifficulty: 40
+    difficultyLevel: 1
+  waveDifficulty: 1
   waveDuration: 600
   spawnRate: 2
-  waveEnemiesTotalSpawnChance: 8
+  waveEnemiesTotalSpawnChance: 0
