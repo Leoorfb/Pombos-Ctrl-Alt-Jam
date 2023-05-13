@@ -26520,8 +26520,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.9998908
-    height: 1
+    width: 0.99999994
+    height: 0.99964285
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -27166,7 +27166,7 @@ MonoBehaviour:
   critModifier: 2
   lucky: 1
   isAlive: 1
-  invulnerabilityTime: 0.5
+  invulnerabilityTime: 0.25
   invulnerabilityColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   isInvulnerable: 0

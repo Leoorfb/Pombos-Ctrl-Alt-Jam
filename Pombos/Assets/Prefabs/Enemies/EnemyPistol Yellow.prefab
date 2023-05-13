@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  maxHp: 18
+  maxHp: 25
   money: 1
   speed: 3000
   rotationSpeed: 90
@@ -173,7 +173,7 @@ MonoBehaviour:
   knockbackStreght: 10
   attackDistance: 14
   isAttackOnCooldown: 0
-  attackCooldown: 0.8
+  attackCooldown: 1
   enemyProjectilePrefab: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
   projectileOrigin: {fileID: 82301055159784139}
   goldPrefab: {fileID: 2420394416697878873, guid: 6da299221c67f15468931794d0425e36, type: 3}

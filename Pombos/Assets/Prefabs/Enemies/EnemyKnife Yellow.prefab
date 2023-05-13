@@ -184,7 +184,7 @@ MonoBehaviour:
   speed: 5000
   rotationSpeed: 250
   damage: 5
-  knockbackStreght: 25
+  knockbackStreght: 35
   attackDistance: 2.5
   isAttackOnCooldown: 1
   attackCooldown: 0.7
