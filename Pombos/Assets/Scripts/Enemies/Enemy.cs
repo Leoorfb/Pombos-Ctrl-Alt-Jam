@@ -282,7 +282,7 @@ public abstract class Enemy : MonoBehaviour
         if (dropPrefab != null)
         {
             //MoneyDrop();
-            GameObject drop = GameObject.Instantiate(dropPrefab, transform.position, dropPrefab.transform.rotation, DropContainer);
+            GameObject drop = GameObject.Instantiate(dropPrefab, projectileOrigin.position, dropPrefab.transform.rotation, DropContainer);
             Debug.Log(drop);
         }
 
@@ -291,19 +291,17 @@ public abstract class Enemy : MonoBehaviour
         AudioManager.instance.Play("EnemyDeath");
 
         spriteRenderer.color = deadColor;
+
+        StartCoroutine("FadeAway");
     }
 
 
-    /*
     private IEnumerator FadeAway()
     {
-        while (true)
-        {
-            yield return new WaitForEndOfFrame();
-            spriteRenderer.color = deadColor;
-        }
+        yield return new WaitForSeconds(30);
+        Destroy(gameObject);
     }
-    */
+    
 
     private GameObject GetRandomDrop()
     {

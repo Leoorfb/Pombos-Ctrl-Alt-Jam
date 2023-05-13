@@ -161,13 +161,15 @@ public class Shop : MonoBehaviour
                     break;
             }
 
+            /*
             Debug.Log(nextUpgrade);
             if (nextUpgrade != null)
             {
                 selectedUpgrades.Add(nextUpgrade);
             }
-
             selectedUpgrades.Remove(upgradesData);
+            */
+
             upgrades.Remove(upgradesData);
             playerGold.AddGold(-upgradesData.cost);
         }

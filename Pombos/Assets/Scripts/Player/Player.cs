@@ -139,10 +139,16 @@ public class Player : MonoBehaviour
 
     // Talvez repensar funcionamento da armadura
     // assim caso a armadura for maior q o dano ela nega o dano por completo
-    public void ApplyArmor(ref int damage)
+    public int ApplyArmor(int damage)
     {
-        damage -= armor;
-        if (damage < 0) damage = 0;
+
+        int damageMitigado = (int) Mathf.Floor(damage/((armor + 100f)/100f));
+        if (damageMitigado <= 0) damageMitigado = 1;
+
+        //Debug.Log("(" + damage + "/((" + armor + "+ 100)100)) = (" + damage + "/" + ((armor + 100f) / 100f));
+        //Debug.Log("Dano inicial: " + damage + " - Dano mitigado: " + damageMitigado);
+
+        return damageMitigado;
     }
     
     private void ResetHpTiles() 
@@ -225,7 +231,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        ApplyArmor(ref damage);
+        damage = ApplyArmor(damage);
 
         hp -= damage;
         //Debug.Log(damage + " damage taken");
