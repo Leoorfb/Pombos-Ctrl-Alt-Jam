@@ -64,6 +64,7 @@ public class UpgradePanelManager : MonoBehaviour
                 //Debug.Log(i);
                 upgradeButtons[i].gameObject.SetActive(true);
                 upgradeButtons[i].SetData(upgradesData[i]);
+                upgradeButtons[i].SetActiveButton(true);
             }
             //ResumeButton.gameObject.SetActive(false);
             InstructionsText.text = "Click on a Power Up to buy it";
@@ -90,10 +91,11 @@ public class UpgradePanelManager : MonoBehaviour
         bool upgradeSucceded = shop.Upgrade(pressedButtonId, out updatedUpgrades);
         if (upgradeSucceded)
         {
+            upgradeButtons[pressedButtonId].SetActiveButton(false);
             //Debug.Log("Botão upgrade sucedido");
 
             //ClosePanel();
-            LoadUpgrades(updatedUpgrades);
+            //LoadUpgrades(updatedUpgrades);
         }
     }
 
