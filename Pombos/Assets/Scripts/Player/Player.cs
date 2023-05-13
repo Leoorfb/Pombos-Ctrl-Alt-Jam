@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
     {
         VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
         VisualElement tileHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("RootHealthTile");
-        float tileWidth = 20;
+        float tileWidth = 10;
         fillHealthContainer.style.width = new Length(healthContainerWidth + (tileWidth * (maxHp + 0.5f )));  
         CleanHpTiles();
         CreateHpTiles(maxHp);

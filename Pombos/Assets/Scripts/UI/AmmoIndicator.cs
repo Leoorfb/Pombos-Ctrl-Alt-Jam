@@ -26,7 +26,7 @@ public class AmmoIndicator : MonoBehaviour
     void UpdateMaxAmmoContainer() 
     {
         VisualElement ammoContainer = ammoCountUIDocument.rootVisualElement.Q<VisualElement>("BulletTileContainer");
-        float tileWidth = 20;
+        float tileWidth = 10;
         ammoContainer.style.width = new Length(ammoContainerWidth + (tileWidth * (maxAmmo + 0.3f)));
     }
 
