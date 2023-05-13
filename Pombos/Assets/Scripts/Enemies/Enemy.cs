@@ -63,14 +63,14 @@ public abstract class Enemy : MonoBehaviour
     private bool isAlive = true;
 
 
-    private void Awake()
+    public void Awake()
     {
         _seeker = GetComponent<Seeker>();
         _Rigidbody = GetComponent<Rigidbody2D>();
         _Collider = GetComponent<Collider2D>();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         playerTransform = GameManager.instance.playerTransform;
         player = playerTransform.GetComponent<Player>();
@@ -206,7 +206,7 @@ public abstract class Enemy : MonoBehaviour
         _killAction = killAction;
     }
 
-    public void GetHit(int damage, bool isCritical, Vector2 direction, float force)
+    public virtual void GetHit(int damage, bool isCritical, Vector2 direction, float force)
     {
         TakeDamage(damage, isCritical);
         TakeKnockback(direction, force);

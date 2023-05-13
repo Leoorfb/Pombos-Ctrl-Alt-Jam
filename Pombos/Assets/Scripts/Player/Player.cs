@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using TMPro;
 using System;
 
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
     public int healthRegen = 0;
 
     [SerializeField] TextMeshProUGUI hpText;
+    public UIDocument hpTextUIDocument;
+    public VisualTreeAsset healthTileTemplate;
 
     [Header("Player Stats Settings")]
     public int armor = 0;
@@ -94,6 +97,7 @@ public class Player : MonoBehaviour
     {
         hp = maxHp;
         UpdateHpText();
+        this.CreateHpTiles(maxHp);
         StartCoroutine("RegenHP");
     }
 
@@ -120,9 +124,53 @@ public class Player : MonoBehaviour
         if (damage < 0) damage = 0;
     }
 
+
+    
+    private void ResetHpTiles() 
+    {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        foreach(VisualElement child in fillHealthContainer.Children())
+        {
+            child.style.display = DisplayStyle.None;
+        }
+    }
+
+    private void FillHpTiles(int currentHp)
+    {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        int count = 0;
+
+        foreach(VisualElement child in fillHealthContainer.Children())
+        {
+            if(count >= currentHp)
+                break;
+            child.style.display = DisplayStyle.Flex;
+            count += 1;
+        }
+    }
+
+    private void CreateHpTiles(int currentHealth) 
+    {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        for(int i = 0; i < currentHealth; i++) {
+            TemplateContainer healthTileContainer = healthTileTemplate.Instantiate();
+            fillHealthContainer.Add(healthTileContainer);
+            fillHealthContainer.Children();
+        }
+    }
+
     void UpdateHpText()
     {
         hpText.text = "Player  HP: " + hp + "/" + maxHp;
+        Label hpTextLabel = hpTextUIDocument.rootVisualElement.Q<Label>("HpCounterLabel");
+        hpTextLabel.text = hp.ToString("#00") + '/' + maxHp.ToString();
+
+        this.ResetHpTiles();
+        this.FillHpTiles(hp);
+        
+        // VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        // TemplateContainer healthTileContainer = healthTileTemplate.Instantiate();
+        // fillHealthContainer.Add(healthTileContainer);
     }
 
     internal bool RollCrit()

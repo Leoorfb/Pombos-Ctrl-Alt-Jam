@@ -182,7 +182,7 @@ MonoBehaviour:
   maxHp: 30
   money: 1
   speed: 5000
-  rotationSpeed: 140
+  rotationSpeed: 250
   damage: 5
   knockbackStreght: 25
   attackDistance: 2.5
