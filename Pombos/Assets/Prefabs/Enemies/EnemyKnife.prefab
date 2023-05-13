@@ -166,8 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   maxHp: 10
+  money: 1
   speed: 5000
-  rotationSpeed: 120
+  rotationSpeed: 200
   damage: 3
   knockbackStreght: 25
   attackDistance: 2.5

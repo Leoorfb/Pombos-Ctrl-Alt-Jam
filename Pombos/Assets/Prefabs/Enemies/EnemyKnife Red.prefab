@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 4513092433528315670}
   - component: {fileID: 1497720776428565635}
   m_Layer: 6
-  m_Name: EnemyKnife Green
+  m_Name: EnemyKnife Red
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,16 +178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883484518c1619d4d8c88dae579da30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 20
-  maxHp: 10
+  hp: 55
+  maxHp: 45
   money: 1
-  speed: 6000
-  rotationSpeed: 120
-  damage: 5
+  speed: 7000
+  rotationSpeed: 300
+  damage: 8
   knockbackStreght: 25
-  attackDistance: 2.5
+  attackDistance: 3
   isAttackOnCooldown: 1
-  attackCooldown: 0.7
+  attackCooldown: 0.6
   enemyProjectilePrefab: {fileID: 9010848437333594081, guid: 5342848eecddcdb459d6c01f7f22e00a, type: 3}
   projectileOrigin: {fileID: 82301055159784139}
   goldPrefab: {fileID: 2420394416697878873, guid: 1d99d3b8284c48444ae962ca478729ab, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeType: 1
   UpgradeDescription: Reduz espalhamento da arma
-  icon: {fileID: 21300000, guid: ac1c4a0981a050448874ac41a93158af, type: 3}
+  icon: {fileID: 21300000, guid: 4e7c8545b62dfdd44bd0b8bc32868a08, type: 3}
   weaponData: {fileID: 0}
   weaponUpgradeStats:
     damage: 0
@@ -32,4 +32,4 @@ MonoBehaviour:
     baseDamage: 0
     fireRateReductionPct: 0
     spreadReductionPct: 0.1
-  cost: 60
+  cost: 50
