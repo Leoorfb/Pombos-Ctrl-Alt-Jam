@@ -7,14 +7,14 @@
                 <ui:Label tabindex="-1" text="ROGERS PORLEONE" display-tooltip-when-elided="true" name="Name" style="color: rgb(255, 255, 255); font-size: 38px; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&amp;guid=f0d2f5d67057fc2479a2f80f553a89ae&amp;type=3#VCR_OSD_MONO_1.001&apos;); margin-left: 20px; width: 360px;" />
             </ui:VisualElement>
             <ui:VisualElement name="StatsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;">
-                <ui:Label tabindex="-1" text="Armadura: XX" display-tooltip-when-elided="true" name="ArmorLabel" class="stats-label" style="color: rgb(255, 213, 23);" />
-                <ui:Label tabindex="-1" text="HP: XX" display-tooltip-when-elided="true" name="HealthLabel" class="stats-label" style="color: rgb(255, 213, 23);" />
-                <ui:Label tabindex="-1" text="Munição máxima: XX" display-tooltip-when-elided="true" name="AmmoMaxLabel" class="stats-label" />
-                <ui:Label tabindex="-1" text="Dano: XX" display-tooltip-when-elided="true" name="DamageLabel" class="stats-label" style="color: rgb(255, 213, 23);" />
-                <ui:Label tabindex="-1" text="Moedas: XX" display-tooltip-when-elided="true" name="CoinLabel" class="stats-label" style="color: rgb(255, 213, 23);" />
-                <ui:Label tabindex="-1" text="Velocidade: XX" display-tooltip-when-elided="true" name="SpeedLabel" class="stats-label" />
-                <ui:Label tabindex="-1" text="Velocidade do tiro: XX" display-tooltip-when-elided="true" name="ShootingSpeedLabel" class="stats-label" />
-                <ui:Label tabindex="-1" text="Chance de Crítico: XX" display-tooltip-when-elided="true" name="CriticalLabel" class="stats-label" />
+                <ui:Label tabindex="-1" text="Armadura: XX" display-tooltip-when-elided="true" name="ArmorLabel" class="stats-label" style="color: rgb(195, 190, 188);" />
+                <ui:Label tabindex="-1" text="HP: XX" display-tooltip-when-elided="true" name="HealthLabel" class="stats-label" style="color: rgb(39, 255, 23);" />
+                <ui:Label tabindex="-1" text="Munição máxima: XX" display-tooltip-when-elided="true" name="AmmoMaxLabel" class="stats-label" style="color: rgb(255, 129, 23);" />
+                <ui:Label tabindex="-1" text="Dano: XX" display-tooltip-when-elided="true" name="DamageLabel" class="stats-label" style="color: rgb(255, 32, 0); height: 33px;" />
+                <ui:Label tabindex="-1" text="Moedas: XX" display-tooltip-when-elided="true" name="CoinLabel" class="stats-label" style="color: rgb(255, 216, 0);" />
+                <ui:Label tabindex="-1" text="Velocidade: XX" display-tooltip-when-elided="true" name="SpeedLabel" class="stats-label" style="height: 33px; color: rgb(255, 255, 255);" />
+                <ui:Label tabindex="-1" text="Velocidade do tiro: XX" display-tooltip-when-elided="true" name="ShootingSpeedLabel" class="stats-label" style="color: rgb(255, 0, 211);" />
+                <ui:Label tabindex="-1" text="Chance de Crítico: XX" display-tooltip-when-elided="true" name="CriticalLabel" class="stats-label" style="color: rgb(0, 255, 224);" />
             </ui:VisualElement>
             <ui:VisualElement name="UpgradesContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; padding-left: 32px; visibility: hidden; display: none;">
                 <ui:VisualElement name="HatContainer" class="upgrade-item-container" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Backgrounds/rogers-hat.png?fileID=2800000&amp;guid=6da1b59dd6ae6754da689a8b2d10b578&amp;type=3#rogers-hat&apos;); bottom: 0; right: 0;">
