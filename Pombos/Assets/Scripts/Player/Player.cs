@@ -61,6 +61,9 @@ public class Player : MonoBehaviour
     [SerializeField] private int _baseAmmo = 0;
     [SerializeField] private float _fireRateReductionPct = 0;
     [SerializeField] private float _spreadReductionPct = 0;
+
+    public Animator playerBodyAnimator;
+    public Animator playerLegsAnimator;
     public int baseDamage
     {
         get { return _baseDamage; }

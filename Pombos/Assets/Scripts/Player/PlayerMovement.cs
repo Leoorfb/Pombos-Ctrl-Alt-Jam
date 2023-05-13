@@ -41,7 +41,19 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.x = horizontal;
         moveDirection.y = vertical;
         moveDirection = moveDirection.normalized;
-            
+        
+        if (moveDirection.magnitude > 0)
+        {
+            player.playerBodyAnimator.SetBool("isMoving", true);
+            player.playerLegsAnimator.SetBool("isMoving", true);
+
+        }
+        else
+        {
+            player.playerBodyAnimator.SetBool("isMoving", false);
+            player.playerLegsAnimator.SetBool("isMoving", false);
+        }
+
         LookAtMouse();
 
         if (Input.GetMouseButton(0))
