@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57f27bbf507381f4b974aa00af724fdc, type: 3}
-  m_Name: Wave10
+  m_Name: Wave0 test
   m_EditorClassIdentifier: 
   waveEnemyList:
   - enemyPrefab: {fileID: 8584664045613081946, guid: 54a4c71039a6d274cbd2c8f90ee440c0, type: 3}
     spawnChance: 1
-    difficultyLevel: 0
-  waveDifficulty: 40
-  waveDuration: 600
-  spawnRate: 2
-  waveEnemiesTotalSpawnChance: 8
+    difficultyLevel: 1
+  waveDifficulty: 10
+  waveDuration: 1
+  spawnRate: 1
+  waveEnemiesTotalSpawnChance: 1
