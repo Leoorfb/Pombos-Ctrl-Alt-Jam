@@ -11,6 +11,7 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] TMP_Text upgradeName;
     [SerializeField] TMP_Text upgradeDescription;
     [SerializeField] TMP_Text upgradeCost;
+    [SerializeField] Button upgradeButton;
 
     public void SetData(UpgradesData upgradesData)
     {
@@ -22,6 +23,11 @@ public class UpgradeButton : MonoBehaviour
         icon.sprite = upgradesData.icon;
         upgradeDescription.text = upgradesData.UpgradeDescription;
         upgradeCost.text = "$" + upgradesData.cost.ToString("#000");
+    }
+
+    public void SetActiveButton(bool isActive)
+    {
+        upgradeButton.interactable = isActive;
     }
 
     internal void Clean()

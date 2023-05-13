@@ -27458,6 +27458,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b35519c266611344898555e2d28aed28, type: 2}
   - {fileID: 11400000, guid: d5a16d8e299a79a49af82c8cbcb64497, type: 2}
   - {fileID: 11400000, guid: e3b3ea7fa0b68a9479293a862e332336, type: 2}
+  - {fileID: 11400000, guid: a36d458d0c4b2e44e88f87709cc16e8d, type: 2}
   firstRerollCost: 10
   rerollCost: 10
 --- !u!1001 &766203655
@@ -28279,6 +28280,7 @@ MonoBehaviour:
   upgradeName: {fileID: 1392208012}
   upgradeDescription: {fileID: 306468433}
   upgradeCost: {fileID: 2065901336}
+  upgradeButton: {fileID: 959137390}
 --- !u!114 &959137390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28304,7 +28306,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -29926,6 +29928,7 @@ MonoBehaviour:
   upgradeName: {fileID: 1404630877}
   upgradeDescription: {fileID: 24659423}
   upgradeCost: {fileID: 1239495632}
+  upgradeButton: {fileID: 1250151034}
 --- !u!114 &1250151034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29951,7 +29954,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
