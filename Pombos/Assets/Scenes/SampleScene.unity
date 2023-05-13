@@ -26524,13 +26524,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99989873
+    width: 0.9998794
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -34652,7 +34652,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Reload
-    clip: {fileID: 8300000, guid: bb16f120a7874bb4284937716b4dc82c, type: 3}
+    clip: {fileID: 8300000, guid: 96c392a0cf89f0e4784060fe8514b268, type: 3}
     volume: 1
     minPitch: 0.86
     maxPitch: 1.16

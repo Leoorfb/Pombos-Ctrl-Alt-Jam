@@ -120,9 +120,9 @@ public abstract class WeaponBase : MonoBehaviour
     public IEnumerator CooldownAttack()
     {
         isAttackOnCooldown = true;
-        yield return new WaitForSeconds(weaponStats.fireRate/2);
+        yield return new WaitForSeconds(.03f);
         _player.playerBodyAnimator.SetBool("isShooting", false);
-        yield return new WaitForSeconds(weaponStats.fireRate/2);
+        yield return new WaitForSeconds(weaponStats.fireRate);
         isAttackOnCooldown = false;
     }
 

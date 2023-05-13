@@ -57,5 +57,6 @@ MonoBehaviour:
     ammoMax: 0
   baseWeaponFirerate: 1
   baseWeaponSpread: 1
-  weaponAmmoMax: 100
-  reloadTime: 3
+  baseWeaponDamage: 1
+  baseWeaponAmmoMax: 100
+  reloadTime: 2

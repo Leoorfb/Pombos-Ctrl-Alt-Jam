@@ -12,7 +12,7 @@ public class ShootingWeapon : WeaponBase
             if (weaponAmmo > 0)
             {
                 _player.playerBodyAnimator.SetBool("isShooting", true);
-                _player.playerBodyAnimator.SetInteger("isShooting", UnityEngine.Random.Range(0,2));
+                _player.playerBodyAnimator.SetInteger("ShootIndex", UnityEngine.Random.Range(0,2));
 
                 WeaponProjectile projectile = _projectilePool.Get();
 
