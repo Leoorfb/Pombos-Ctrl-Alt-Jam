@@ -18,8 +18,17 @@ public abstract class WeaponBase : MonoBehaviour
     public float baseWeaponFirerate = 1;
     public float baseWeaponSpread = 1;
     public int baseWeaponDamage = 1;
+    public int baseWeaponAmmoMax = 100;
 
-    public int weaponAmmoMax = 100;
+    private int _weaponAmmoMax = 100;
+    public int weaponAmmoMax
+    {
+        get { return _weaponAmmoMax; }
+        set { _weaponAmmoMax = value;
+            if (_weaponAmmoIndicator != null)
+                _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
+        }
+    }
     protected int weaponAmmo;
     public float reloadTime;
     protected bool hasAmmo = true;
@@ -33,11 +42,11 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        weaponAmmo = weaponAmmoMax;
+        _weaponAmmoIndicator = GameAssets.instance.ammoIndicator;
         _player = GameManager.instance.playerTransform.GetComponent<Player>();
         _projectilePool = new ObjectPool<WeaponProjectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
 
-        _weaponAmmoIndicator = GameAssets.instance.ammoIndicator;
+        weaponAmmo = weaponAmmoMax;
         _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
     }
 
@@ -103,6 +112,7 @@ public abstract class WeaponBase : MonoBehaviour
         baseWeaponFirerate = weaponStats.fireRate;
         baseWeaponSpread = weaponStats.spread;
         baseWeaponDamage = weaponStats.damage;
+        baseWeaponAmmoMax = weaponStats.ammoMax;
     }
 
     public IEnumerator CooldownAttack()
