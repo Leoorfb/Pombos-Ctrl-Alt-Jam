@@ -8,7 +8,13 @@ using System;
 public class Player : MonoBehaviour
 {
     [Header("Player Health Settings")]
-    public int maxHp = 100;
+    [SerializeField] int _maxHp = 100;
+    public int maxHp {
+        get { return _maxHp; }
+        set{ _maxHp = value; 
+            UpdateHpMaxContainer();
+        }}
+
     private int _hp = 100;
     public int hp {
         get { return _hp; }
@@ -16,6 +22,8 @@ public class Player : MonoBehaviour
             UpdateHpText();
         }}
     public int healthRegen = 0;
+
+    private float healthContainerWidth;
 
     [SerializeField] TextMeshProUGUI hpText;
     public UIDocument hpTextUIDocument;
@@ -95,10 +103,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
         hp = maxHp;
+        healthContainerWidth = fillHealthContainer.style.width.value.value;
         UpdateHpText();
-        this.CreateHpTiles(maxHp);
+        CreateHpTiles(maxHp);
         StartCoroutine("RegenHP");
+        UpdateHpMaxContainer();
     }
 
     public void Heal(int healAmount)
@@ -123,8 +134,6 @@ public class Player : MonoBehaviour
         damage -= armor;
         if (damage < 0) damage = 0;
     }
-
-
     
     private void ResetHpTiles() 
     {
@@ -159,18 +168,31 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    private void CleanHpTiles()
+    {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        fillHealthContainer.Clear();
+    }
+
+    void UpdateHpMaxContainer()
+    {
+        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        VisualElement tileHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("RootHealthTile");
+        float tileWidth = 20;
+        fillHealthContainer.style.width = new Length(healthContainerWidth + (tileWidth * (maxHp + 0.5f )));  
+        CleanHpTiles();
+        CreateHpTiles(maxHp);
+    }
+
     void UpdateHpText()
     {
         hpText.text = "Player  HP: " + hp + "/" + maxHp;
         Label hpTextLabel = hpTextUIDocument.rootVisualElement.Q<Label>("HpCounterLabel");
-        hpTextLabel.text = hp.ToString("#00") + '/' + maxHp.ToString();
+        hpTextLabel.text = hp.ToString("#00");
 
         this.ResetHpTiles();
         this.FillHpTiles(hp);
-        
-        // VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        // TemplateContainer healthTileContainer = healthTileTemplate.Instantiate();
-        // fillHealthContainer.Add(healthTileContainer);
     }
 
     internal bool RollCrit()
