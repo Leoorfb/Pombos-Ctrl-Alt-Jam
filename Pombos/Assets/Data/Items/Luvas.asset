@@ -20,7 +20,7 @@ MonoBehaviour:
     speed: 0
     critChance: 0
     baseDamage: 0
-    baseAmmo: 10
+    baseAmmo: 5
     fireRateReductionPct: 0
     spreadReductionPct: 0
   upgrades:
