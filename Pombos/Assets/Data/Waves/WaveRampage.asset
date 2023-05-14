@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f27bbf507381f4b974aa00af724fdc, type: 3}
+  m_Name: WaveRampage
+  m_EditorClassIdentifier: 
+  waveEnemyList:
+  - enemyPrefab: {fileID: 3713355592736525561, guid: 5792a3e2e48916d4fa0b0a54a4d7f227, type: 3}
+    spawnChance: 32
+    difficultyLevel: 1
+  - enemyPrefab: {fileID: 8584664045613081946, guid: e7dd6a08945afb8458737811356a27fa, type: 3}
+    spawnChance: 16
+    difficultyLevel: 1
+  - enemyPrefab: {fileID: 8584664045613081946, guid: e6055fe69b80bab4c8c1ec2f2fa77f03, type: 3}
+    spawnChance: 8
+    difficultyLevel: 1
+  - enemyPrefab: {fileID: 8584664045613081946, guid: a824e673578171c4da4fffb131305cae, type: 3}
+    spawnChance: 4
+    difficultyLevel: 1
+  - enemyPrefab: {fileID: 8584664045613081946, guid: 54a4c71039a6d274cbd2c8f90ee440c0, type: 3}
+    spawnChance: 1
+    difficultyLevel: 1
+  waveDifficulty: 1
+  waveDuration: 180
+  spawnRate: 2
+  waveEnemiesTotalSpawnChance: 5

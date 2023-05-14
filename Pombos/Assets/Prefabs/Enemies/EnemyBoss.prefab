@@ -195,7 +195,7 @@ MonoBehaviour:
   knockbackStreght: 10
   attackDistance: 12
   isAttackOnCooldown: 0
-  attackCooldown: 0.2
+  attackCooldown: 0.1
   enemyProjectilePrefab: {fileID: 0}
   projectileOrigin: {fileID: 0}
   goldPrefab: {fileID: 2420394416697878873, guid: e1a02b1614a8c0c40b5581d6e5e8da14, type: 3}
@@ -215,7 +215,7 @@ MonoBehaviour:
   damage_Stage1: 10
   knockbackStreght_Stage1: 10
   attackDistance_Stage1: 15
-  attackCooldown_Stage1: 0.6
+  attackCooldown_Stage1: 0.3
   enemyProjectilePrefab_Stage1: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
   projectileOrigin_Stage1: {fileID: 82301055159784139}
   stage2StartHP: 2000
