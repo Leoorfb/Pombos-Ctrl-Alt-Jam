@@ -305,7 +305,7 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator FadeAway()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(0.01f);
         Destroy(gameObject);
     }
     
