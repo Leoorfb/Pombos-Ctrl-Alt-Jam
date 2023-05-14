@@ -56,10 +56,10 @@ public class UpgradePanelManager : MonoBehaviour
         UpdateRerollCostText();
         HideButtons();
         Clean();
-
+        
         if (upgradesData.Count > 0)
         {
-            for (int i = 0; i < upgradesData.Count; i++)
+            for (int i = 0; i < upgradesData.Count - 1; i++)
             {
                 //Debug.Log(i);
                 upgradeButtons[i].gameObject.SetActive(true);
@@ -86,13 +86,13 @@ public class UpgradePanelManager : MonoBehaviour
 
     public void Upgrade(int pressedButtonId)
     {
-        //Debug.Log("Botão upgrade");
+        //Debug.Log("Botï¿½o upgrade");
         List<UpgradesData> updatedUpgrades;
         bool upgradeSucceded = shop.Upgrade(pressedButtonId, out updatedUpgrades);
         if (upgradeSucceded)
         {
             upgradeButtons[pressedButtonId].SetActiveButton(false);
-            //Debug.Log("Botão upgrade sucedido");
+            //Debug.Log("Botï¿½o upgrade sucedido");
 
             //ClosePanel();
             //LoadUpgrades(updatedUpgrades);
