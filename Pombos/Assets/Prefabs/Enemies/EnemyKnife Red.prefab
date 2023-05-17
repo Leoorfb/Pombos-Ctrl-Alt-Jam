@@ -80,12 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883484518c1619d4d8c88dae579da30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 55
-  maxHp: 45
+  hp: 35
+  maxHp: 35
   money: 1
   speed: 7000
   rotationSpeed: 300
-  damage: 8
+  damage: 7
   knockbackStreght: 25
   attackDistance: 3
   isAttackOnCooldown: 1

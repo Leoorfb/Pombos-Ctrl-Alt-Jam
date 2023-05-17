@@ -30827,7 +30827,7 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   isInvulnerable: 0
   playerSpriteRenderer: {fileID: 1256683390}
-  _baseDamage: 0
+  _baseDamage: 1
   _baseAmmo: 0
   _fireRateReductionPct: 0
   _spreadReductionPct: 0

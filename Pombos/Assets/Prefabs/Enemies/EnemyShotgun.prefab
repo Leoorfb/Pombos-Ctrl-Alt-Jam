@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e2528fef177ee4184303c9bba0ed94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
-  maxHp: 50
+  hp: 40
+  maxHp: 40
   money: 1
   speed: 4000
   rotationSpeed: 90
