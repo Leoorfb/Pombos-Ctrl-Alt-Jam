@@ -7,7 +7,14 @@ using UnityEngine.UIElements;
 
 public class PlayerGold : MonoBehaviour
 {
-    public int gold = 0;
+    [SerializeField] int _gold = 0;
+    public int gold 
+    {
+        get { return _gold; }
+        set { _gold = value;
+            UpdateGoldText();
+        }
+    }
     public  UIDocument playerGoldUI;
     [SerializeField] TextMeshProUGUI expText;
 
@@ -18,7 +25,7 @@ public class PlayerGold : MonoBehaviour
     }
 
     void Update() {
-        UpdateGoldText();
+        //UpdateGoldText();
     }
 
     void UpdateGoldText()
@@ -32,6 +39,6 @@ public class PlayerGold : MonoBehaviour
     {
         gold += expAmount;
 
-        UpdateGoldText();
+        //UpdateGoldText();
     }
 }

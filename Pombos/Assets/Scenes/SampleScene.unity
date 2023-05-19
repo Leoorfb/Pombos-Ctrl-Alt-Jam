@@ -28902,7 +28902,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.99988145
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -30925,7 +30925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7211f88bac66feb4f9d8c4f41bfd49de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 0
+  _gold: 1000
   playerGoldUI: {fileID: 1322580857}
   expText: {fileID: 403271896}
 --- !u!114 &745634032
@@ -31113,8 +31113,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5a16d8e299a79a49af82c8cbcb64497, type: 2}
   - {fileID: 11400000, guid: e3b3ea7fa0b68a9479293a862e332336, type: 2}
   - {fileID: 11400000, guid: a36d458d0c4b2e44e88f87709cc16e8d, type: 2}
-  firstRerollCost: 10
-  rerollCost: 10
+  firstRerollCost: 5
+  rerollCost: 5
+  maxRerollCost: 80
 --- !u!1001 &762896982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32387,14 +32388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavesData:
-  - {fileID: 11400000, guid: 1a25f7b367363234885001e3637111ee, type: 2}
-  - {fileID: 11400000, guid: 19308712af7af6a4ba06876aa8f3754e, type: 2}
-  - {fileID: 11400000, guid: 1ffe2488fa891294fb0090a3d59ec096, type: 2}
-  - {fileID: 11400000, guid: 25a47de2b6dde884e82bec6ec99d0351, type: 2}
-  - {fileID: 11400000, guid: 638a4ffa41b005744a1d6714fecc2101, type: 2}
-  - {fileID: 11400000, guid: 0581c4c8b633a9a4da25cd235f660ba0, type: 2}
-  - {fileID: 11400000, guid: 5e8fab74662316d4c8bf97505d0496e2, type: 2}
-  - {fileID: 11400000, guid: 327cfc6eea899d1459a0fc89a6cbd3bb, type: 2}
+  - {fileID: 11400000, guid: 9a38b7b29d0d23647939dac2877e3850, type: 2}
   - {fileID: 11400000, guid: 57e0dc9f350e8f24b8d034c5fffb4f6a, type: 2}
   - {fileID: 11400000, guid: a250620d9fb8aa34f8a7e770f84b1e07, type: 2}
   - {fileID: 11400000, guid: a904cb952d2d5ee46be206a18ecd67fd, type: 2}

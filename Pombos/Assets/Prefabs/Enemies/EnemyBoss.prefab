@@ -198,7 +198,7 @@ MonoBehaviour:
   attackCooldown: 0.1
   enemyProjectilePrefab: {fileID: 0}
   projectileOrigin: {fileID: 0}
-  goldPrefab: {fileID: 2420394416697878873, guid: e1a02b1614a8c0c40b5581d6e5e8da14, type: 3}
+  goldPrefab: {fileID: 3373096677780798162, guid: e1a02b1614a8c0c40b5581d6e5e8da14, type: 3}
   dropItems: []
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
