@@ -21,6 +21,7 @@ public class Shop : MonoBehaviour
     [Header("Shop Reroll Settings")]
     [SerializeField] int firstRerollCost = 10;
     public int rerollCost = 10;
+    public int rerollMaxCost = 80;
 
     WeaponsManager weaponsManager;
     PassivesManager passivesManager;
@@ -98,6 +99,7 @@ public class Shop : MonoBehaviour
             shopPanel.LoadUpgrades(selectedUpgrades);
             playerGold.gold -= rerollCost;
             rerollCost *= 2;
+            if (rerollCost > rerollMaxCost) rerollCost = rerollMaxCost;
         }
         return rerollSucceded;
     }

@@ -66,7 +66,7 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     public abstract void Attack();
-
+    /*
     public virtual void HitEnemy(Enemy enemy)
     {
         if (_player.RollCrit())
@@ -77,19 +77,18 @@ public abstract class WeaponBase : MonoBehaviour
         {
             enemy.TakeDamage(weaponStats.damage, false);
         }
-    }
+    }*/
 
 
     public virtual void HitEnemy(Enemy enemy, Vector2 knockBackDir)
     {
-        int dmg;
         if (_player.RollCrit())
         {
             enemy.GetHit(weaponStats.damage * _player.critModifier, true, knockBackDir, weaponStats.knockbackStrenght);
         }
         else
         {
-            enemy.GetHit(weaponStats.damage, true, knockBackDir, weaponStats.knockbackStrenght);
+            enemy.GetHit(weaponStats.damage, false, knockBackDir, weaponStats.knockbackStrenght);
         }
     }
 

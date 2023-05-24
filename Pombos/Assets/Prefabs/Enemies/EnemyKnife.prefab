@@ -126,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 5265529124791223234}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1e2bf4c8e943a44399d2091c58b49e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3739a041ce366e64a84ae22a9c265fa7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -205,11 +205,12 @@ MonoBehaviour:
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
   spriteRenderer: {fileID: 4098779041387426949}
-  deadColor: {r: 1, g: 1, b: 1, a: 0}
+  deadColor: {r: 1, g: 1, b: 1, a: 1}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 72
   nextWaypointDistance: 1
+  enemyAnimator: {fileID: 608787928730191539}
 --- !u!50 &7141274304264402661
 Rigidbody2D:
   serializedVersion: 4

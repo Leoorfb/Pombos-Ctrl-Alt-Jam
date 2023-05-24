@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Thompsom
   stats:
-    damage: 2
+    damage: 3
     fireRate: 0.3
     knockbackStrenght: 10
     spread: 10

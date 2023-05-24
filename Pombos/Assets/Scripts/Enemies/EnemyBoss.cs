@@ -78,8 +78,12 @@ public class EnemyBoss : Enemy
 
     public void SetStage(int stage)
     {
+        if (stage != this.stage)
+        {
+            enemyAnimator.SetInteger("stage", stage);
+            enemyAnimator.SetTrigger("stageChange");
+        }    
         this.stage = stage;
-        //enemyAnimator.SetInteger("Stage", stage);
         switch (stage)
         {
             case 1:
@@ -186,7 +190,7 @@ public class EnemyBoss : Enemy
     {
         if (!isAttackOnCooldown)
         {
-            //enemyAnimator.SetInteger("ShootIndex", UnityEngine.Random.Range(0, 2));
+            enemyAnimator.SetInteger("shootIndex", UnityEngine.Random.Range(0, 2));
             EnemyProjectile projectile = Instantiate(enemyProjectilePrefab, projectileOrigin.position, transform.rotation).GetComponent<EnemyProjectile>();
             RandomizeSpread();
             projectile.transform.Rotate(spreadDirection);

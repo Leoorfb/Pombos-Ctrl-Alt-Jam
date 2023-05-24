@@ -62,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
 
     private bool isAlive = true;
 
-    //public Animator enemyAnimator;
+    public Animator enemyAnimator;
 
     public void Awake()
     {
@@ -135,7 +135,7 @@ public abstract class Enemy : MonoBehaviour
 
     void MoveToPlayer()
     {
-        //enemyAnimator.SetBool("isMoving", true);
+        enemyAnimator.SetBool("isMoving", true);
         step = speed * Time.fixedDeltaTime;
         _Rigidbody.AddForce(moveDirection * step, ForceMode2D.Force);
 
@@ -188,11 +188,12 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator CooldownAttack()
     {
+        enemyAnimator.SetFloat("shootingSpeed", attackCooldown);
+        enemyAnimator.SetTrigger("shoot");
         //enemyAnimator.SetBool("isShooting", true);
         isAttackOnCooldown = true;
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(attackCooldown);
         //enemyAnimator.SetBool("isShooting", false);
-        yield return new WaitForSeconds(attackCooldown-.3f);
         isAttackOnCooldown = false;
     }
 
@@ -272,7 +273,7 @@ public abstract class Enemy : MonoBehaviour
     private void Die()
     {
         isAlive = false;
-        //enemyAnimator.SetBool("isAlive", isAlive);
+        enemyAnimator.SetBool("isAlive", isAlive);
         _Rigidbody.velocity = Vector3.zero;
         _Rigidbody.isKinematic = true;
 
@@ -305,7 +306,7 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator FadeAway()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(30f);
         Destroy(gameObject);
     }
     
