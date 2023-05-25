@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c81a9c4c78ce74b85255425a632be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAmmoChange: {fileID: 11400000, guid: 7dba7e394f9360d47913882076e39825, type: 2}
+  onMaxAmmoChange: {fileID: 11400000, guid: 45b0338b9f3e54c4d9932414212d9803, type: 2}
   projectilesContainer: {fileID: 0}
   weaponData: {fileID: 11400000, guid: dc980876564831a4ab8c893a612bde97, type: 2}
   weaponLevel: 1

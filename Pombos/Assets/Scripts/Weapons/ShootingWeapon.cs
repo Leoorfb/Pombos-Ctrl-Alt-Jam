@@ -28,10 +28,6 @@ public class ShootingWeapon : WeaponBase
                 hasAmmo = false;
                 StartCoroutine("Reload");
             }
-            //audioSource.PlayOneShot(shootSFX, audioSource.volume);
-
-            //Debug.Log(name + " attack");
-            _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
         }
     }
         

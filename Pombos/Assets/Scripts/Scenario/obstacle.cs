@@ -22,16 +22,4 @@ public class objectDestruction : MonoBehaviour
         //obstacleDrop();
         
     }
-
-
-    //void Start()
-    //{
-    //    
-    //}
-//
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    
-    //}
 }

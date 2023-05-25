@@ -8,26 +8,24 @@ using System;
 public class Player : MonoBehaviour
 {
     [Header("Player Health Settings")]
+    [SerializeField] GameEvent onHPChange;
+    [SerializeField] GameEvent onMaxHPChange;
+
     [SerializeField] int _maxHp = 100;
     public int maxHp {
         get { return _maxHp; }
-        set{ _maxHp = value; 
-            UpdateHpMaxContainer();
+        set{ _maxHp = value;
+            onMaxHPChange.TriggerEvent();
         }}
 
     private int _hp = 100;
     public int hp {
         get { return _hp; }
         set { _hp = value;
-            UpdateHpText();
+            onHPChange.TriggerEvent();
         }}
+
     public int healthRegen = 0;
-
-    private float healthContainerWidth;
-
-    [SerializeField] TextMeshProUGUI hpText;
-    public UIDocument hpTextUIDocument;
-    public VisualTreeAsset healthTileTemplate;
 
     [Header("Player Stats Settings")]
     public int armor = 0;
@@ -113,23 +111,19 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
+        onMaxHPChange.TriggerEvent();
         hp = maxHp;
-        healthContainerWidth = fillHealthContainer.style.width.value.value;
-        UpdateHpText();
-        CreateHpTiles(maxHp);
         StartCoroutine("RegenHP");
-        UpdateHpMaxContainer();
     }
+
 
     public void Heal(int healAmount)
     {
         hp += healAmount;
         if (hp > maxHp) hp = maxHp;
-        UpdateHpText();
+        //UpdateHpText();
     }
 
     IEnumerator RegenHP()
@@ -140,8 +134,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Talvez repensar funcionamento da armadura
-    // assim caso a armadura for maior q o dano ela nega o dano por completo
     public int ApplyArmor(int damage)
     {
 
@@ -154,66 +146,6 @@ public class Player : MonoBehaviour
         return damageMitigado;
     }
     
-    private void ResetHpTiles() 
-    {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        foreach(VisualElement child in fillHealthContainer.Children())
-        {
-            child.style.display = DisplayStyle.None;
-        }
-    }
-
-    private void FillHpTiles(int currentHp)
-    {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        int count = 0;
-
-        foreach(VisualElement child in fillHealthContainer.Children())
-        {
-            if(count >= currentHp)
-                break;
-            child.style.display = DisplayStyle.Flex;
-            count += 1;
-        }
-    }
-
-    private void CreateHpTiles(int currentHealth) 
-    {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        for(int i = 0; i < currentHealth; i++) {
-            TemplateContainer healthTileContainer = healthTileTemplate.Instantiate();
-            fillHealthContainer.Add(healthTileContainer);
-            fillHealthContainer.Children();
-        }
-    }
-
-
-    private void CleanHpTiles()
-    {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        fillHealthContainer.Clear();
-    }
-
-    void UpdateHpMaxContainer()
-    {
-        VisualElement fillHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("FillHealthContainer");
-        VisualElement tileHealthContainer = hpTextUIDocument.rootVisualElement.Q<VisualElement>("RootHealthTile");
-        float tileWidth = 10;
-        fillHealthContainer.style.width = new Length(healthContainerWidth + (tileWidth * (maxHp + 0.5f )));  
-        CleanHpTiles();
-        CreateHpTiles(maxHp);
-    }
-
-    void UpdateHpText()
-    {
-        hpText.text = "Player  HP: " + hp + "/" + maxHp;
-        Label hpTextLabel = hpTextUIDocument.rootVisualElement.Q<Label>("HpCounterLabel");
-        hpTextLabel.text = hp.ToString("#00");
-
-        this.ResetHpTiles();
-        this.FillHpTiles(hp);
-    }
-
     internal bool RollCrit()
     {
         return (UnityEngine.Random.Range(0f,1f) <= critChance);
@@ -244,7 +176,7 @@ public class Player : MonoBehaviour
             isAlive = false;
             GameManager.instance.GameOver();
         }
-        UpdateHpText();
+        //UpdateHpText();
         return;
     }
 

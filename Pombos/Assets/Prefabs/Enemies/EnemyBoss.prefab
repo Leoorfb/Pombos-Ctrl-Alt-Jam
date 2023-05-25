@@ -198,7 +198,7 @@ MonoBehaviour:
   attackCooldown: 0.1
   enemyProjectilePrefab: {fileID: 0}
   projectileOrigin: {fileID: 0}
-  goldPrefab: {fileID: 2420394416697878873, guid: e1a02b1614a8c0c40b5581d6e5e8da14, type: 3}
+  goldPrefab: {fileID: 3373096677780798162, guid: e1a02b1614a8c0c40b5581d6e5e8da14, type: 3}
   dropItems: []
   DropContainer: {fileID: 0}
   deathParticles: {fileID: 5399420450477821653, guid: 0661fbc2783bbf742906be6df9770067, type: 3}
@@ -220,7 +220,7 @@ MonoBehaviour:
   enemyProjectilePrefab_Stage1: {fileID: 1856138062616758145, guid: 2883117459abe6f4caf46efec8877e82, type: 3}
   projectileOrigin_Stage1: {fileID: 82301055159784139}
   stage2StartHP: 2000
-  stage2Color: {r: 0.5328821, g: 1, b: 0.3915094, a: 1}
+  stage2Color: {r: 1, g: 1, b: 1, a: 1}
   stage2Sprite: {fileID: 21300000, guid: a3502cfc8aaf4bc45bff94af0efac2fc, type: 3}
   speed_Stage2: 5000
   damage_Stage2: 15
@@ -232,7 +232,7 @@ MonoBehaviour:
   shotAmount: 9
   shotAngle: 120
   stage3StartHP: 500
-  stage3Color: {r: 1, g: 0, b: 0, a: 1}
+  stage3Color: {r: 1, g: 1, b: 1, a: 1}
   stage3Sprite: {fileID: 21300000, guid: 9221c1ed07aae574d937d6378f4b56d8, type: 3}
   speed_Stage3: 6000
   damage_Stage3: 4

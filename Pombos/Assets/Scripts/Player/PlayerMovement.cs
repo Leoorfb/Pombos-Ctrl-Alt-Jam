@@ -35,13 +35,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!player.isAlive) return; // remover depois q a função de morrer estiver pronta
 
+        GetInput();
+        SetAnimation();
+        LookAtMouse();
+        SetSpeed();
+    }
+
+    private void GetInput()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        
+
         moveDirection.x = horizontal;
         moveDirection.y = vertical;
         moveDirection = moveDirection.normalized;
-        
+    }
+
+    private void SetAnimation()
+    {
         if (moveDirection.magnitude > 0)
         {
             player.playerBodyAnimator.SetBool("isMoving", true);
@@ -53,9 +64,10 @@ public class PlayerMovement : MonoBehaviour
             player.playerBodyAnimator.SetBool("isMoving", false);
             player.playerLegsAnimator.SetBool("isMoving", false);
         }
+    }
 
-        LookAtMouse();
-
+    private void SetSpeed()
+    {
         if (Input.GetMouseButton(0))
         {
             speed = shootingSpeed;
@@ -68,8 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Debug.Log(moveDirection * speed * Time.fixedDeltaTime);
-
         _Rigidbody.AddForce(moveDirection * speed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 

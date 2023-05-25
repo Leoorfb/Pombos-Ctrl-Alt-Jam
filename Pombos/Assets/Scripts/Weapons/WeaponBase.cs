@@ -6,6 +6,9 @@ using UnityEngine.Pool;
 
 public abstract class WeaponBase : MonoBehaviour
 {
+    [SerializeField] GameEvent onAmmoChange;
+    [SerializeField] GameEvent onMaxAmmoChange;
+
     public Transform projectilesContainer;
     public WeaponData weaponData;
     public int weaponLevel = 1;
@@ -20,16 +23,23 @@ public abstract class WeaponBase : MonoBehaviour
     public int baseWeaponDamage = 1;
     public int baseWeaponAmmoMax = 100;
 
-    private int _weaponAmmoMax = 100;
+    protected int _weaponAmmoMax = 100;
     public int weaponAmmoMax
     {
         get { return _weaponAmmoMax; }
         set { _weaponAmmoMax = value;
-            if (_weaponAmmoIndicator != null)
-                _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
+            onMaxAmmoChange.TriggerEvent();
         }
     }
-    protected int weaponAmmo;
+    protected int _weaponAmmo;
+    public int weaponAmmo
+    {
+        get { return _weaponAmmo; }
+        set
+        {   _weaponAmmo = value;
+            onAmmoChange.TriggerEvent();
+        }
+    }
     public float reloadTime;
     protected bool hasAmmo = true;
 
@@ -38,16 +48,14 @@ public abstract class WeaponBase : MonoBehaviour
     protected ObjectPool<WeaponProjectile> _projectilePool;
 
     protected Player _player;
-    protected AmmoIndicator _weaponAmmoIndicator;
 
     protected virtual void Start()
     {
-        _weaponAmmoIndicator = GameAssets.instance.ammoIndicator;
         _player = GameManager.instance.playerTransform.GetComponent<Player>();
         _projectilePool = new ObjectPool<WeaponProjectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject);
 
+        onMaxAmmoChange.TriggerEvent();
         weaponAmmo = weaponAmmoMax;
-        _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
     }
 
     public void Update()
@@ -66,18 +74,6 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     public abstract void Attack();
-    /*
-    public virtual void HitEnemy(Enemy enemy)
-    {
-        if (_player.RollCrit())
-        {
-            enemy.TakeDamage(weaponStats.damage * _player.critModifier, true);
-        }
-        else
-        {
-            enemy.TakeDamage(weaponStats.damage, false);
-        }
-    }*/
 
 
     public virtual void HitEnemy(Enemy enemy, Vector2 knockBackDir)
@@ -99,7 +95,6 @@ public abstract class WeaponBase : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         weaponAmmo = weaponAmmoMax;
         hasAmmo = true;
-        _weaponAmmoIndicator.SetAmmo(weaponAmmo, weaponAmmoMax);
         _player.playerBodyAnimator.SetBool("isReloading", false);
     }
 

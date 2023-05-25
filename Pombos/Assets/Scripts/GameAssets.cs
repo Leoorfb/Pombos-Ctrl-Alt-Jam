@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameAssets : MonoBehaviour
 {
     public GameObject damagePopup;
-    public AmmoIndicator ammoIndicator;
 
     private static GameAssets _instance;
     public static GameAssets instance
@@ -27,6 +26,5 @@ public class GameAssets : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        ammoIndicator = gameObject.GetComponent<AmmoIndicator>();
     }
 }

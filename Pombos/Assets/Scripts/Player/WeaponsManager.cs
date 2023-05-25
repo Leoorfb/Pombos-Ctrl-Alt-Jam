@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,9 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] Transform weaponsObjectContainer;
     [SerializeField] Transform projectilesObjectContainer;
     [SerializeField] WeaponData startingWeapon;
-    //[SerializeField] int WeaponLimit = 5;
 
     Shop shop;
-    [SerializeField] List<WeaponBase> weapons;
+    [SerializeField] WeaponBase weapon;
 
     public Transform projectileOrigin;
     private Player player;
@@ -18,45 +18,48 @@ public class WeaponsManager : MonoBehaviour
 
     private void Awake()
     {
-        weapons = new List<WeaponBase>();
+        weapon = null;
         player = GetComponent<Player>();
     }
 
     private void Start()
     {
         shop = GameManager.instance.shop;
-        AddWeapon(startingWeapon);
+        SetWeapon(startingWeapon);
     }
 
     public void UpdateWeaponsStats()
     {
-        foreach (WeaponBase weapon in weapons)
-        {
-            weapon.weaponStats.damage = weapon.baseWeaponDamage + player.baseDamage;
-            weapon.weaponStats.ammoMax = weapon.baseWeaponAmmoMax + player.baseAmmo;
-            weapon.weaponAmmoMax = weapon.weaponStats.ammoMax;
-            weapon.weaponStats.spread = weapon.baseWeaponSpread - (weapon.baseWeaponSpread * player.spreadReductionPct);
-            weapon.weaponStats.fireRate = weapon.baseWeaponFirerate - (weapon.baseWeaponFirerate * player.fireRateReductionPct);
-        }
+        weapon.weaponStats.damage = weapon.baseWeaponDamage + player.baseDamage;
+        weapon.weaponStats.ammoMax = weapon.baseWeaponAmmoMax + player.baseAmmo;
+        weapon.weaponAmmoMax = weapon.weaponStats.ammoMax;
+        weapon.weaponStats.spread = weapon.baseWeaponSpread - (weapon.baseWeaponSpread * player.spreadReductionPct);
+        weapon.weaponStats.fireRate = weapon.baseWeaponFirerate - (weapon.baseWeaponFirerate * player.fireRateReductionPct);
     }
 
     public WeaponBase GetWeaponBase() 
     {
-        return weapons[0];
+        return weapon;
     }
 
-    public void AddWeapon(WeaponData weaponData)
+    public void SetWeapon(WeaponData weaponData)
     {
         UpgradesData firstUpgrade;
-        AddWeapon(weaponData, out firstUpgrade);
+        ClearWeapon();
+        SetWeapon(weaponData, out firstUpgrade);
     }
 
-    public void AddWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
+    private void ClearWeapon()
+    {
+        if (weapon != null) Destroy(weapon.gameObject);
+        weapon = null;
+    }
+
+    public void SetWeapon(WeaponData weaponData, out UpgradesData firstUpgrade)
     {
         GameObject weaponGameObject = GameObject.Instantiate(weaponData.weaponPrefab, weaponsObjectContainer);
 
-        WeaponBase weapon = weaponGameObject.GetComponent<WeaponBase>();
-        weapons.Add(weapon);
+        weapon = weaponGameObject.GetComponent<WeaponBase>();
 
         weapon.projectileOrigin = projectileOrigin;
         weaponGameObject.GetComponent<WeaponBase>().SetData(weaponData);
@@ -65,10 +68,8 @@ public class WeaponsManager : MonoBehaviour
         firstUpgrade = weaponData.GetFirstUpgrade();
         shop.AddUpgradesIntoTheListOfUpgrades(firstUpgrade);
     }
-
     public void UpgradeWeapon(UpgradesData upgradesData, out UpgradesData nextUpgrade)
     {
-        WeaponBase weapon = weapons.Find(wd => wd.weaponData == upgradesData.weaponData);
         weapon.Upgrade(upgradesData);
         nextUpgrade = weapon.GetNextUpgradeAndLevelUp();
         shop.AddUpgradesIntoTheListOfUpgrades(nextUpgrade);

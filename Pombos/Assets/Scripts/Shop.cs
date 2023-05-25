@@ -149,7 +149,7 @@ public class Shop : MonoBehaviour
                     break;
 
                 case UpgradeType.WeaponUnlock:
-                    weaponsManager.AddWeapon(upgradesData.weaponData, out nextUpgrade);
+                    weaponsManager.SetWeapon(upgradesData.weaponData, out nextUpgrade);
 
                     nextUpgrade = upgradesData.weaponData.GetNextUpgrade(upgradesData);
                     break;
